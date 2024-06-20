@@ -132,6 +132,8 @@ $^{2}$ \quad Department of Biological, Geological and Environmental Sciences, Al
 %----------- section ----------->
 \section{Study Area}
 
+The general topographic map of Australia with outlined location of the study area was plotted based on the General Bathymetric Chart of the Oceans (GEBCO) dataset with 15 arc minute resolution. The names of the major features, cities and geographic objects were obtained from the Gazetteer of Australia (Aggregator: Geoscience Australia, distributed under the Creative Commons Attribution 3.0 license). 
+
 \begin{figure}[H]
     \begin{center}
 	\hspace{-35pt}\includegraphics[width=14.0cm]{Fig_01.jpg}
@@ -145,7 +147,7 @@ $^{2}$ \quad Department of Biological, Geological and Environmental Sciences, Al
 	\hspace{-35pt}\includegraphics[width=14.0cm]{Fig_01.jpg}
     \end{center}
     \caption{Enlarged fragment of the topographic map of southern Australia showing the location of the study area. Mapping software: Generic Mapping Tools (GMT) version 6.4.0. Hydrographic and topographic data source: GEBCO. Map source: author.}
-    \label{fig01}
+    \label{fig02}
 \end{figure}
 
 The data source for the land cover types reference were derived from the nationally consistent and thematically comprehensive land cover reference for Australia -- the Dynamic Land Cover Dataset (DLCD), Figure \ref{fig03}.
@@ -157,8 +159,6 @@ The data source for the land cover types reference were derived from the nationa
     \caption{General topographic map of Australia with outlined location of the study area. Mapping software: QGIS version 3.34.7 'Prizren'. Data source: Dynamic Land Cover Dataset (DLCD). Map source: author.}
     \label{fig03}
 \end{figure}
-
-
 
 %----------- section ----------->
 \section{Materials and Methods}
@@ -185,7 +185,7 @@ The data source for the land cover types reference were derived from the nationa
     \small (d): March 2024
   \end{tabular}
   \caption{Original data: Landsat 8-9 OLI/TIRS images on southern Australia, Philippe Bay collected during the autumn period (March) on years 2013, 2015, 2017 and 2024. Source: USGS \cite{Landsat}. Compilation source: author.}
-  \label{fig05}
+  \label{fig04}
 \end{figure}
 
 %----------- subsection ----------->
@@ -196,6 +196,138 @@ The data source for the land cover types reference were derived from the nationa
 
 %----------- section ----------->
 \section{Results}
+
+\begin{figure}[H]
+  \centering
+  \begin{tabular}[b]{c}
+    \includegraphics[width=2.9cm]{Fig_04a.jpg} \\
+    \small (a): Random Forest
+  \end{tabular}
+  \begin{tabular}[b]{c}
+    \includegraphics[width=2.9cm]{Fig_04b.jpg} \\
+    \small (b): SVM
+  \end{tabular}
+    \begin{tabular}[b]{c}
+    \includegraphics[width=2.9cm]{Fig_04c.jpg} \\
+    \small (c): ANN;
+  \end{tabular}
+  \begin{tabular}[b]{c}
+    \includegraphics[width=2.9cm]{Fig_04d.jpg} \\
+    \small (d): DTC
+  \end{tabular}
+  \caption{Results of image processing on 2013 using four different methods: 1) Random Forest; 2) Support Vector Machine (SVM); 3) ANN-based approach using MLPClassifier; 4) DecisionTreeClassifier. Image processing source: author.}
+  \label{fig05}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{tabular}[b]{c}
+    \includegraphics[width=2.9cm]{Fig_04a.jpg} \\
+    \small (a): Random Forest
+  \end{tabular}
+  \begin{tabular}[b]{c}
+    \includegraphics[width=2.9cm]{Fig_04b.jpg} \\
+    \small (b): SVM
+  \end{tabular}
+    \begin{tabular}[b]{c}
+    \includegraphics[width=2.9cm]{Fig_04c.jpg} \\
+    \small (c): ANN
+  \end{tabular}
+  \begin{tabular}[b]{c}
+    \includegraphics[width=2.9cm]{Fig_04d.jpg} \\
+    \small (d): DTC
+  \end{tabular}
+  \caption{Results of image processing on 2015 using four different methods: 1) Random Forest; 2) Support Vector Machine (SVM); 3) ANN-based approach using MLPClassifier; 4) DecisionTreeClassifier. Image processing source: author.}
+  \label{fig06}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{tabular}[b]{c}
+    \includegraphics[width=2.9cm]{Fig_04a.jpg} \\
+    \small (a): Random Forest
+  \end{tabular}
+  \begin{tabular}[b]{c}
+    \includegraphics[width=2.9cm]{Fig_04b.jpg} \\
+    \small (b): SVM
+  \end{tabular}
+    \begin{tabular}[b]{c}
+    \includegraphics[width=2.9cm]{Fig_04c.jpg} \\
+    \small (c): ANN
+  \end{tabular}
+  \begin{tabular}[b]{c}
+    \includegraphics[width=2.9cm]{Fig_04d.jpg} \\
+    \small (d): DTC
+  \end{tabular}
+  \caption{Results of image processing on 2017 using four different methods: 1) Random Forest; 2) Support Vector Machine (SVM); 3) ANN-based approach using MLPClassifier; 4) DecisionTreeClassifier. Image processing source: author.}
+  \label{fig07}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{tabular}[b]{c}
+    \includegraphics[width=2.9cm]{Fig_04a.jpg} \\
+    \small (a): Random Forest
+  \end{tabular}
+  \begin{tabular}[b]{c}
+    \includegraphics[width=2.9cm]{Fig_04b.jpg} \\
+    \small (b): SVM
+  \end{tabular}
+    \begin{tabular}[b]{c}
+    \includegraphics[width=2.9cm]{Fig_04c.jpg} \\
+    \small (c): ANN
+  \end{tabular}
+  \begin{tabular}[b]{c}
+    \includegraphics[width=2.9cm]{Fig_04d.jpg} \\
+    \small (d): DTC
+  \end{tabular}
+  \caption{Results of image processing on 2024 using four different methods: 1) Random Forest; 2) Support Vector Machine (SVM); 3) ANN-based approach using MLPClassifier; 4) DecisionTreeClassifier. Image processing source: author.}
+  \label{fig08}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{tabular}[b]{c}
+    \includegraphics[width=2.9cm]{Fig_04a.jpg} \\
+    \small (a): 2013
+  \end{tabular}
+  \begin{tabular}[b]{c}
+    \includegraphics[width=2.9cm]{Fig_04b.jpg} \\
+    \small (b): 2015
+  \end{tabular}
+    \begin{tabular}[b]{c}
+    \includegraphics[width=2.9cm]{Fig_04c.jpg} \\
+    \small (c): 2017
+  \end{tabular}
+  \begin{tabular}[b]{c}
+    \includegraphics[width=2.9cm]{Fig_04d.jpg} \\
+    \small (d): 2024
+  \end{tabular}
+  \caption{Time series of the classified images (2013-2024) processed using k-means clustering method. Image processing source: author.}
+  \label{fig09}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{tabular}[b]{c}
+    \includegraphics[width=2.9cm]{Fig_04a.jpg} \\
+    \small (a): 2013
+  \end{tabular}
+  \begin{tabular}[b]{c}
+    \includegraphics[width=2.9cm]{Fig_04b.jpg} \\
+    \small (b): 2015
+  \end{tabular}
+    \begin{tabular}[b]{c}
+    \includegraphics[width=2.9cm]{Fig_04c.jpg} \\
+    \small (c): 2017
+  \end{tabular}
+  \begin{tabular}[b]{c}
+    \includegraphics[width=2.9cm]{Fig_04d.jpg} \\
+    \small (d): 2024
+  \end{tabular}
+  \caption{Accuracy analysis of image classification (2013-2024) using chi square algorithm method. Image processing source: author.}
+  \label{fig10}
+\end{figure}
 
 %----------- section ----------->
 \section{Discussion}
@@ -223,9 +355,24 @@ The following abbreviations are used in this manuscript:\\
 
 \noindent 
 \begin{tabular}{@{}ll}
-MDPI & Multidisciplinary Digital Publishing Institute\\
-DOAJ & Directory of open access journals\\
-LD & Linear dichroism
+AI & Artificial Intelligence \\
+ANN & Artificial Neural Network \\
+DN & Digital Number \\
+EO & Earth Observation \\
+GEBCO & General Bathymetric Chart of the Oceans \\
+GMT & Generic Mapping Tools \\
+GRASS & Geographic Resources Analysis Support System \\
+GIS & Geographic Information System \\
+Landsat OLI/TIRS & Landsat Operational Land Imager and Thermal Infrared Sensor \\
+ML & Machine Learning \\
+MLP & Multilayer Perceptron \\
+RF & Random Forest \\
+RS & Remote Sensing \\
+SVM & Support Vector Machine \\
+USGS & United States Geological Survey \\
+UTM & Universal Transverse Mercator \\
+WGS84 & World Geodetic System 84 \\
+WRS & Worldwide Reference System
 \end{tabular}
 }
 
