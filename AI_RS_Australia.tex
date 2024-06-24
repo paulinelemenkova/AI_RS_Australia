@@ -238,6 +238,7 @@ The RS data were obtained from the sources of Landsat 8-9 Landsat Operational La
  \begin{tabular}{|l|l|l|l|l|}
     \hline
         \textbf{Data Set Attribute} & \textbf{Attribute Value: 2024} & \textbf{Attribute Value: 2017} & \textbf{Attribute Value: 2015} & \textbf{Attribute Value: 2013} \\ \hline
+        \toprule
         Landsat Product Identifier L2 & \makecell{LC09\_L2SP\_093086\_ \\ 20240329\_20240403\_02\_T1} & \makecell{LC08\_L2SP\_093086\_ \\ 20170318\_20200904\_02\_T1} & \makecell{LC08\_L2SP\_093086\_ \\ 20150329\_20200909\_02\_T1} & \makecell{LC08\_L2SP\_093086\_ \\ 20130326\_20200913\_02\_T1} \\ \hline
         Landsat Product Identifier L1 & \makecell{LC09\_L1TP\_093086\_ \\ 20240329\_20240329\_02\_T1} & \makecell{LC08\_L1TP\_093086\_ \\ 20170318\_20200904\_02\_T1} & \makecell{LC08\_L1TP\_093086\_ \\ 20150329\_20200909\_02\_T1} & \makecell{LC08\_L1TP\_093086\_ \\ 20130326\_20200913\_02\_T1} \\ \hline
         Landsat Scene Identifier & LC90930862024089LGN00 & LC80930862017077LGN00 & LC80930862015088LGN01 & LC80930862013085LGN02 \\ \hline
@@ -316,6 +317,25 @@ First, the atmospheric correction of the images was carried out in GRASS GIS usi
 
 %----------- section ----------->
 \section{Results}
+
+The results of computed pixels assigned to 10 land cover classes are summarised in Table \ref{tab02}.
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}}
+  \toprule
+  \multirow{2}{*}{Year} & \multicolumn{10}{c}{Classes of land cover types} \\
+     & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+    \midrule
+    \textbf{2013} & XXX & XXX & XXX & XXX & XXX & XXX & XXX & XXX & XXX & XXX \\
+    \textbf{2015} & XXX & XXX & XXX & XXX & XXX & XXX & XXX & XXX & XXX & XXX \\
+    \textbf{2017} & XXX & XXX & XXX & XXX & XXX & XXX & XXX & XXX & XXX & XXX \\
+    \textbf{2024} & XXX & XXX & XXX & XXX & XXX & XXX & XXX & XXX & XXX & XXX \\
+\bottomrule
+\end{tabularx}
+  \caption{Estimated classes of land cover types for 2013--2024 in Port Phillip Bay and surroundings, Victoria, southern Australia}
+  \label{tab02}
+\end{table}
 
 \begin{figure}[H]
   \centering
