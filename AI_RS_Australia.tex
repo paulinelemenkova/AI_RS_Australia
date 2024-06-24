@@ -211,11 +211,11 @@ An approach that integrates RS data and AI algorithms is proposed herein to iden
 %----------- subsection ----------->
 \subsection{Data}
 
-The data used in this study for spatial analysis and image processing are obtained from the open sources. The general topographic map with the outlined location of the study area within Australia was plotted based on the General Bathymetric Chart of the Oceans (GEBCO) dataset with 15 arc minute resolution, as shown in Figures \ref{fig01} and \ref{fig02}. The names of the major features, cities and geographic objects were obtained from the Gazetteer of Australia (Aggregator: Geoscience Australia, distributed under the Creative Commons Attribution 3.0 license). The data source for the land cover types reference were derived from the nationally consistent and thematically comprehensive land cover reference for Australia -- the Dynamic Land Cover Dataset (DLCD), Figure \ref{fig03}. 
+The data used in this study for spatial analysis and image processing are obtained from the open sources. The geospatial data of GEBCO (\href{https://www.gebco.net/}{https://www.gebco.net/}, accessed on 24 June 2024) with a 15 arc second spatial resolution was incorporated for topographic mapping. The general topographic map with the outlined location of the study area within Australia was plotted based on the General Bathymetric Chart of the Oceans (GEBCO) dataset with 15 arc minute resolution, as shown in Figures \ref{fig01} and \ref{fig02}. The names of the major features, cities and geographic objects were obtained from the Gazetteer of Australia (Aggregator: Geoscience Australia, distributed under the Creative Commons Attribution 3.0 license). 
 
-The RS data were obtained from the sources of Landsat 8-9 Landsat Operational Land Imager and Thermal Infrared Sensor (OLI-TIRS) United States Geological Survey (USGS), Figure \ref{fig04}. technically, the multispectral Landsat 8-9 OLI-TIRS images were retrieved from the Earth Explorer repository (\href{https://earthexplorer.usgs.gov/}{Earth Explorer}, accessed on 24 June 2024). The metadata were acquired and checked to cloudiness coverage and image quality and image extent to cover the entire study area of the Port Phillip Bay. Four satellite images were obtained for the following dates in March: 26/03/2013, 29/03/2015, 18/03/2017 and 29/03/2024. 
+The land cover data were obtained from the open repository of the Geoscience Australia of the Australian Government -- Land Cover based on the updated classified imagery of Geoscience Australia Landsat Land Cover with resolution of 25m that replaces the previous version based on classified images from Terra Moderate Resolution Imaging Spectroradiometer (MODIS). These data were used to obtain the general characteristics of the landscape types in the Port Phillip Bay and the surroundings degrees. The vectors layers of these data were processed and visualised using QGIS software.The data source for the land cover types reference were derived from the nationally consistent and thematically comprehensive land cover reference for Australia -- the Dynamic Land Cover Dataset (DLCD) with resolution 25 m, version 1.0.0 (\href{https://knowledge.dea.ga.gov.au/data/product/dea-land-cover-landsat/?tab=overview}{https://knowledge.dea.ga.gov.au/data/product/dea-land-cover-landsat/?tab=overview}, accessed on 24 June 2024), Figure \ref{fig03}. 
 
-Major technical characteristics common for all the Landsat scenes are the following. The satellite images have a level Data Type L2, meaning they incorporate geometric correction and topographic correction based on parameters of OLI TIRS L2SP sensor identifier, collection category T1, collection number 2 and Ground Control Points (GCP) Version 5. Special resolution is 30 m for multispectral channels and cirrus (Bands 1 to 7 and Band 9), 15 m for Panchromatic (Band 8) and 90 m for Thermal Infrared Sensor (TIRS) (Bands 10 and 11). The cartographic parameters are the following. The data are projected in Universal Transverse Mercator (UTM), Zone 55 South, Datum and Ellipsoid WGS84. The Satellite ID is 9 for the scene on 2024 and 8 for the rest of the images, and the Station Identifier is LGN for all the data. All images were taken in nadir in day time. The Worldwide Reference System (WRS) Path is 93, Row 86. The remaining metadata of the satellite images are summarised in Table 1. The pictures of the raw data in natural colours are presented in Figure \ref{fig04}.
+The RS data were obtained from the sources of Landsat 8-9 Landsat Operational Land Imager and Thermal Infrared Sensor (OLI-TIRS) United States Geological Survey (USGS), Figure \ref{fig04}. technically, the multispectral Landsat 8-9 OLI-TIRS images were retrieved from the Earth Explorer repository (\href{https://earthexplorer.usgs.gov/}{https://earthexplorer.usgs.gov/}, accessed on 24 June 2024). The metadata were acquired and checked to cloudiness coverage and image quality and image extent to cover the entire study area of the Port Phillip Bay. Four satellite images were obtained for the following dates in March: 26/03/2013, 29/03/2015, 18/03/2017 and 29/03/2024. The pictures of these images as a raw dataset in natural colours are presented in Figure \ref{fig04}.
 
 \begin{figure}[H]
   \centering
@@ -235,12 +235,16 @@ Major technical characteristics common for all the Landsat scenes are the follow
     \includegraphics[width=2.9cm]{Fig_04d.jpg} \\
     \small (d): March 2024
   \end{tabular}
-  \caption{Original data: Landsat 8-9 OLI/TIRS images on southern Australia, Philippe Bay collected during the autumn period (March) on years 2013, 2015, 2017 and 2024. Source: USGS \cite{Landsat}. Compilation source: author.}
+  \caption{Original data: Landsat 8-9 OLI/TIRS images on southern Australia, Philippe Bay collected during March on years 2013, 2015, 2017 and 2024. Source: USGS. Compilation source: author.}
   \label{fig04}
 \end{figure}
 
+Major technical characteristics common for all the Landsat scenes are the following. The satellite images have a level Data Type L2, meaning they incorporate geometric correction and topographic correction based on parameters of OLI TIRS L2SP sensor identifier, collection category T1, collection number 2 and Ground Control Points (GCP) Version 5. Special resolution is 30 m for multispectral channels and cirrus (Bands 1 to 7 and Band 9), 15 m for Panchromatic (Band 8) and 90 m for Thermal Infrared Sensor (TIRS) (Bands 10 and 11). The cartographic parameters are the following. The data are projected in Universal Transverse Mercator (UTM), Zone 55 South, Datum and Ellipsoid WGS84. The Satellite ID is 9 for the scene on 2024 and 8 for the rest of the images, and the Station Identifier is LGN for all the data. All images were taken in nadir in day time. The Worldwide Reference System (WRS) Path is 93, Row 86. The remaining metadata of the satellite images are summarised in Table 1. 
+
 %----------- subsection ----------->
-\subsection{Subsection}
+\subsection{Image processing}
+
+First, the atmospheric correction of the images was carried out in GRASS GIS using 'i.landsat.toar' which computed the top-of-atmosphere reflectance and temperature for Landsat images. This adjustment transforms the calibrated Digital Number (DN) of the Landsat scenes to top-of-atmosphere reflectance thus improving the quality of the image. Here the atmospheric correction model was applied based on the dark object subtraction (DOS) correction approach.
 
 \begin{figure}[H]
     \begin{center}
@@ -442,6 +446,7 @@ The following abbreviations are used in this manuscript:\\
 AI & Artificial Intelligence \\
 ANN & Artificial Neural Network \\
 DN & Digital Number \\
+DOS & Dark Object Subtraction \\
 EO & Earth Observation \\
 GCP & Ground Control Points \\
 GEBCO & General Bathymetric Chart of the Oceans \\
@@ -451,6 +456,7 @@ GIS & Geographic Information System \\
 Landsat OLI/TIRS & Landsat Operational Land Imager and Thermal Infrared Sensor \\
 ML & Machine Learning \\
 MLP & Multilayer Perceptron \\
+MODIA & Moderate Resolution Imaging Spectroradiometer \\
 RF & Random Forest \\
 R\&D & Research and Development \\
 RS & Remote Sensing \\
