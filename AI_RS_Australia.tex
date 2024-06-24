@@ -211,7 +211,11 @@ An approach that integrates RS data and AI algorithms is proposed herein to iden
 %----------- subsection ----------->
 \subsection{Data}
 
-The data used in this study for spatial analysis and image processing are obtained from the open sources. The general topographic map with the outlined location of the study area within Australia was plotted based on the General Bathymetric Chart of the Oceans (GEBCO) dataset with 15 arc minute resolution, as shown in Figures \ref{fig01} and \ref{fig02}. The names of the major features, cities and geographic objects were obtained from the Gazetteer of Australia (Aggregator: Geoscience Australia, distributed under the Creative Commons Attribution 3.0 license). The data source for the land cover types reference were derived from the nationally consistent and thematically comprehensive land cover reference for Australia -- the Dynamic Land Cover Dataset (DLCD), Figure \ref{fig03}. The satellite images were obtained from the United States Geological Survey (USGS), Figure \ref{fig04}.
+The data used in this study for spatial analysis and image processing are obtained from the open sources. The general topographic map with the outlined location of the study area within Australia was plotted based on the General Bathymetric Chart of the Oceans (GEBCO) dataset with 15 arc minute resolution, as shown in Figures \ref{fig01} and \ref{fig02}. The names of the major features, cities and geographic objects were obtained from the Gazetteer of Australia (Aggregator: Geoscience Australia, distributed under the Creative Commons Attribution 3.0 license). The data source for the land cover types reference were derived from the nationally consistent and thematically comprehensive land cover reference for Australia -- the Dynamic Land Cover Dataset (DLCD), Figure \ref{fig03}. 
+
+The RS data were obtained from the sources of Landsat 8-9 Landsat Operational Land Imager and Thermal Infrared Sensor (OLI-TIRS) United States Geological Survey (USGS), Figure \ref{fig04}. technically, the multispectral Landsat 8-9 OLI-TIRS images were retrieved from the Earth Explorer repository (\href{https://earthexplorer.usgs.gov/}{Earth Explorer}, accessed on 24 June 2024). The metadata were acquired and checked to cloudiness coverage and image quality and image extent to cover the entire study area of the Port Phillip Bay. Four satellite images were obtained for the following dates in March: 26/03/2013, 29/03/2015, 18/03/2017 and 29/03/2024. 
+
+Major technical characteristics common for all the Landsat scenes are the following. The satellite images have a level Data Type L2, meaning they incorporate geometric correction and topographic correction based on parameters of OLI TIRS L2SP sensor identifier, collection category T1, collection number 2 and Ground Control Points (GCP) Version 5. Special resolution is 30 m for multispectral channels and cirrus (Bands 1 to 7 and Band 9), 15 m for Panchromatic (Band 8) and 90 m for Thermal Infrared Sensor (TIRS) (Bands 10 and 11). The cartographic parameters are the following. The data are projected in Universal Transverse Mercator (UTM), Zone 55 South, Datum and Ellipsoid WGS84. The Satellite ID is 9 for the scene on 2024 and 8 for the rest of the images, and the Station Identifier is LGN for all the data. All images were taken in nadir in day time. The Worldwide Reference System (WRS) Path is 93, Row 86. The remaining metadata of the satellite images are summarised in Table 1. The pictures of the raw data in natural colours are presented in Figure \ref{fig04}.
 
 \begin{figure}[H]
   \centering
@@ -439,6 +443,7 @@ AI & Artificial Intelligence \\
 ANN & Artificial Neural Network \\
 DN & Digital Number \\
 EO & Earth Observation \\
+GCP & Ground Control Points \\
 GEBCO & General Bathymetric Chart of the Oceans \\
 GMT & Generic Mapping Tools \\
 GRASS & Geographic Resources Analysis Support System \\
