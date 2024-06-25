@@ -335,13 +335,7 @@ The adjusted automatic classification model was performed using the "i.maxlik" m
   \label{tab02}
 \end{table}
 
-Finally, the maps obtained based on the classified images were visualised using the sequence of modules "d.rast", "d.grid" and "d.legend". Such workflow made it possible to automate the necessary procedures to carry out image analysis. The additional information from the spectral bands (one to seven)  was obtained and statistically processed to evaluate changes during the period from 2013 to2024. 
-
-Four different ML and AI algorithms were tested and their performance was evaluated. For SVM and RF, the optimal parameters of the models were adjusted to improve the classification performance and accuracy of assignment. At the same time, for all the years (2013-2024), the assignment of pixels to various land cover classes was evaluated for each band was calculated to understand the contribution of land cover types within the whole landscape in the classification models. The computed statistics on land cover class distribution by multispectral bands for each Landsat image and by years for each evaluated period (2013, 2015, 2017 and 2024) was obtained and summarised in the tables presented in the following section as well as in the Appendix of this study. 
-
-%\pagebreak
-%----------- section ----------->
-\section{Results}
+Finally, the maps obtained based on the classified images were visualised using the sequence of modules "d.rast", "d.grid" and "d.legend". Such workflow made it possible to automate the necessary procedures to carry out image analysis. The additional information from the spectral bands (one to seven)  was obtained and statistically processed to evaluate changes during the period from 2013 to2024. Since all the four ML and IA models that were applied belong to the type of supervised classifiers, a training dataset was necessary for the algorithm. Training dataset teaches the model to learn the patterns of the different classes which should be discriminated. To this end, a sample of the unsupervised classification with pixel points was collected from the clustering to train the ML and AI algorithms, Figure \ref{fig06}. 
 
 \begin{figure}[H]
   \centering
@@ -365,8 +359,7 @@ Four different ML and AI algorithms were tested and their performance was evalua
   \label{fig06}
 \end{figure}
 
-
-For 2013, pixels were assigned to the corresponding categories of the recognised 10 classes with 98.27\% points stable accuracy and convergence of 98.3\%, Table \ref{tab03}. 
+This initial raster dataset was augmented through the visual recognition of the satellite images, using the data on land cover types collected as reference from the DLCD open repository of the Australian Government. Four different ML and AI algorithms were tested and their performance was evaluated. For SVM and RF, the optimal parameters of the models were adjusted to improve the classification performance and accuracy of assignment. At the same time, for all the years (2013-2024), the assignment of pixels to various land cover classes was evaluated for each band was calculated to understand the contribution of land cover types within the whole landscape in the classification models. The computed statistics on land cover class distribution by multispectral bands for each Landsat image and by years for each evaluated period (2013, 2015, 2017 and 2024) was obtained and summarised in the tables presented in the following section as well as in the Appendix of this study, e.g., Table \ref{tab03} for 2013 and likewise for the next periods. For 2013, pixels were assigned to the corresponding categories of the recognised 10 classes with 98.27\% points stable accuracy and convergence of 98.3\%, Table \ref{tab03}. 
 
 \begin{table}[H]
   \centering
@@ -410,6 +403,14 @@ For 2013, pixels were assigned to the corresponding categories of the recognised
   \caption{Pixelwise computational statistics on land cover class distribution by spectral bands on 2013.}
   \label{tab03}
 \end{table}
+
+
+%----------- section ----------->
+\section{Results}
+
+An essential point when classifying satellite image consists in the accurate selection of the land cover categories which should be identified, recognised on the images and discriminated on the resulting maps. In this research, the selection of these land categories has been employed using adopted, modified and generalised reports from previous existing studies in southern Australia and Port Phillip Bay. The adaptation of these data  aimed at the correct detection of coastal landscapes within the ecosystems of southern Victoria with the special aim to detect wetlands, and discriminate them automatically from urban areas and native forests. For this purpose, land cover type were proposed for the study area with ten following categories: 1) ; 2) ; 3) ; 4) ; 5) ; 6) ; 7) ; 8) ; 9) ; 10). 
+
+The results of the classification of the satellite images using ML and AI methods are presented in Figures \ref{fig06}, \ref{fig07}, \ref{fig08} and \ref{fig09} for comparison of different approaches for years 2013, 2015, 2017 and 2024. Contrariwise, the time series of one algorithms but evaluating the environmental dynamics is illustrated in Figure \ref{fig10}. The accuracy assessment computed using chi-square algorithms which evaluates the probability of the pixel's assignment to the correct class is shown in Figure \ref{fig11}. The four widely used ML algorithms were applied to classify the images:  1) Random Forest (RF), 2) Support 7 Vector Machine (SVM), 3) ANN-based approach using Multi-layer Perceptron (MLP) Classifier; and 4) Decision Tree Classifier (DTC). The SVM is a non-parametric statistical learning classifier which is initially proposed by Vapnik \cite{788640} with the aim to find the optimal surface that divides each set of points into distinct classes according to their properties. The optimal surface here means a decision boundary that minimises the number of erroneously classified points. Such logical approach increases the accuracy of the classification and which resulted in the high applicability of of this method in image classification and explains its high accuracy.
 
 \begin{figure}[H]
   \centering
@@ -541,6 +542,28 @@ For 2013, pixels were assigned to the corresponding categories of the recognised
   \label{tab05}
 \end{table}
 
+\begin{figure}[H]
+  \centering
+  \begin{tabular}[b]{c}
+    \includegraphics[width=6.3cm]{Fig_09a.jpg} \\
+    \small (a)
+  \end{tabular}
+  \begin{tabular}[b]{c}
+    \includegraphics[width=6.3cm]{Fig_09b.jpg} \\
+    \small (b) 
+  \end{tabular}
+    \begin{tabular}[b]{c}
+    \includegraphics[width=6.3cm]{Fig_09c.jpg} \\
+    \small (c)
+  \end{tabular}
+  \begin{tabular}[b]{c}
+    \includegraphics[width=6.3cm]{Fig_09d.jpg} \\
+    \small (d) 
+  \end{tabular}
+  \caption{Image classification on 2024 using four methods: 1) Random Forest; 2) SVM; 3) ANN-based MLPC; 4) DTClassifier. Image processing: author.}
+  \label{fig09}
+\end{figure}
+
 \begin{table}[H]
   \centering
   \begin{tabularx}{\linewidth}{p{1.3cm}p{1.0cm}p{1.0cm}p{1.0cm}p{1.0cm}p{1.0cm}p{1.0cm}p{1.0cm}p{1.0cm}}
@@ -602,28 +625,6 @@ The statistical results of the class distribution of the assigned pixels are bas
   \caption{Class distribution of the assigned pixels target land cover types for 2013--2024 during iterative classification process}
   \label{tab07}
 \end{table}
-
-\begin{figure}[H]
-  \centering
-  \begin{tabular}[b]{c}
-    \includegraphics[width=6.3cm]{Fig_09a.jpg} \\
-    \small (a)
-  \end{tabular}
-  \begin{tabular}[b]{c}
-    \includegraphics[width=6.3cm]{Fig_09b.jpg} \\
-    \small (b) 
-  \end{tabular}
-    \begin{tabular}[b]{c}
-    \includegraphics[width=6.3cm]{Fig_09c.jpg} \\
-    \small (c)
-  \end{tabular}
-  \begin{tabular}[b]{c}
-    \includegraphics[width=6.3cm]{Fig_09d.jpg} \\
-    \small (d) 
-  \end{tabular}
-  \caption{Image classification on 2024 using four methods: 1) Random Forest; 2) SVM; 3) ANN-based MLPC; 4) DTClassifier. Image processing: author.}
-  \label{fig09}
-\end{figure}
 
 \begin{figure}[H]
   \centering
