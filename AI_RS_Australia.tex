@@ -451,6 +451,28 @@ For 2013, pixels were assigned to the corresponding categories of the recognised
   \label{tab04}
 \end{table}
 
+\begin{figure}[H]
+  \centering
+  \begin{tabular}[b]{c}
+    \includegraphics[width=6.4cm]{Fig_07a.jpg} \\
+    \small (a)
+  \end{tabular}
+  \begin{tabular}[b]{c}
+    \includegraphics[width=6.4cm]{Fig_07b.jpg} \\
+    \small (b) 
+  \end{tabular}
+    \begin{tabular}[b]{c}
+    \includegraphics[width=6.4cm]{Fig_07c.jpg} \\
+    \small (c)
+  \end{tabular}
+  \begin{tabular}[b]{c}
+    \includegraphics[width=6.4cm]{Fig_07d.jpg} \\
+    \small (d) 
+  \end{tabular}
+   \caption{Results of image processing on 2015 using four different methods: 1) Random Forest; 2) Support Vector Machine (SVM); 3) ANN-based approach using MLPClassifier; 4) DecisionTreeClassifier. Image processing source: author.}
+  \label{fig07}
+\end{figure}
+
 \begin{table}[H]
   \centering
   \begin{tabularx}{\linewidth}{p{1.3cm}p{1.0cm}p{1.0cm}p{1.0cm}p{1.0cm}p{1.0cm}p{1.0cm}p{1.0cm}p{1.0cm}}
@@ -555,28 +577,6 @@ The statistical results of the class distribution of the assigned pixels are bas
   \caption{Class distribution of the assigned pixels target land cover types for 2013--2024 during iterative classification process}
   \label{tab07}
 \end{table}
-
-\begin{figure}[H]
-  \centering
-  \begin{tabular}[b]{c}
-    \includegraphics[width=6.4cm]{Fig_07a.jpg} \\
-    \small (a)
-  \end{tabular}
-  \begin{tabular}[b]{c}
-    \includegraphics[width=6.4cm]{Fig_07b.jpg} \\
-    \small (b) 
-  \end{tabular}
-    \begin{tabular}[b]{c}
-    \includegraphics[width=6.4cm]{Fig_07c.jpg} \\
-    \small (c)
-  \end{tabular}
-  \begin{tabular}[b]{c}
-    \includegraphics[width=6.4cm]{Fig_07d.jpg} \\
-    \small (d) 
-  \end{tabular}
-   \caption{Results of image processing on 2015 using four different methods: 1) Random Forest; 2) Support Vector Machine (SVM); 3) ANN-based approach using MLPClassifier; 4) DecisionTreeClassifier. Image processing source: author.}
-  \label{fig07}
-\end{figure}
 
 \begin{figure}[H]
   \centering
@@ -744,15 +744,29 @@ WRS & Worldwide Reference System
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Optional
-\appendixtitles{no} % Leave argument "no" if all appendix headings stay EMPTY (then no dot is printed after "Appendix A"). If the appendix sections contain a heading then change the argument to "yes".
+\appendixtitles{no} 
 \appendixstart
 \appendix
 \section[\appendixname~\thesection]{}
 \subsection[\appendixname~\thesubsection]{}
 The appendix 
 
-\section[\appendixname~\thesection]{}
-All appendix sections must be cited in the main text. In the appendices, Figures, Tables, etc. should be labeled, starting with ``A''---e.g., Figure A1, Figure A2, etc.
+\section[\appendixname~\thesection]{Iterations for 2013}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{p{2.2cm}p{0.7cm}p{0.7cm}p{0.7cm}p{0.7cm}p{0.7cm}p{0.7cm}p{0.7cm}p{0.7cm}p{0.7cm}p{0.7cm}}
+  \toprule
+  \multirow{2}{*}{2013} & \multicolumn{10}{c}{Classes of land cover types} \\
+     & 1 & 2 &  3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+    \midrule
+    Iteration 1 & 747 & 855 & 508 & 460 & 478 & 595 & 688 & 802 & 1014 & 897 \\
+    Iteration 2 & 558 & 897 & 671 & 456 & 477& 594 &683 & 861& 1075 &772 \\
+\bottomrule
+\end{tabularx}
+  \caption{Iterations process of pixels' assignment to target categories during image classification: 2013}
+  \label{tabA1}
+\end{table}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{adjustwidth}{-\extralength}{0cm}
