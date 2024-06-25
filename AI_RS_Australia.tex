@@ -302,9 +302,11 @@ Technically, the multispectral Landsat 8-9 OLI-TIRS images were retrieved from t
 Major technical characteristics common for all the Landsat scenes are the following. The satellite images have a level Data Type L2, meaning they incorporate geometric correction and topographic correction based on parameters of OLI TIRS L2SP sensor identifier, collection category T1, collection number 2 and Ground Control Points (GCP) Version 5. Special resolution is 30 m for multispectral channels and cirrus (Bands 1 to 7 and Band 9), 15 m for Panchromatic (Band 8) and 90 m for Thermal Infrared Sensor (TIRS) (Bands 10 and 11). The cartographic parameters are the following. The data are projected in Universal Transverse Mercator (UTM), Zone 55 South, Datum and Ellipsoid WGS84. The Satellite ID is 9 for the scene on 2024 and 8 for the rest of the images, and the Station Identifier is LGN for all the data. All images were taken in nadir in day time. The Worldwide Reference System (WRS) Path is 93, Row 86. 
 
 %----------- subsection ----------->
-\subsection{Image processing}
+\subsection{Workflow}
 
-First, the atmospheric correction of the images was carried out in GRASS GIS using 'i.landsat.toar' which computed the top-of-atmosphere reflectance and temperature for Landsat images. This adjustment transforms the calibrated Digital Number (DN) of the Landsat scenes to top-of-atmosphere reflectance thus improving the quality of the image. Here the atmospheric correction model was applied based on the dark object subtraction (DOS) correction approach.
+The workflow steps to process and classify the satellite images in order to detect land cover types along the coastal landscape sof southern Australia are detailed in Figure \ref{fig05}. First, the images were selected based on their quality, coverage and suitability, and donwloaded from the USGS EarthExplorer site. Then, the images were imported into GRASS GIS using module "r.import" and necessary preprocessing and atmospheric corrections were applied to normalise the moderate-resolution images and eliminate the effects of the atmosphere using "i.landsat.toar:" module. The atmospheric correction of the images was carried out in GRASS GIS using 'i.landsat.toar' which computed the top-of-atmosphere reflectance and temperature for Landsat images. This adjustment transforms the calibrated Digital Number (DN) of the Landsat scenes to top-of-atmosphere reflectance thus improving the quality of the image. Here the atmospheric correction model was applied based on the dark object subtraction (DOS) correction approach.
+
+At the next step, 10 groups of land cover categories were defined using information received on previous step in order to recognise these classes on actual study area. To this end, the thematic map on land cover types was created using QGIS software to evaluate the distribution of major categories across the study area. Additionally, a digital elevation model (DEM) was obtained from GEBCO and generated as a topographic map of study area to strengthen the environmental setting through geospatial information. Following that, the images were processed using four different ML and AI algorithms of GRASS GIS by the combination of modules "r.random" (which generates training pixels from the land cover classification), "r.learn.train" (which trains models using various ML algorithms) and "r.learn.predict" (which performs prediction of the pixels' assignment into target categories based on their spectral signatures). 
 
 \begin{figure}[H]
     \begin{center}
@@ -314,10 +316,7 @@ First, the atmospheric correction of the images was carried out in GRASS GIS usi
     \label{fig05}
 \end{figure}
 
-%----------- subsection ----------->
-\subsection{Clustering}
-
-The cluster parameters for MaxLike classification approach were accepted as following. The number of initial classes is 10; the minimum class size is 17; the Minimum class separation is zero and the percent convergence is 98.0 for all the scenes. The maximum number of iterations is 30 as defined by the GRASS GIS algorithm. The statistical summary of the accepted computational parameters of image processing through clustering is given in Table \ref{tab02}.
+The adjusted automatic classification model was performed using the "i.maxlik" module of GRASS GIS that employs the maximum-likelihood discriminant analysis classifier. The cluster parameters for MaxLike classification approach were accepted as following. The number of initial classes is 10; the minimum class size is 17; the Minimum class separation is zero and the percent convergence is 98.0 for all the scenes. The maximum number of iterations is 30 as defined by the GRASS GIS algorithm. The statistical summary of the accepted computational parameters of image processing through clustering is given in Table \ref{tab02}.
 
 \begin{table}[H]
   \centering
@@ -336,7 +335,11 @@ The cluster parameters for MaxLike classification approach were accepted as foll
   \label{tab02}
 \end{table}
 
-\pagebreak
+Finally, the maps obtained based on the classified images were visualised using the sequence of modules "d.rast", "d.grid" and "d.legend". Such workflow made it possible to automate the necessary procedures to carry out image analysis. The additional information from the spectral bands (one to seven)  was obtained and statistically processed to evaluate changes during the period from 2013 to2024. 
+
+Four different ML and AI algorithms were tested and their performance was evaluated. For SVM and RF, the optimal parameters of the models were adjusted to improve the classification performance and accuracy of assignment. At the same time, for all the years (2013-2024), the assignment of pixels to various land cover classes was evaluated for each band was calculated to understand the contribution of land cover types within the whole landscape in the classification models. The computed statistics on land cover class distribution by multispectral bands for each Landsat image and by years for each evaluated period (2013, 2015, 2017 and 2024) was obtained and summarised in the tables presented in the following section as well as in the Appendix of this study. 
+
+%\pagebreak
 %----------- section ----------->
 \section{Results}
 
@@ -408,6 +411,28 @@ For 2013, pixels were assigned to the corresponding categories of the recognised
   \label{tab03}
 \end{table}
 
+\begin{figure}[H]
+  \centering
+  \begin{tabular}[b]{c}
+    \includegraphics[width=6.4cm]{Fig_07a.jpg} \\
+    \small (a)
+  \end{tabular}
+  \begin{tabular}[b]{c}
+    \includegraphics[width=6.4cm]{Fig_07b.jpg} \\
+    \small (b) 
+  \end{tabular}
+    \begin{tabular}[b]{c}
+    \includegraphics[width=6.4cm]{Fig_07c.jpg} \\
+    \small (c)
+  \end{tabular}
+  \begin{tabular}[b]{c}
+    \includegraphics[width=6.4cm]{Fig_07d.jpg} \\
+    \small (d) 
+  \end{tabular}
+   \caption{Results of image processing on 2015 using four different methods: 1) Random Forest; 2) Support Vector Machine (SVM); 3) ANN-based approach using MLPClassifier; 4) DecisionTreeClassifier. Image processing source: author.}
+  \label{fig07}
+\end{figure}
+
 \begin{table}[H]
   \centering
   \begin{tabularx}{\linewidth}{p{1.3cm}p{1.0cm}p{1.0cm}p{1.0cm}p{1.0cm}p{1.0cm}p{1.0cm}p{1.0cm}p{1.0cm}}
@@ -454,23 +479,23 @@ For 2013, pixels were assigned to the corresponding categories of the recognised
 \begin{figure}[H]
   \centering
   \begin{tabular}[b]{c}
-    \includegraphics[width=6.4cm]{Fig_07a.jpg} \\
+    \includegraphics[width=6.4cm]{Fig_08a.jpg} \\
     \small (a)
   \end{tabular}
   \begin{tabular}[b]{c}
-    \includegraphics[width=6.4cm]{Fig_07b.jpg} \\
+    \includegraphics[width=6.4cm]{Fig_08b.jpg} \\
     \small (b) 
   \end{tabular}
     \begin{tabular}[b]{c}
-    \includegraphics[width=6.4cm]{Fig_07c.jpg} \\
+    \includegraphics[width=6.4cm]{Fig_08c.jpg} \\
     \small (c)
   \end{tabular}
   \begin{tabular}[b]{c}
-    \includegraphics[width=6.4cm]{Fig_07d.jpg} \\
+    \includegraphics[width=6.4cm]{Fig_08d.jpg} \\
     \small (d) 
   \end{tabular}
-   \caption{Results of image processing on 2015 using four different methods: 1) Random Forest; 2) Support Vector Machine (SVM); 3) ANN-based approach using MLPClassifier; 4) DecisionTreeClassifier. Image processing source: author.}
-  \label{fig07}
+  \caption{Results of image processing on 2017 using four different methods: 1) Random Forest; 2) Support Vector Machine (SVM); 3) ANN-based approach using MLPClassifier; 4) DecisionTreeClassifier. Image processing source: author.}
+  \label{fig08}
 \end{figure}
 
 \begin{table}[H]
@@ -577,28 +602,6 @@ The statistical results of the class distribution of the assigned pixels are bas
   \caption{Class distribution of the assigned pixels target land cover types for 2013--2024 during iterative classification process}
   \label{tab07}
 \end{table}
-
-\begin{figure}[H]
-  \centering
-  \begin{tabular}[b]{c}
-    \includegraphics[width=6.4cm]{Fig_08a.jpg} \\
-    \small (a)
-  \end{tabular}
-  \begin{tabular}[b]{c}
-    \includegraphics[width=6.4cm]{Fig_08b.jpg} \\
-    \small (b) 
-  \end{tabular}
-    \begin{tabular}[b]{c}
-    \includegraphics[width=6.4cm]{Fig_08c.jpg} \\
-    \small (c)
-  \end{tabular}
-  \begin{tabular}[b]{c}
-    \includegraphics[width=6.4cm]{Fig_08d.jpg} \\
-    \small (d) 
-  \end{tabular}
-  \caption{Results of image processing on 2017 using four different methods: 1) Random Forest; 2) Support Vector Machine (SVM); 3) ANN-based approach using MLPClassifier; 4) DecisionTreeClassifier. Image processing source: author.}
-  \label{fig08}
-\end{figure}
 
 \begin{figure}[H]
   \centering
