@@ -34,6 +34,8 @@
 \usepackage{gensymb} % for \textdegree
 \usepackage{tabularx}
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
+\setlength{\extrarowheight}{-20pt}
+\renewcommand{\arraystretch}{0.7}
 \usepackage{amsmath,mathtools,amsthm}
 	\setcounter{MaxMatrixCols}{15}
 \usepackage{array}
@@ -313,29 +315,53 @@ First, the atmospheric correction of the images was carried out in GRASS GIS usi
 \end{figure}
 
 %----------- subsection ----------->
-\subsection{Subsection}
+\subsection{Clustering}
 
-%----------- section ----------->
-\section{Results}
-
-The statistical report resulting computational parameters of image processing is summarised in Table \ref{tab02}.
+The cluster parameters for MaxLike classification approach were accepted as following. The number of initial classes is 10; the minimum class size is 17; the Minimum class separation is zero and the percent convergence is 98.0 for all the scenes. The maximum number of iterations is 30 as defined by the GRASS GIS algorithm. The statistical summary of the accepted computational parameters of image processing through clustering is given in Table \ref{tab02}.
 
 \begin{table}[H]
   \centering
-  \begin{tabularx}{\textwidth}{p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}}
+  \begin{tabularx}{\textwidth}{p{0.9cm}p{0.9cm}p{0.9cm}p{1.0cm}p{2.0cm}p{2.2cm}p{2.5cm}}
   \toprule
-  \multirow{2}{*}{Year} & \multicolumn{10}{c}{Classes of land cover types} \\
-     & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+  \multirow{2}{*}{Year} & \multicolumn{6}{c}{Parameters of clustering} \\
+     & Rows & Cols & Cells & Sample size & Row sampling interval & Column sampling interval \\
     \midrule
-    \textbf{2013} & XXX & XXX & XXX & XXX & XXX & XXX & XXX & XXX & XXX & XXX \\
-    \textbf{2015} & XXX & XXX & XXX & XXX & XXX & XXX & XXX & XXX & XXX & XXX \\
-    \textbf{2017} & XXX & XXX & XXX & XXX & XXX & XXX & XXX & XXX & XXX & XXX \\
-    \textbf{2024} & XXX & XXX & XXX & XXX & XXX & XXX & XXX & XXX & XXX & XXX \\
+    \textbf{2013} & 7281 & 7421 & 54032301 & 7044 & 72 & 74 \\
+    \textbf{2015} & 7711 & 7661 & 59073971 & 7005 & 77 & 76 \\
+    \textbf{2017} & 7711 & 7652 & 59004572 & 7011 & 77 & 76 \\
+    \textbf{2024} & 7692 & 7522 & 57859224 & 7217 & 76 & 75 \\
 \bottomrule
 \end{tabularx}
-  \caption{Estimated classes of land cover types for 2013--2024 in Port Phillip Bay and surroundings, Victoria, southern Australia}
+  \caption{Statistical parameters for clustering using 'i.maxlik' module of GRASS GIS}
   \label{tab02}
 \end{table}
+
+\pagebreak
+%----------- section ----------->
+\section{Results}
+
+\begin{figure}[H]
+  \centering
+  \begin{tabular}[b]{c}
+    \includegraphics[width=6.4cm]{Fig_06a.jpg} \\
+    \small (a)
+  \end{tabular}
+  \begin{tabular}[b]{c}
+    \includegraphics[width=6.4cm]{Fig_06b.jpg} \\
+    \small (b) 
+  \end{tabular}
+    \begin{tabular}[b]{c}
+    \includegraphics[width=6.4cm]{Fig_06c.jpg} \\
+    \small (c)
+  \end{tabular}
+  \begin{tabular}[b]{c}
+    \includegraphics[width=6.3cm]{Fig_06d.jpg} \\
+    \small (d) 
+  \end{tabular}
+  \caption{Results of image processing on 2013 using four methods: 1) Random Forest; 2) SVM; 3) DecisionTreeClassifier; 4) ANN-based MLPClassifier. Image processing: author.}
+  \label{fig06}
+\end{figure}
+
 
 For 2013, pixels were assigned to the corresponding categories of the recognised 10 classes with 98.27\% points stable accuracy and convergence of 98.3\%, Table \ref{tab03}. 
 
@@ -529,29 +555,6 @@ The statistical results of the class distribution of the assigned pixels are bas
   \caption{Class distribution of the assigned pixels target land cover types for 2013--2024 during iterative classification process}
   \label{tab07}
 \end{table}
-
-
-\begin{figure}[H]
-  \centering
-  \begin{tabular}[b]{c}
-    \includegraphics[width=6.4cm]{Fig_06a.jpg} \\
-    \small (a)
-  \end{tabular}
-  \begin{tabular}[b]{c}
-    \includegraphics[width=6.4cm]{Fig_06b.jpg} \\
-    \small (b) 
-  \end{tabular}
-    \begin{tabular}[b]{c}
-    \includegraphics[width=6.4cm]{Fig_06c.jpg} \\
-    \small (c)
-  \end{tabular}
-  \begin{tabular}[b]{c}
-    \includegraphics[width=6.3cm]{Fig_06d.jpg} \\
-    \small (d) 
-  \end{tabular}
-  \caption{Results of image processing on 2013 using four methods: 1) Random Forest; 2) SVM; 3) DecisionTreeClassifier; 4) ANN-based MLPClassifier. Image processing: author.}
-  \label{fig06}
-\end{figure}
 
 \begin{figure}[H]
   \centering
