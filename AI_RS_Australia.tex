@@ -318,7 +318,7 @@ First, the atmospheric correction of the images was carried out in GRASS GIS usi
 %----------- section ----------->
 \section{Results}
 
-The results of computed pixels assigned to 10 land cover classes are summarised in Table \ref{tab02}.
+The statistical report resulting computational parameters of image processing is summarised in Table \ref{tab02}.
 
 \begin{table}[H]
   \centering
@@ -335,6 +335,81 @@ The results of computed pixels assigned to 10 land cover classes are summarised 
 \end{tabularx}
   \caption{Estimated classes of land cover types for 2013--2024 in Port Phillip Bay and surroundings, Victoria, southern Australia}
   \label{tab02}
+\end{table}
+
+For 2013, pixels were assigned to the corresponding categories of the recognised 10 classes with 98.27\% points stable accuracy and convergence of 98.3\%, Table \ref{tab03}. 
+ 
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\linewidth}{p{1.3cm}p{1.3cm}p{1.3cm}p{1.3cm}p{1.3cm}p{1.3cm}p{1.3cm}p{1.3cm}}
+  \toprule
+  \multirow{2}{*}{Year} & \multicolumn{7}{c}{Multispectral bands of the Landsat 8 OLI/TIRS scene for 2013} \\
+     & B1 & B2 & B3 & B4 & B5 & B6 & B7 \\
+    \midrule
+    \multicolumn{8}{c}{Class 1 (507)} \\
+    \midrule
+    \textbf{means} & 7687.78 & 7908.5 & 8088.38 & 7475.44 & 7336.59 & 7412.26 & 7391.69 \\
+    \textbf{stdev} & 344.653 & 421.512 & 668.419 & 537.547 & 460.436 & 295.948 & 180.949 \\
+    \multicolumn{8}{c}{Class 2 (638)} \\
+    \midrule
+    \textbf{means} & 7680.67 & 7842.55 & 8326.59 & 8342.63 & 14223.1 & 10929.8 & 9067.1 \\
+    \textbf{stdev} & 222.242 & 267.302 & 375.086 & 444.833 & 1553.37 & 856.04 & 567.558 \\
+    \multicolumn{8}{c}{Class 3 (887)} \\
+    \midrule
+    \textbf{means} & 8097.13 & 8335.14 & 8934.32 & 9236.08 & 14634.2 & 13461.6 & 10833.1 \\
+    \textbf{stdev} & 256.84 & 273.675 & 349.578 & 379.762 & 1150.47 & 761.219 & 550.821 \\
+    \multicolumn{8}{c}{Class 4 (617)} \\
+    \midrule
+    \textbf{means} & 8656.62 & 9001.7 & 9802.38 & 10300 & 14321.4 & 14803.1 & 12391.7 \\
+    \textbf{stdev} & 610.8 & 666.747 & 803.156 & 815.317 & 969.65 & 962.333 & 703.455 \\
+    \multicolumn{8}{c}{Class 5 (378)} \\
+    \midrule
+    \textbf{means} & 8457.53 & 8775.73 & 9744.8 & 10004.9 & 17329.6 & 16009.9 & 12429.8 \\
+    \textbf{stdev} & 635.538 & 594.932 & 704.354 & 866.12 & 1584.96 & 1076.47 & 793.116 \\
+    \multicolumn{8}{c}{Class 6 (748)} \\
+    \midrule
+    \textbf{means} & 8753.46 & 9158.45 & 10033.5 & 10785.5 & 14633.9 & 17307.8 & 13990.3 \\
+    \textbf{stdev} & 306.286 & 344.408 & 426.607 & 563.988 & 788.463 & 802.195 & 664.108 \\
+    \multicolumn{8}{c}{Class 7 (584)} \\
+    \midrule
+    \textbf{means} & 8868.88 & 9316.54 & 10365.6 & 11059.3 & 16695 & 18546 & 14492.1 \\
+    \textbf{stdev} & 240.485 & 270.356 & 368.04 & 570.249 & 1012.67 & 773.668 & 561.7 \\
+    \multicolumn{8}{c}{Class 8 (1004)} \\
+    \midrule
+    \textbf{means} & 9161.49 & 9674.29 & 10660.8 & 11716.9 & 15122.4 & 19256.5 & 15629.3 \\
+    \textbf{stdev} & 354.297 & 391.741 & 494.712 & 625.917 & 665.09 & 805.656 & 665.977 \\
+    \multicolumn{8}{c}{Class 9 (1175)} \\
+    \midrule
+    \textbf{means} & 9392.39 & 9999.52 & 11149.5 & 12418.8 & 16298.3 & 20847.9 & 16690.6 \\
+    \textbf{stdev} & 251.846 & 295.699 & 411.786 & 635.913 & 797.684 & 750.01 & 752.185 \\
+    \multicolumn{8}{c}{Class 10 (506)} \\
+    \midrule
+    \textbf{means} & 9967.75 & 10719.8 & 12141.4 & 13725.9 & 17504.8 & 22182.4 & 18140.5 \\
+    \textbf{stdev} & 919.948 & 1000.56 & 1198.41 & 1274.36 & 1105.95 & 1361.48 & 1327.76 \\
+\bottomrule
+\end{tabularx}
+  \caption{Pixel-wise computational statistics on land cover class distribution by spectral bands of the Landsat-8 OLI/TIRS image on 2013.}
+  \label{tab03}
+\end{table}
+
+
+The statistical results of the class distribution of the assigned pixels are based on the of the evaluated signature file by four years and seven multispectral bands as summarised in Table \ref{tab4} showing target land cover types for 2013--2024.
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}}
+  \toprule
+  \multirow{2}{*}{Year} & \multicolumn{10}{c}{Classes of land cover types} \\
+     & 1 & 2 &  3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+    \midrule
+    \textbf{2013} & 1183 & 425 & 482 & 493 & 446 & 588 & 744 & 773 & 752 & 1158 \\
+    \textbf{2015} & 1215 & 367 & 471 & 491 & 485 & 589 & 731 & 782 & 774 & 1100 \\
+    \textbf{2017} & 1146 & 415 & 496 & 414 & 464 & 634 & 738 & 887 & 812 & 1005 \\
+    \textbf{2024} & 1249 & 514 & 541 & 434 & 440 & 522 & 671 & 784 & 806 & 1256 \\
+\bottomrule
+\end{tabularx}
+  \caption{Class distribution of the assigned pixels target land cover types for 2013--2024 during iterative classification process}
+  \label{tab04}
 \end{table}
 
 \begin{figure}[H]
