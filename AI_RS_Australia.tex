@@ -192,7 +192,7 @@ The research is focused on the are around Melbourne - the second largest city on
     \label{fig01}
 \end{figure}
 
-One of the most prominent features in the environment of southern Victoria is the coastal plains of Port Phillip Bay -- a largest coastal lagoon system in Victoria, Australia. Port Phillipe Bay is a shallow embayment formed between the end of the last Ice Age around 8000 BCE as a result of faulting and marine transgression. Nowadays, it is located in a shallow tectonic depression with the depths mostly less than 8 m \cite{Holdgate}. With the total area of $1930 km^2$, it presents a closed complex ecosystem with irregular coastline and varying topographic setting and geomorphology \cite{longmore1996nutrient}. 
+One of the most prominent features in the environment of southern Victoria is the coastal plains of Port Phillip Bay -- a largest coastal lagoon system in Victoria, Australia, Figure \ref{fig02}. Port Phillipe Bay is a shallow embayment formed between the end of the last Ice Age around 8000 BCE as a result of faulting and marine transgression. Nowadays, it is located in a shallow tectonic depression with the depths mostly less than 8 m \cite{Holdgate}. With the total area of $1930 km^2$, it presents a closed complex ecosystem with irregular coastline and varying topographic setting and geomorphology \cite{longmore1996nutrient}. 
 
 Landscape formation in this area is driven by diverse factors such as wind force, and strong effects of oceanic waves, tides, and currents. The variability of such processes affects nearby landscapes, controls the distribution of the land cover types and regulates ecosystem functioning. As a result, the landscapes surrounding Port Phillip Bay are presented by a complex mixture of landscapes. Besides the distribution of wetlands, the estuaries of the Port Phillip Bay create a dynamic environment which supports rich marine and coastal biodiversity and important fisheries \cite{Jenkins,Weston,harris1996port}.
 
@@ -232,7 +232,7 @@ The data used in this study for spatial analysis and image processing are obtain
 
 The land cover data were obtained from the open repository of the Geoscience Australia of the Australian Government -- Land Cover based on the updated classified imagery of Geoscience Australia Landsat Land Cover with resolution of 25m that replaces the previous version based on classified images from Terra Moderate Resolution Imaging Spectroradiometer (MODIS). These data were used to obtain the general characteristics of the landscape types in the Port Phillip Bay and the surroundings degrees. The vectors layers of these data were processed and visualised using QGIS software.The data source for the land cover types reference were derived from the nationally consistent and thematically comprehensive land cover reference for Australia -- the Dynamic Land Cover Dataset (DLCD) with resolution 25 m, version 1.0.0 (\href{https://knowledge.dea.ga.gov.au/data/product/dea-land-cover-landsat/?tab=overview}{https://knowledge.dea.ga.gov.au/data/product/dea-land-cover-landsat/?tab=overview}, accessed on 24 June 2024), Figure \ref{fig03}. 
 
-The RS data were obtained from the sources of Landsat 8-9 Landsat Operational Land Imager and Thermal Infrared Sensor (OLI-TIRS) United States Geological Survey (USGS). The main metadata of the satellite images are summarised in Table 1. 
+The RS data were obtained from the sources of Landsat 8-9 Landsat Operational Land Imager and Thermal Infrared Sensor (OLI-TIRS) United States Geological Survey (USGS). The main metadata of the satellite images are summarised in Table \ref{tab01}. 
 
 \begin{sidewaystable}
 \centering
@@ -273,6 +273,7 @@ The RS data were obtained from the sources of Landsat 8-9 Landsat Operational La
     \end{tabular}
     }
 \caption{Metadata for the four scenes of the Landsat 8-9 OLI/TIRS images used for RS data processing and classification}
+\label{tab01}
 \end{sidewaystable}
 
 Technically, the multispectral Landsat 8-9 OLI-TIRS images were retrieved from the Earth Explorer repository (\href{https://earthexplorer.usgs.gov/}{https://earthexplorer.usgs.gov/}, accessed on 24 June 2024). The metadata were acquired and checked to cloudiness coverage and image quality and image extent to cover the entire study area of the Port Phillip Bay. Four satellite images were obtained for the following dates in March: 26/03/2013, 29/03/2015, 18/03/2017 and 29/03/2024. The pictures of these images as a raw dataset in natural colours are presented in Figure \ref{fig04}.
@@ -554,6 +555,9 @@ The ongoing climate-environmental processes and anthropogenic activities resulte
   \label{tab05}
 \end{table}
 
+\subsection{Comparison of approaches}
+In general, the SVM and RF models’ performance demonstrated similar results which is caused due to the technical parameters of these algorithms. The most distinct and accurate (over 98\% of accuracy) performance was noted by the AI algorithm of MLPC. The use of these methods incorporated additional information on distribution of land cover types over souther Australia, i.e., landscape dynamics, and trends over the recent decade. The overall accuracy of the SVM classifier demonstrated 97.6\%, following by 96.4\% by RF. The DTC shown lesser results yet is comparable to the tested methods with overall achieved accuracy of 96.1\%. Once the optical ML AI classifiers were determined for image processing, the time series analysis was plotted (Figure \ref{fig10}) to visualise the dynamics of the land cover types in southern Australia between 2013 to 2024 along the coastal areas of Victoria. The decrease of areas occupied by Cheetham Wetlands around Port Phillip Bay was assessed over the recent decade using RS data processing and statistical analysis.
+
 \begin{table}[H]
   \centering
   \begin{tabularx}{\linewidth}{p{1.3cm}p{1.0cm}p{1.0cm}p{1.0cm}p{1.0cm}p{1.0cm}p{1.0cm}p{1.0cm}p{1.0cm}}
@@ -634,10 +638,7 @@ The ongoing climate-environmental processes and anthropogenic activities resulte
 \end{tabularx}
   \caption{Class distribution of the assigned pixels target land cover types for 2013--2024 during iterative classification process}
   \label{tab07}
-\end{table}
-
-\subsection{Comparison of approaches}
-In general, the SVM and RF models’ performance demonstrated similar results which is caused due to the technical parameters of these algorithms. The most distinct and accurate (over 98\% of accuracy) performance was noted by the AI algorithm of MLPC. The use of these methods incorporated additional information on distribution of land cover types over souther Australia, i.e., landscape dynamics, and trends over the recent decade. The overall accuracy of the SVM classifier demonstrated 97.6\%, following by 96.4\% by RF. The DTC shown lesser results yet is comparable to the tested methods with overall achieved accuracy of 96.1\%. Once the optical ML AI classifiers were determined for image processing, the time series analysis was plotted (Figure \ref{fig10}) to visualise the dynamics of the land cover types in southern Australia between 2013 to 2024 along the coastal areas of Victoria. The decrease of areas occupied by Cheetham Wetlands around Port Phillip Bay was assessed over the recent decade using RS data processing and statistical analysis. 
+\end{table} 
 
 \begin{figure}[H]
   \centering
@@ -664,7 +665,7 @@ In general, the SVM and RF models’ performance demonstrated similar results wh
 %----------- subsection ----------->
 \subsection{Accuracy assessment}
 
-The accuracy assessment computed using chi-square algorithms which evaluates the probability of the pixel's assignment to the correct class is shown in Figure \ref{fig11}. 
+The accuracy assessment computed using chi-square algorithms which evaluates the probability of the pixel's assignment to the correct class is shown in Figure \ref{fig11}. Accuracy assessment was performed using the computed reject raster map which presents the threshold. The threshold evaluates the limits according to which the pixels are assigned to the target classes correctly. It is possible using a chi square test calculated on each discriminant result at tested threshold levels of confidence. This test determines at what confidence level each pixels are classified to the correct categories of the land cover classes. Hence, the reject threshold layer contains the index to the  confidence level computed for each classified cell in the classified Landsat scene. Additionally, the confusion separability matrices were computed to evaluate the correctness of the pixel's classification for all the years: 2013 and 2015 (Figure \ref{fig12}) and 2017 and 2024 (Figure \ref{fig13}).
 
 \vspace{-10pt}
 \begin{figure}[H]
@@ -689,7 +690,9 @@ The accuracy assessment computed using chi-square algorithms which evaluates the
   \label{fig11}
 \end{figure}
 
+\begin{figure}[H]
 \begin{equation}
+%\setlength\arraycolsep{3pt}
 \scriptsize
 \begin{vmatrix}
     & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
@@ -702,8 +705,7 @@ The accuracy assessment computed using chi-square algorithms which evaluates the
 7 & 7.0 & 3.5 & 2.5 & 1.3 & 1.0 & 0.6 & 0 &  &  &  \\                      
 8 & 7.3 & 3.8 & 2.8 & 1.6 & 1.4 & 0.9 & 0.7 & 0 &  &  \\
 9 & 8.3 & 4.7 & 3.7 & 2.2 & 2.0 & 1.7 & 1.3 & 0.7 & 0 &  \\           
-10 & 6.0 & 3.7 & 3.0 & 2.1 & 1.9 & 1.8 & 1.5 & 1.2 & 0.7 & 0 \\  
-                            
+10 & 6.0 & 3.7 & 3.0 & 2.1 & 1.9 & 1.8 & 1.5 & 1.2 & 0.7 & 0 \\                          
 \end{vmatrix}
  %
 \hspace{3pt}
@@ -721,9 +723,13 @@ The accuracy assessment computed using chi-square algorithms which evaluates the
 10 & 4.8 & 3.3 & 2.9 & 2.0 & 2.1 & 1.7 & 1.3 & 1.2 & 0.7 & 0 \\   
 \end{vmatrix} 
 \end{equation}
-Class separability matrices for land cover classes: \textbf{2013} and \textbf{2015}
+\caption{Class separability matrices for land cover classes: \textbf{2013} and \textbf{2015}}
+\label{fig12}
+\end{figure}
 
+\begin{figure}[H]
 \begin{equation}
+%\setlength\arraycolsep{3pt}
 \scriptsize
 \begin{vmatrix}
     & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
@@ -754,7 +760,9 @@ Class separability matrices for land cover classes: \textbf{2013} and \textbf{20
 10 & 5.3 & 3.9 & 3.2 & 2.2 & 2.1 & 1.8 & 1.3 & 1.1 & 0.7 & 0 \\   
 \end{vmatrix} 
 \end{equation}
-Class separability matrices for land cover classes: \textbf{2017} and \textbf{2024}
+\caption{Class separability matrices for land cover classes: \textbf{2017} and \textbf{2024}}
+\label{fig13}
+\end{figure}
 
 A multi-disciplinary approach that integrated ML and RS data with GIS, as demonstrated in this study, ensures more insightful analysis of the interrelated processed along the coasts of southern Australia. As discussed earlier, vulnerable costal area along the Port Philipp Bay is affected both by climate-environmental factors and by anthropogenic activities. This results in highly dynamic and changing environment which was detected over the time series of the satellite images. 
 
