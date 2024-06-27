@@ -17,7 +17,7 @@
 \pubyear{2024}
 \copyrightyear{2024}
 %\externaleditor{Academic Editor: Firstname Lastname}
-\datereceived{30 June 2024} 
+\datereceived{27 June 2024} 
 \daterevised{} 
 \dateaccepted{} 
 \datepublished{} 
@@ -134,7 +134,7 @@ $^{2}$ \quad Department of Biological, Geological and Environmental Sciences, Al
 \abstract{This paper evaluates the potential of using Artificial Intelligence (AI) and Machine Learning (ML) approach for classification of Landsat satellite imagery to identify changes in patterns of land cover types in a coastal area around Cheetham Wetlands, Port Phillip Bay, Australia. The scripting approach of Geographic Resources Analysis Support System (GRASS) Geographic Information System (GIS) uses AI-based methods of image analysis to accurately discriminate land cover types. Four ML algorithms were applied for supervised classification using "r.learn.train" module that employs the Scikit-Learn library of Python. The algorithms include: 1) Random Forest (RF), 2) Support Vector Machine (SVM), 3) ANN-based approach using Multi-layer Perceptron (MLP) Classifier; and 4) Decision Tree Classifier (DTC). The tested methods of AI demonstrated excellent results of image classification with the highest overall accuracy that exceeds 98\% reached by the SVM and RF scenarios. The presented scripting approach of GRASS GIS accurately detected changes in land cover types in southern Victoria over the period of 2013-2024. The use AI and ML algorithms offers effective solutions for coastal monitoring by analysis of change detection using multi-temporal RS data. The demonstrated method has potential applications in coastal and wetland monitoring, environmental analysis and urban planning based on Earth observation data.}
 
 % Keywords
-\keyword{image processing; Earth observation; coastal management; GIS; cartography; geoinformatics; landscape analysis; environmental monitoring; sensors; machine learning} 
+\keyword{image processing; Earth observation; coasts; GIS; cartography; geoinformatics; landscape analysis; environmental monitoring; sensors; machine learning, Melbourne, Victoria} 
 
 % The fields PACS, MSC, and JEL may be left empty or commented out if not applicable
 %\PACS{J0101}
@@ -307,17 +307,19 @@ Major technical characteristics common for all the Landsat scenes are the follow
 
 The workflow steps to process and classify the satellite images in order to detect land cover types along the coastal landscape sof southern Australia are detailed in Figure \ref{fig05}. First, the images were selected based on their quality, coverage and suitability, and donwloaded from the USGS EarthExplorer site. Then, the images were imported into GRASS GIS using module "r.import" and necessary preprocessing and atmospheric corrections were applied to normalise the moderate-resolution images and eliminate the effects of the atmosphere using "i.landsat.toar:" module. The atmospheric correction of the images was carried out in GRASS GIS using 'i.landsat.toar' which computed the top-of-atmosphere reflectance and temperature for Landsat images. This adjustment transforms the calibrated Digital Number (DN) of the Landsat scenes to top-of-atmosphere reflectance thus improving the quality of the image. Here the atmospheric correction model was applied based on the dark object subtraction (DOS) correction approach.
 
-At the next step, 10 groups of land cover categories were defined using information received on previous step in order to recognise these classes on actual study area. To this end, the thematic map on land cover types was created using QGIS software to evaluate the distribution of major categories across the study area. Additionally, a digital elevation model (DEM) was obtained from GEBCO and generated as a topographic map of study area to strengthen the environmental setting through geospatial information. Following that, the images were processed using four different ML and AI algorithms of GRASS GIS by the combination of modules "r.random" (which generates training pixels from the land cover classification), "r.learn.train" (which trains models using various ML algorithms) and "r.learn.predict" (which performs prediction of the pixels' assignment into target categories based on their spectral signatures). 
+At the next step, 10 groups of land cover categories were defined using information received on previous step in order to recognise these classes on actual study area. To this end, the thematic map on land cover types was created using QGIS software to evaluate the distribution of major categories across the study area. Additionally, a digital elevation model (DEM) was obtained from GEBCO and generated as a topographic map of study area to strengthen the environmental setting through geospatial information. Following that, the images were processed using four different ML and AI algorithms of GRASS GIS by the combination of modules "r.random" (which generates training pixels from the land cover classification), "r.learn.train" (which trains models using various ML algorithms) and "r.learn.predict", which performs prediction of the pixels' assignment into target categories based on their spectral signatures, Figure \ref{fig05}. 
 
 \begin{figure}[H]
     \begin{center}
 	\hspace{-35pt}\includegraphics[width=14.0cm]{Fig_05.jpg}
     \end{center}
-    \caption{Workflow methodology. Software: RStudio version 2024.04.2-764, R 3.6.0. Diagram source: author.}
+    \caption{Workflow methodology. Software: RStudio version 2024.04.2+764, R version 3.6.0, 'DiagrammeR' package version 1.0.11.9000. Diagram source: author.}
     \label{fig05}
 \end{figure}
 
-The adjusted automatic classification model was performed using the "i.maxlik" module of GRASS GIS that employs the maximum-likelihood discriminant analysis classifier. The cluster parameters for MaxLike classification approach were accepted as following. The number of initial classes is 10; the minimum class size is 17; the Minimum class separation is zero and the percent convergence is 98.0 for all the scenes. The maximum number of iterations is 30 as defined by the GRASS GIS algorithm. The statistical summary of the accepted computational parameters of image processing through clustering is given in Table \ref{tab02}.
+The adjusted automatic classification model was performed using the "i.maxlik" module of GRASS GIS that employs the maximum-likelihood discriminant analysis classifier. Here, the initial values of the pixels were computed for each multispectral band of the Landsat scenes for each year (the results are reported in the Appendix \ref{AppA}). Then, the iterative process of the re-assignment of these pixels was performed (the results of the iteration cycles are reported in the Appendix \ref{AppB} for each year), and the pixels were harmonised and readjusted to the target classes through the repetitive sequence of computational process. 
+
+The cluster parameters for MaxLike classification approach were accepted as following. The number of initial classes is 10; the minimum class size is 17; the Minimum class separation is zero and the percent convergence is 98.0 for all the scenes. The maximum number of iterations is 30 as defined by the GRASS GIS algorithm. The statistical summary of the accepted computational parameters of image processing through clustering is given in Table \ref{tab02}.
 
 \begin{table}[H]
   \centering
@@ -336,7 +338,7 @@ The adjusted automatic classification model was performed using the "i.maxlik" m
   \label{tab02}
 \end{table}
 
-Finally, the maps obtained based on the classified images were visualised using the sequence of modules "d.rast", "d.grid" and "d.legend". Such workflow made it possible to automate the necessary procedures to carry out image analysis. The additional information from the spectral bands (one to seven)  was obtained and statistically processed to evaluate changes during the period from 2013 to2024. Since all the four ML and IA models that were applied belong to the type of supervised classifiers, a training dataset was necessary for the algorithm. Training dataset teaches the model to learn the patterns of the different classes which should be discriminated. To this end, a sample of the unsupervised classification with pixel points was collected from the clustering to train the ML and AI algorithms, Figure \ref{fig06}. 
+Finally, the maps obtained based on the classified images were visualised using the sequence of modules "d.rast", "d.grid" and "d.legend", Figure \ref{fig06}.  Such workflow made it possible to automate the necessary procedures to carry out image analysis. The additional information from the spectral bands (one to seven)  was obtained and statistically processed to evaluate changes during the period from 2013 to 2024. 
 
 \begin{figure}[H]
   \centering
@@ -360,7 +362,41 @@ Finally, the maps obtained based on the classified images were visualised using 
   \label{fig06}
 \end{figure}
 
-This initial raster dataset was augmented through the visual recognition of the satellite images, using the data on land cover types collected as reference from the DLCD open repository of the Australian Government. Four different ML and AI algorithms were tested and their performance was evaluated. For SVM and RF, the optimal parameters of the models were adjusted to improve the classification performance and accuracy of assignment. At the same time, for all the years (2013-2024), the assignment of pixels to various land cover classes was evaluated for each band was calculated to understand the contribution of land cover types within the whole landscape in the classification models. The computed statistics on land cover class distribution by multispectral bands for each Landsat image and by years for each evaluated period (2013, 2015, 2017 and 2024) was obtained and summarised in the tables presented in the following section as well as in the Appendix of this study, e.g., Table \ref{tab03} for 2013 and likewise for the next periods. For 2013, pixels were assigned to the corresponding categories of the recognised 10 classes with 98.27\% points stable accuracy and convergence of 98.3\%, Table \ref{tab03}. 
+Since all the four ML and IA models that were applied belong to the type of supervised classifiers, a training dataset was necessary for the algorithm. Training dataset teaches the model to learn the patterns of the different classes which should be discriminated. To this end, a sample of the unsupervised classification with pixel points was collected from the clustering to train the ML and AI algorithms, Figure \ref{fig07}.
+
+\begin{figure}[H]
+  \centering
+  \begin{tabular}[b]{c}
+    \includegraphics[width=6.4cm]{Fig_07a.jpg} \\
+    \small (a)
+  \end{tabular}
+  \begin{tabular}[b]{c}
+    \includegraphics[width=6.4cm]{Fig_07b.jpg} \\
+    \small (b) 
+  \end{tabular}
+    \begin{tabular}[b]{c}
+    \includegraphics[width=6.4cm]{Fig_07c.jpg} \\
+    \small (c)
+  \end{tabular}
+  \begin{tabular}[b]{c}
+    \includegraphics[width=6.4cm]{Fig_07d.jpg} \\
+    \small (d) 
+  \end{tabular}
+   \caption{Image processing on 2015 using four methods: 1) Random Forest; 2) SVM; 3) ANN-based MLPC; 4) DTC. Image source: author.}
+  \label{fig07}
+\end{figure}
+
+This initial raster dataset was augmented through the visual recognition of the satellite images, using the data on land cover types collected as reference from the DLCD open repository of the Australian Government. Four different ML and AI algorithms were tested and their performance was evaluated. For SVM and RF, the optimal parameters of the models were adjusted to improve the classification performance and accuracy of assignment. At the same time, for all the years (2013-2024), the assignment of pixels to various land cover classes was evaluated for each band was calculated to understand the contribution of land cover types within the whole landscape in the classification models.  
+
+%----------- section ----------->
+\section{Results}
+
+\subsection{Classification output}
+
+An essential point when classifying satellite image consists in the accurate selection of the land cover categories which should be identified, recognised on the images and discriminated on the resulting maps. In this research, the selection of these land categories has been employed using adopted, modified and generalised reports from previous existing studies in southern Australia and Port Phillip Bay. The adaptation of these data  aimed at the correct detection of coastal landscapes within the ecosystems of southern Victoria with the special aim to detect wetlands, and discriminate them automatically from urban areas and native forests. For this purpose, land cover type were proposed for the study area with ten following categories adopted from the existing classification scheme on retrospective time series 1987-2019 over Victoria State (\href{https://www.environment.vic.gov.au/biodiversity/Victorias-Land-Cover-Time-Series}{https://www.environment.vic.gov.au/biodiversity}, accessed on 25 July 2024): \emph{1) water bodies (Port Phillip Bay, lakes, rivers); 2) bushland ; 3) farmland and cropland used for agriculture; 4) native forests (closed trees); 5) sparse vegetation and scattered trees; 6) recreational land; 7) wetlands; 8) built-up areas; 9) pastures and grasslands; 10) bare areas}. The identification of these land cover types was then performed automatically using computer vision and ML algorithms embedded in the GRASS GIS.
+
+The results of the classification of the satellite images using ML and AI methods are presented in Figures \ref{fig06}, \ref{fig07}, \ref{fig08} and \ref{fig09} for comparison of different approaches for years 2013, 2015, 2017 and 2024. Contrariwise, the time series of one algorithms but evaluating the environmental dynamics is illustrated in Figure \ref{fig10}. The computed statistics on land cover class distribution by multispectral bands for each Landsat image and by years for each evaluated period (2013, 2015, 2017 and 2024) was obtained and summarised in the tables presented in the following section as well as in the Appendix of this study, e.g., Table \ref{tab03} for 2013 and likewise for the next periods. For 2013, pixels were assigned to the corresponding categories of the recognised 10 classes with 98.27\% points stable accuracy and convergence of 98.3\%, Table \ref{tab03}.
+
 
 \begin{table}[H]
   \centering
@@ -405,42 +441,10 @@ This initial raster dataset was augmented through the visual recognition of the 
   \label{tab03}
 \end{table}
 
-
-%----------- section ----------->
-\section{Results}
-
-\subsection{Classification output}
-
-An essential point when classifying satellite image consists in the accurate selection of the land cover categories which should be identified, recognised on the images and discriminated on the resulting maps. In this research, the selection of these land categories has been employed using adopted, modified and generalised reports from previous existing studies in southern Australia and Port Phillip Bay. The adaptation of these data  aimed at the correct detection of coastal landscapes within the ecosystems of southern Victoria with the special aim to detect wetlands, and discriminate them automatically from urban areas and native forests. For this purpose, land cover type were proposed for the study area with ten following categories adopted from the existing classification scheme on retrospective time series 1987-2019 over Victoria State (\href{https://www.environment.vic.gov.au/biodiversity/Victorias-Land-Cover-Time-Series}{https://www.environment.vic.gov.au/biodiversity}, accessed on 25 July 2024): \emph{1) water bodies (Port Phillip Bay, lakes, rivers); 2) bushland ; 3) farmland and cropland used for agriculture; 4) native forests (closed trees); 5) sparse vegetation and scattered trees; 6) recreational land; 7) wetlands; 8) built-up areas; 9) pastures and grasslands; 10) bare areas}. The identification of these land cover types was then performed automatically using computer vision and ML algorithms embedded in the GRASS GIS.
-
-The results of the classification of the satellite images using ML and AI methods are presented in Figures \ref{fig06}, \ref{fig07}, \ref{fig08} and \ref{fig09} for comparison of different approaches for years 2013, 2015, 2017 and 2024. Contrariwise, the time series of one algorithms but evaluating the environmental dynamics is illustrated in Figure \ref{fig10}. 
-
 Four widely used ML algorithms were applied to classify the images:  1) Random Forest (RF), 2) Support 7 Vector Machine (SVM), 3) ANN-based approach using Multi-layer Perceptron (MLP) Classifier; and 4) Decision Tree Classifier (DTC). The SVM is a non-parametric statistical learning classifier which is initially proposed by Vapnik \cite{788640} with the aim to find the optimal surface that divides each set of points into distinct classes according to their properties. The optimal surface here means a decision boundary that minimises the number of erroneously classified points. Such logical approach increases the accuracy of the classification and which resulted in the high applicability of this method in image classification and explains its high accuracy.
 
-\begin{figure}[H]
-  \centering
-  \begin{tabular}[b]{c}
-    \includegraphics[width=6.4cm]{Fig_07a.jpg} \\
-    \small (a)
-  \end{tabular}
-  \begin{tabular}[b]{c}
-    \includegraphics[width=6.4cm]{Fig_07b.jpg} \\
-    \small (b) 
-  \end{tabular}
-    \begin{tabular}[b]{c}
-    \includegraphics[width=6.4cm]{Fig_07c.jpg} \\
-    \small (c)
-  \end{tabular}
-  \begin{tabular}[b]{c}
-    \includegraphics[width=6.4cm]{Fig_07d.jpg} \\
-    \small (d) 
-  \end{tabular}
-   \caption{Image processing on 2015 using four methods: 1) Random Forest; 2) SVM; 3) ANN-based MLPC; 4) DTC. Image source: author.}
-  \label{fig07}
-\end{figure}
-
 \subsection{Statistical metrics}
-Table \ref{tab04} shows the evaluated statistical metrics derived from the computations obtained for each multispectral class for 2015. Likewise, the performance of the image classification for years 2017 and 2024 were summarised in Table \ref{tab05} and Table \ref{tab06}. It shows the variations in pixels's means and standard deviation for pixels by Landsat channel. The overall trend in land cover type distribution by classes and the dynamics of changes is presented in Table \ref{tab07}. Here, the statistical results of the class distribution of the assigned pixels are based on the of the evaluated signature file by four years and seven multispectral bands as summarised in Table \ref{tab07} showing target land cover types for 2013--2024. Land cover class 1 (water -- Port Phillip Bay, lakes, rivers) demonstrated fluctuations with a slight increase in 2015 and 2024 which points at climate effects and higher precipitation. 
+Table \ref{tab04} shows the evaluated statistical metrics derived from the computations obtained for each multispectral class for 2015. Likewise, the performance of the image classification for years 2017 and 2024 were summarised in Table \ref{tab05} and Table \ref{tab06}. It shows the variations in pixels's means and standard deviation for pixels by Landsat channel. 
 
 \begin{table}[H]
   \centering
@@ -507,10 +511,7 @@ Table \ref{tab04} shows the evaluated statistical metrics derived from the compu
   \label{fig08}
 \end{figure}
 
-\subsection{Interpretation of trends}
-A stable increase in land cover class 2 (bushland) is notable from 425 pixels in 2013 to 514 pixels in 2024 which signifies the decrease of forests in favour of minor plant types. The increase in land cover class 3 (farmland and cropland used for agriculture) by 2024 implies the intensification of irrigated lands used for commercial purposes. The distribution of forests (land cover class 4) demonstrated a slight decrease during the past decade from 493 pixels in 2013 to 434 pixels by 2024 which indicates a slight deforestation in the coastal areas of Victoria, Port Phillip Bay. The variations in land cover class 5 (sparse vegetation and scattered trees) indicated the initiation of the processes of restoration which follows-up the remediation of the previously abandoned lands. 
-
-The ongoing climate-environmental processes and anthropogenic activities resulted in a slight decrease of land cover classes 5 to 7 which experienced changes in occupied surface due to the cumulative effects from aridification and human pressure along the coasts of southern Australia. Land cover class 8 (built-up areas) shown the increase over the recent decade with indicates the expansion of the areas with impervious structures (e.g., such as roads, industrial construction and similar occupied lands). In contrast, the increase of pasture and grasslands (class 10) and bare areas (class 11) is notable for the recent decade which might lead to soil degradation and initiate the deforestation of the lands located in semi-arid environment, Table \ref{tab07}. 
+The overall trend in land cover type distribution by classes and the dynamics of changes is presented in Table \ref{tab07}. Here, the statistical results of the class distribution of the assigned pixels are based on the of the evaluated signature file by four years and seven multispectral bands as summarised in Table \ref{tab07} showing target land cover types for 2013--2024. Land cover class 1 (water -- Port Phillip Bay, lakes, rivers) demonstrated fluctuations with a slight increase in 2015 and 2024 which points at climate effects and higher precipitation. 
 
 \begin{table}[H]
   \centering
@@ -555,8 +556,10 @@ The ongoing climate-environmental processes and anthropogenic activities resulte
   \label{tab05}
 \end{table}
 
-\subsection{Comparison of approaches}
-In general, the SVM and RF models’ performance demonstrated similar results which is caused due to the technical parameters of these algorithms. The most distinct and accurate (over 98\% of accuracy) performance was noted by the AI algorithm of MLPC. The use of these methods incorporated additional information on distribution of land cover types over souther Australia, i.e., landscape dynamics, and trends over the recent decade. The overall accuracy of the SVM classifier demonstrated 97.6\%, following by 96.4\% by RF. The DTC shown lesser results yet is comparable to the tested methods with overall achieved accuracy of 96.1\%. Once the optical ML AI classifiers were determined for image processing, the time series analysis was plotted (Figure \ref{fig10}) to visualise the dynamics of the land cover types in southern Australia between 2013 to 2024 along the coastal areas of Victoria. The decrease of areas occupied by Cheetham Wetlands around Port Phillip Bay was assessed over the recent decade using RS data processing and statistical analysis.
+\subsection{Interpretation of trends}
+A stable increase in land cover class 2 (bushland) is notable from 425 pixels in 2013 to 514 pixels in 2024 which signifies the decrease of forests in favour of minor plant types. The increase in land cover class 3 (farmland and cropland used for agriculture) by 2024 implies the intensification of irrigated lands used for commercial purposes. The distribution of forests (land cover class 4) demonstrated a slight decrease during the past decade from 493 pixels in 2013 to 434 pixels by 2024 which indicates a slight deforestation in the coastal areas of Victoria, Port Phillip Bay. The variations in land cover class 5 (sparse vegetation and scattered trees) indicated the initiation of the processes of restoration which follows-up the remediation of the previously abandoned lands. 
+
+The ongoing climate-environmental processes and anthropogenic activities resulted in a slight decrease of land cover classes 5 to 7 which experienced changes in occupied surface due to the cumulative effects from aridification and human pressure along the coasts of southern Australia. Land cover class 8 (built-up areas) shown the increase over the recent decade with indicates the expansion of the areas with impervious structures (e.g., such as roads, industrial construction and similar occupied lands). In contrast, the increase of pasture and grasslands (class 10) and bare areas (class 11) is notable for the recent decade which might lead to soil degradation and initiate the deforestation of the lands located in semi-arid environment, Table \ref{tab07}. 
 
 \begin{table}[H]
   \centering
@@ -623,6 +626,11 @@ In general, the SVM and RF models’ performance demonstrated similar results wh
   \label{fig09}
 \end{figure}
 
+\subsection{Comparison of approaches}
+In general, the SVM and RF models’ performance demonstrated similar results which is caused due to the technical parameters of these algorithms. The most distinct and accurate (over 98\% of accuracy) performance was noted by the AI algorithm of MLPC. 
+
+The use of these methods incorporated additional information on distribution of land cover types over souther Australia, i.e., landscape dynamics, and trends over the recent decade. The overall accuracy of the SVM classifier demonstrated 97.6\%, following by 96.4\% by RF. The DTC shown lesser results yet is comparable to the tested methods with overall achieved accuracy of 96.1\%. Once the optical ML AI classifiers were determined for image processing, the time series analysis was plotted (Figure \ref{fig10}) to visualise the dynamics of the land cover types in southern Australia between 2013 to 2024 along the coastal areas of Victoria. The decrease of areas occupied by Cheetham Wetlands around Port Phillip Bay was assessed over the recent decade using RS data processing and statistical analysis.
+
 \begin{table}[H]
   \centering
   \begin{tabularx}{\textwidth}{p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}}
@@ -665,7 +673,7 @@ In general, the SVM and RF models’ performance demonstrated similar results wh
 %----------- subsection ----------->
 \subsection{Accuracy assessment}
 
-The accuracy assessment computed using chi-square algorithms which evaluates the probability of the pixel's assignment to the correct class is shown in Figure \ref{fig11}. Accuracy assessment was performed using the computed reject raster map which presents the threshold. The threshold evaluates the limits according to which the pixels are assigned to the target classes correctly. It is possible using a chi square test calculated on each discriminant result at tested threshold levels of confidence. This test determines at what confidence level each pixels are classified to the correct categories of the land cover classes. Hence, the reject threshold layer contains the index to the  confidence level computed for each classified cell in the classified Landsat scene. Additionally, the confusion separability matrices were computed to evaluate the correctness of the pixel's classification for all the years: 2013 and 2015 (Figure \ref{fig12}) and 2017 and 2024 (Figure \ref{fig13}).
+The accuracy assessment computed using chi-square algorithms which evaluates the probability of the pixel's assignment to the correct class is shown in Figure \ref{fig11}. Accuracy assessment was performed using the computed reject raster map which presents the threshold. 
 
 \vspace{-10pt}
 \begin{figure}[H]
@@ -726,6 +734,8 @@ The accuracy assessment computed using chi-square algorithms which evaluates the
 \caption{Class separability matrices for land cover classes: \textbf{2013} and \textbf{2015}}
 \label{fig12}
 \end{figure}
+
+The threshold evaluates the limits according to which the pixels are assigned to the target classes correctly. It is possible using a chi square test calculated on each discriminant result at tested threshold levels of confidence. This test determines at what confidence level each pixels are classified to the correct categories of the land cover classes. Hence, the reject threshold layer contains the index to the  confidence level computed for each classified cell in the classified Landsat scene. Additionally, the confusion separability matrices were computed to evaluate the correctness of the pixel's classification for all the years: 2013 and 2015 (Figure \ref{fig12}) and 2017 and 2024 (Figure \ref{fig13}).
 
 \begin{figure}[H]
 \begin{equation}
@@ -797,7 +807,7 @@ To conclude, coastal monitoring is a systematic research with the goal to take d
 %----------- section ----------->
 %\authorcontributions{Supervision, conceptualization, methodology, software, resources, funding acquisition, and project administration, writing---original draft preparation, methodology, software, data curation, visualization, formal analysis, validation, writing---review and editing, and investigation, P.L.}
 
-\funding{The publication was funded by the Editorial Office of JMSE, Multidisciplinary Digital Publishing Institute (MDPI), by providing 100\% discount for the APC of this manuscript.}
+%\funding{The publication was funded by the Editorial Office of JMSE, Multidisciplinary Digital Publishing Institute (MDPI), by providing 100\% discount for the APC of this manuscript.}
 
 \institutionalreview{Not applicable.}
 
@@ -926,16 +936,16 @@ WRS & Worldwide Reference System
   \multirow{2}{*}{class} & \multicolumn{7}{c}{Initial mean values for multispectral bands of Landsat} \\
      & 1 - Coastal aerosol & 2 - Blue & 3 - Green & 4 - Red & 5 - NIR & 6 - SWIR-1 & 7 - SWIR-2 \\
     \midrule
-        \textbf{1} &  \\
-    \textbf{2} &  \\
-    \textbf{3} &  \\
-    \textbf{4} &  \\
-    \textbf{5} & \\
-    \textbf{6} &  \\
-    \textbf{7} &  \\
-    \textbf{8} & \\
-    \textbf{9} & \\
-    \textbf{10} & \\
+        \textbf{1} & 7883.17 & 8161.79 & 8731.22 & 8868.39 & 12420.6 & 11749.3 & 9919.64 \\
+    \textbf{2} & 8066.83 & 8374.7 & 9010.16 & 9289.44 & 13074.4 & 12751.4 & 10645.2 \\
+    \textbf{3} & 8250.49 & 8587.61 & 9289.1 & 9710.5 & 13728.3 & 13753.5 & 11370.7 \\
+    \textbf{4} & 8434.15 & 8800.53 & 9568.04 & 10131.5 & 14382.2 & 14755.5 & 12096.3 \\
+    \textbf{5} & 8617.81 & 9013.44 & 9846.97 & 10552.6 & 15036 & 15757.6 & 12821.8 \\
+    \textbf{6} & 8801.47 & 9226.35 & 10125.9 & 10973.7 & 15689.9 & 16759.6 & 13547.4 \\
+    \textbf{7} & 8985.13 & 9439.26 & 10404.9 & 11394.7 & 16343.7 & 17761.7 & 14272.9 \\
+    \textbf{8} & 9168.79 & 9652.17 & 10683.8 & 11815.8 & 16997.6 & 18763.8 & 14998.4 \\
+    \textbf{9} & 9352.45 & 9865.08 & 10962.7 & 12236.8 & 17651.4 & 19765.8 & 15724 \\
+    \textbf{10} & 9536.11 & 10078 & 11241.7 & 12657.9 & 18305.3 & 20767.9 & 16449.5 \\
 \bottomrule
 \end{tabularx}
   \caption{Initial mean values for pixels in each band assigned to target land cover types for 2024 before the iterative classification process}
