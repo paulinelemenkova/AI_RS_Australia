@@ -828,11 +828,13 @@ Landsat OLI/TIRS & Landsat Operational Land Imager and Thermal Infrared Sensor \
 ML & Machine Learning \\
 MLP & Multilayer Perceptron \\
 MODIA & Moderate Resolution Imaging Spectroradiometer \\
+NIR & Near Infrared \\
 RF & Random Forest \\
 R\&D & Research and Development \\
 RS & Remote Sensing \\
 SPOT & Satellite Pour l'Observation de la Terre \\
 SVM & Support Vector Machine \\
+SWIR & Shortwave Infrared \\
 USGS & United States Geological Survey \\
 UTM & Universal Transverse Mercator \\
 WGS84 & World Geodetic System 84 \\
@@ -846,7 +848,101 @@ WRS & Worldwide Reference System
 \appendixstart
 \appendix
 
-\section[\appendixname~\thesection]{Iterative cycles of image classification}
+\section[\appendixname~\thesection]{Initial means for each band}\label{AppA}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{p{0.7cm}p{2.5cm}p{1.0cm}p{1.3cm}p{1.0cm}p{1.0cm}p{1.5cm}p{1.5cm}}
+  \toprule
+  \multirow{2}{*}{class} & \multicolumn{7}{c}{Initial mean values for multispectral bands of Landsat} \\
+     & 1 - Coastal aerosol & 2 - Blue & 3 - Green & 4 - Red & 5 - NIR & 6 - SWIR-1 & 7 - SWIR-2 \\
+    \midrule
+    \textbf{1} & 7944.36 & 8195.91 & 8742.78 & 8861.72 & 12337.5 & 12337.4 & 10304.5 \\
+    \textbf{2} & 8119.86 & 8408.03 & 9026.45 & 9267.03 & 12909.9 & 13277 & 11008.4 \\
+    \textbf{3} & 8295.36 & 8620.15 & 9310.11 & 9672.33 & 13482.2 & 14216.6 & 11712.2 \\
+    \textbf{4} & 8470.86 & 8832.27 & 9593.77 & 10077.6 & 14054.6 & 15156.2 & 12416.1 \\
+    \textbf{5} & 8646.36 & 9044.38 & 9877.44 & 10482.9 & 14627 & 16095.8 & 13120 \\
+    \textbf{6} & 8821.86 & 9256.5 & 10161.1 & 10888.3 & 15199.4 &17035.4 & 13823.8  \\
+    \textbf{7} & 8997.36 & 9468.62 & 10444.8 & 11293.6 & 15771.7 & 17975 & 14527.7 \\
+    \textbf{8} & 9172.86 & 9680.74 & 10728.4 & 11698.9 & 16344.1 & 18914.6 & 15231.5 \\
+    \textbf{9} & 9348.36 & 9892.86 & 11012.1 & 12104.2 & 16916.5 & 19854.2 & 15935.4 \\
+    \textbf{10} & 9523.86 & 10105 & 11295.8 & 12509.5 & 17488.8 & 20793.8 & 16639.3 \\
+\bottomrule
+\end{tabularx}
+  \caption{Initial mean values for pixels in each band assigned to target land cover types for 2013 before the iterative classification process}
+  \label{tabA1} 
+\end{table} 
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{p{0.7cm}p{2.5cm}p{1.0cm}p{1.3cm}p{1.0cm}p{1.0cm}p{1.5cm}p{1.5cm}}
+  \toprule
+  \multirow{2}{*}{class} & \multicolumn{7}{c}{Initial mean values for multispectral bands of Landsat} \\
+     & 1 - Coastal aerosol & 2 - Blue & 3 - Green & 4 - Red & 5 - NIR & 6 - SWIR-1 & 7 - SWIR-2 \\
+    \midrule
+    \textbf{1} &  \\
+    \textbf{2} &  \\
+    \textbf{3} &  \\
+    \textbf{4} &  \\
+    \textbf{5} & \\
+    \textbf{6} &  \\
+    \textbf{7} &  \\
+    \textbf{8} & \\
+    \textbf{9} & \\
+    \textbf{10} & \\
+\bottomrule
+\end{tabularx}
+  \caption{Initial mean values for pixels in each band assigned to target land cover types for 2015 before the iterative classification process}
+  \label{tabA2} 
+\end{table} 
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{p{0.7cm}p{2.5cm}p{1.0cm}p{1.3cm}p{1.0cm}p{1.0cm}p{1.5cm}p{1.5cm}}
+  \toprule
+  \multirow{2}{*}{class} & \multicolumn{7}{c}{Initial mean values for multispectral bands of Landsat} \\
+     & 1 - Coastal aerosol & 2 - Blue & 3 - Green & 4 - Red & 5 - NIR & 6 - SWIR-1 & 7 - SWIR-2 \\
+    \midrule
+        \textbf{1} &  \\
+    \textbf{2} &  \\
+    \textbf{3} &  \\
+    \textbf{4} &  \\
+    \textbf{5} & \\
+    \textbf{6} &  \\
+    \textbf{7} &  \\
+    \textbf{8} & \\
+    \textbf{9} & \\
+    \textbf{10} & \\
+\bottomrule
+\end{tabularx}
+  \caption{Initial mean values for pixels in each band assigned to target land cover types for 2017 before the iterative classification process}
+  \label{tabA3} 
+\end{table} 
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{p{0.7cm}p{2.5cm}p{1.0cm}p{1.3cm}p{1.0cm}p{1.0cm}p{1.5cm}p{1.5cm}}
+  \toprule
+  \multirow{2}{*}{class} & \multicolumn{7}{c}{Initial mean values for multispectral bands of Landsat} \\
+     & 1 - Coastal aerosol & 2 - Blue & 3 - Green & 4 - Red & 5 - NIR & 6 - SWIR-1 & 7 - SWIR-2 \\
+    \midrule
+        \textbf{1} &  \\
+    \textbf{2} &  \\
+    \textbf{3} &  \\
+    \textbf{4} &  \\
+    \textbf{5} & \\
+    \textbf{6} &  \\
+    \textbf{7} &  \\
+    \textbf{8} & \\
+    \textbf{9} & \\
+    \textbf{10} & \\
+\bottomrule
+\end{tabularx}
+  \caption{Initial mean values for pixels in each band assigned to target land cover types for 2024 before the iterative classification process}
+  \label{tabA4} 
+\end{table} 
+
+\section[\appendixname~\thesection]{Iterative cycles of image classification}\label{AppB}
 
 \begin{table}[H]
   \centering
@@ -867,7 +963,7 @@ WRS & Worldwide Reference System
 \bottomrule
 \end{tabularx}
   \caption{Iterative process of pixels' assignment to target classes during image classification: 2013}
-  \label{tabA1}
+  \label{tabB1}
 \end{table}
 
 \begin{table}[H]
@@ -889,7 +985,7 @@ WRS & Worldwide Reference System
 \bottomrule
 \end{tabularx}
   \caption{Iterative process of pixels' assignment to target classes during image classification: 2015}
-  \label{tabA2}
+  \label{tabB2}
 \end{table}
 
 \begin{table}[H]
@@ -916,7 +1012,7 @@ WRS & Worldwide Reference System
 \bottomrule
 \end{tabularx}
   \caption{Iterative process of pixels' assignment to target classes during image classification: 2017}
-  \label{tabA3}
+  \label{tabB3}
 \end{table}
 
 \begin{table}[H]
@@ -938,10 +1034,8 @@ WRS & Worldwide Reference System
 \bottomrule
 \end{tabularx}
   \caption{Iterative process of pixels' assignment to target classes during image classification: 2024}
-  \label{tabA4}
+  \label{tabB4}
 \end{table}
-
-\section[\appendixname~\thesection]{Class separability matrices}\label{AppB}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{adjustwidth}{-\extralength}{0cm}
