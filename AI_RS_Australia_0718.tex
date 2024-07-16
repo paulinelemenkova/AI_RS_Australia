@@ -1,0 +1,1064 @@
+%  LaTeX support: latex@mdpi.com 
+%  For support, please attach all files needed for compiling as well as the log file, and specify your operating system, LaTeX version, and LaTeX editor.
+
+%=================================================================
+\documentclass[jmse,article,submit,pdftex,moreauthors]{Definitions/mdpi} 
+
+%=================================================================
+
+% MDPI internal commands
+\firstpage{1} 
+\makeatletter 
+\setcounter{page}{\@firstpage} 
+\makeatother
+\pubvolume{1}
+\issuenum{1}
+\articlenumber{0}
+\pubyear{2024}
+\copyrightyear{2024}
+%\externaleditor{Academic Editor: Firstname Lastname}
+\datereceived{27 June 2024} 
+\daterevised{} 
+\dateaccepted{} 
+\datepublished{} 
+\hreflink{https://doi.org/} % If needed use \linebreak
+%\doinum{}
+
+%=================================================================
+% Add packages and commands here. The following packages are loaded in our class file: fontenc, inputenc, calc, indentfirst, fancyhdr, graphicx, epstopdf, lastpage, ifthen, lineno, float, amsmath, setspace, enumitem, mathpazo, booktabs, titlesec, etoolbox, tabto, xcolor, soul, multirow, microtype, tikz, totcount, changepage, attrib, upgreek, cleveref, amsthm, hyphenat, natbib, hyperref, footmisc, url, geometry, newfloat, caption
+
+\graphicspath{{figures/}} % path to folder with figures
+\usepackage{subcaption}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{gensymb} % for \textdegree
+\usepackage{tabularx}
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+\setlength{\extrarowheight}{-20pt}
+\renewcommand{\arraystretch}{0.7}
+\usepackage{amsmath,mathtools,amsthm}
+	\setcounter{MaxMatrixCols}{15}
+\usepackage{array}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{float}
+\usepackage{chngcntr}
+\counterwithin*{equation}{section}
+\usepackage[super]{nth}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{adjustbox}
+\usepackage{graphicx}%
+\usepackage{multirow}%
+\usepackage{amsmath,amssymb,amsfonts}%
+\usepackage{amsthm}%
+\usepackage{mathrsfs}%
+\usepackage[title]{appendix}%
+\usepackage{textcomp}%
+\usepackage{manyfoot}%
+\usepackage{booktabs}%
+\usepackage{algorithm}%
+\usepackage{algorithmicx}%
+\usepackage{algpseudocode}%
+\usepackage{listings}%
+\usepackage{rotating}
+\usepackage{makecell}
+
+
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepmagenta}{RGB}{195,12,214}
+\definecolor{deepgreen}{RGB}{29,122,30}
+\definecolor{mintgreen}{RGB}{192,249,192}
+\definecolor{codepurple}{RGB}{204, 0, 153}
+\definecolor{LightCyan}{rgb}{0.88,1,1}
+\definecolor{GainsboroPurple}{RGB}{247,176,247}
+\definecolor{LightSlateGrey}{RGB}{124,118,118}
+%    
+\lstdefinestyle{mystyle}{
+    commentstyle=\color{LightSlateGrey},
+    keywordstyle=\color{deepgreen}\bfseries,
+    emphstyle=\color{deepred},
+    numberstyle=\tiny\color{deepblue},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\scriptsize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstset{style=mystyle}
+
+%=================================================================
+% Full title of the paper (Capitalized)
+\Title{Artificial Intelligence for Computational Remote Sensing: Quantifying Patterns of Land Cover Types Around Cheetham Wetlands, Port Phillip Bay, Australia}
+
+% MDPI internal command: Title for citation in the left column
+\TitleCitation{Artificial Intelligence for Computational Remote Sensing: Quantifying Patterns of Land Cover Types Around Cheetham Wetlands, Port Phillip Bay, Australia}
+
+% Author Orchid ID: enter ID or remove command
+\newcommand{\orcidauthorA}{0000-0002-5759-1089} % Polina Add \orcidA{} behind the author's name
+
+% Authors, for the paper (add full first names)
+\Author{Polina Lemenkova $^{1}$,$^{2}$*\orcidA{}}
+
+%\longauthorlist{yes}
+
+% MDPI internal command: Authors, for metadata in PDF
+\AuthorNames{Polina Lemenkova}
+
+% MDPI internal command: Authors, for citation in the left column
+\AuthorCitation{Lemenkova, P.}
+% If this is a Chicago style journal: Lastname, Firstname, Firstname Lastname, and Firstname Lastname.
+
+% Affiliations / Addresses (Add [1] after \address if there is only one affiliation.)
+\address{%
+$^{1}$ \quad Department of Geoinformatics, Faculty of Digital and Analytical Sciences, Paris Lodron Universität Salzburg, Schillerstraße 30, A-5020 Salzburg, Austria.
+
+$^{2}$ \quad Department of Biological, Geological and Environmental Sciences, Alma Mater Studiorum -- Università di Bologna, Via Irnerio 42, Bologna, IT-40126, Emilia-Romagna, Italy.
+}
+
+% Contact information of the corresponding author
+\corres{Correspondence: polina.lemenkova@plus.ac.at; polina.lemenkova2@unibo.it; Tel.: (+43)-677-6173-2772 or (+39)-344-69-28-732}
+
+% Current address and/or shared authorship
+%\firstnote{Current address: Affiliation 3.} 
+
+% Abstract (Do not insert blank lines, i.e. \\) 
+\abstract{This paper evaluates the potential of using Artificial Intelligence (AI) and Machine Learning (ML) approach for classification of Landsat satellite imagery to identify changes in patterns of land cover types in a coastal area around Cheetham Wetlands, Port Phillip Bay, Australia. The scripting approach of Geographic Resources Analysis Support System (GRASS) Geographic Information System (GIS) uses AI-based methods of image analysis to accurately discriminate land cover types. Four ML algorithms were applied for supervised classification using "r.learn.train" module that employs the Scikit-Learn library of Python. The algorithms include: 1) Random Forest (RF), 2) Support Vector Machine (SVM), 3) ANN-based approach using Multi-layer Perceptron (MLP) Classifier; and 4) Decision Tree Classifier (DTC). The tested methods of AI demonstrated excellent results of image classification with the highest overall accuracy that exceeds 98\% reached by the SVM and RF scenarios. The presented scripting approach of GRASS GIS accurately detected changes in land cover types in southern Victoria over the period of 2013-2024. The use AI and ML algorithms offers effective solutions for coastal monitoring by analysis of change detection using multi-temporal RS data. The demonstrated method has potential applications in coastal and wetland monitoring, environmental analysis and urban planning based on Earth observation data.}
+
+% Keywords
+\keyword{image processing; Earth observation; coasts; GIS; cartography; geoinformatics; landscape analysis; environmental monitoring; sensors; machine learning; Melbourne; Victoria} 
+
+% The fields PACS, MSC, and JEL may be left empty or commented out if not applicable
+%\PACS{J0101}
+%\MSC{}
+%\JEL{}
+
+\begin{document}
+
+%----------- section ----------->
+\section{Introduction}
+%----------- subsection ----------->
+\subsection{Background}
+Coastal regions are heterogeneous areas with a complex landscape patterns that reflect the interplay between natural ecosystems and human activities. The environmental settings of such areas reflect complex links between the terrestrial and marine natural ecosystems. On the other hand, coastal lands experience high anthropogenic pressure such as intensive urban construction, industrial and agriculture activities, marine transport systems and harbours. Monitoring the dynamics of the shorelines is essential for effective land management, natural resource planning, and urban development. Remote sensing (RS) data, such as satellite images, present a robust, reliable and cost-efficient information source to monitor coastal landscapes \cite{AGATE2024108639,Lemenkova202405,LIU2024120096}. 
+
+Important advantage of the RS data consists in the long and ongoing tradition of using satellite images in environmental studies of coastal regions. This became possible due to the rich collection of RS data available through different satellite mission. As a result, a systematic and comprehensive observation of the Earth's surface made through the satellite images provided a rich informational background for systematic insights into the environmental analysis of climate-related processes. For instance, time series of satellite images are useful for analysis and modelling of landscape dynamics. Comparison of such data enables to reveal trends in coastal processes in the complex marine ecosystem, to visualise flood extents \cite{10282975}, to highlight the intensity of hazards \cite{8517662} and to evaluate the potential risks in mining areas \cite{8900280}. 
+
+Numerous existing RS-based environmental analysis presented numerous case studies that aimed at revealing changes in land cover types in the coastal areas \cite{geosciences12100357,976724,Lemenkova202211,6723424}. Such and similar works provided the links between the geoinformation per se as a theoretical branch of cartographic domains for RS data processing with environmental aspects and the well-being of human society. Technically, the research carried out reported the use of various methods that use the functionality of Geographic Information System (GIS) as a fundamental technology for RS-based mapping. Environmental analysis takes advantage of diverse aspects of RS such as physical fundamentals of spectral reflectance, orbit characteristics that differ various satellite missions: Satellite Pour l'Observation de la Terre (SPOT), Landsat, Sentinel and many more. The variability of technical characteristics of these satellite images necessarily requires adjusted approaches to handle these data in order to obtain geo-information effectively. 
+
+The question now arises regarding how to process RS data effectively and accurately. The advanced methods of RS data handling enable to retrieve the multi-facetted information which highlights diverse aspects of the Earth's landscapes. It can be further utilised for diverse subjects, including geological mapping, climate change, environmental monitoring and hazard risk assessment in the coastal areas. The geoinformation obtained from the satellite images contributes to deepening our knowledge in Earth sciences and thus increase our understanding of the complex processes interrelated between the environmental processes reflected in ecosystems, climate change and anthropogenic activities and their responses by the natural landscapes. The multidisciplinary of the RS data and geoinformation on the one hand and the applicability of the advanced technical methods (programming, AI and ML) on the other hand, provide effective tools for performing the environmental analysis. 
+
+%----------- subsection ----------->
+\subsection{Related Works}
+
+RS data are widely used for monitoring coastal and marine environments. To mention a few applications, selected case studies include coastal erosion \cite{MCCARROLL2024107146}, monitoring vegetation and landscape dynamics \cite{Munroe2022,Morgan}, detecting seagrass distribution \cite{Traganos}, assessment of water pollution and detecting eutrophication \cite{ZHU2024262}, visualization of urban sprawl in coastal areas \cite{su14095700}, mapping land cover changes \cite{Lemenkova202313}, evaluating water quality \cite{ZHU2022116187,Lemenkova202322,Kim}, computing eutrophic sea level rise or shoreline extraction \cite{MCALLISTER2022104102}, and many more. 
+
+Among these and many similar cases, land cover change detection plays a special role for coastal monitoring since it enables to evaluate environmental trends detect dynamics and provide data for prognosis of possible scenario development. Besides forecasting, detecting changes is crucial for evaluating climate-environmental interactions, because changed environment affects human well-being and destructs social systems through worsen living conditions. With this regards, environmental coastal monitoring enables to better understand the complexity of such processes which is essential for environmental planning and policy making \cite{MURRAY2000357,COUTTS2016637}.
+
+Many studies have been undertaken recently for environmental coastal monitoring using RS data and GIS \cite{BISHOPTAYLOR2021112734} The aim of these and similar works is to detect crisis areas where landscape changes take place, to spot and to map the affected regions for decision taking. For instance, human-induced processes may include urbanisation of coastal areas \cite{ANTOS2007173}, agriculture plantations \cite{6723525}, unsustainable tourism \cite{WESTON200998,Howesetal} or climate-related processes affecting ecosystems \cite{Glenn,Lemenkova202221}. These processes lead to the disrupted natural ecosystems, change land cover types \cite{DPCOSTA2024101574}, increase landscape fragmentation \cite{Lemenkova202406}, destruct connectivity between the individual patches and cause deforestation. In the end, such effects misbalance coastal ecosystem and modify its structure.  
+
+Technically, detecting changes can be performed using time series analysis of the RS data through comparison of multi-temporal RS data covering the same area with different time intervals \cite{GAO2024119622,Vasquez2023,MASRIA2024103502}. Spatial analysis supported by the multi-temporal RS data can be used to monitor and operatively detect such regions visible on the satellite images from space. Despite the proposed methodology and constantly developing technical approaches (e.g., \cite{BUGNOT2018939})The question arises, however, how to effectively processes RS data and which methods present the most efficient solutions. The traditional tools of Geographic Information System (GIS) have restricted capabilities and limitations in speed and accuracy of RS data processing which is reported in relevant works \cite{BLACKFORD1995247,Whig2024,Rolim2023}. 
+
+Novel methods and approaches arising in the rapidly developing ear of computing enable to overcome the issues of RS data processing. These include, for instance the use of general-purpose programming languages such as Python or R in cartographic applications, applications of Deep Learning (DL) \cite{Park,Roselin}, scripting techniques \cite{Lemenkova202212,Lemenkova202213} and algorithms of Artificial Intelligence (AI) \cite{rs11060617}. The integration of RS data and these new technologies provides effective approach to  RS data handling for accurate and rapid image processing \cite{Turnbull,Lemenkova202323}. This presents a principally new cartographic approach for mapping marine and coastal environments through a powerful combination of Earth observation data and ML tools for effective monitoring of marine and coastal areas \cite{Cao2022}.
+
+%----------- subsection ----------->
+\subsection{Objectives and Motivation}
+This research is focused on the environmental mapping of coastal areas of southern Australia using RS data processed by AI and ML methods using GRASS GIS scripts. The study is logically organised in the two parts where the first one gives insights into the environmental setting of the coastal are around the Phillip Port Bay, southern Australia, while the second one is centred around the technical the tools of the AI algorithms used for satellite image processing and describes the difference between the selected methods. The results obtained from the image classification are discussed and commented in the following sections with the sequential discussion, closing remarks and recommendations for future works. 
+
+In this work, we use the techniques of Geographic Resources Analysis Support System (GRASS) GIS scripting software for processing RS data using AI and ML methods. Unlike the traditional methods of mapping that are usually applied in RS data processing, the integrated approach which combines programming for satellite image processing and cartographic methods for visualization paves the way to the more advanced ways of handling Earth observation data. Specifically, such integrated approach that combines programming and GIS is useful for mapping highly heterogeneous landscapes in coastal regions. In coastal areas,  the mosaic vegetation pattern contrasts well from the hinterland. 
+
+Discriminating complex and highly fragmented patches in the coastal landscapes requires the use of the advanced methods for RS data processing. As a response to these needs, we utilise the algorithms of AI that enable to accurately recognise and classify even tiny differences in landscape patches and to detect the dynamics of vegetation types. Moreover, the workflow repeatability is facilitated using scripting techniques of GRASS GIS and GMT. Such combined use of different software ensured the flexibility of the cartographic techniques through the use of GMT for gridded raster data handling using available techniques \cite{Lemenkova202217}, QGIS for vector data visualization and scripts of GRASS GIS for AI and ML methods of image processing. 
+
+The technical tools applied in this study supported the advanced visualisation of the RS data for geospatial modelling and mapping of the coasts of southern Australia. All these approaches provided compelling evidence that environmental research using GIS and RS data is significantly elaborated compared to its beginning. Thus, in the early 1970s, when the GIS science has started its development, the possibilities of GIS were limited to the existing restricted menu, while modern framework uses programming libraries to enhance technical capabilities of GIS through the AI and ML. 
+
+%----------- section ----------->
+\pagebreak
+\section{Study Area}
+
+The research is focused on the are around Melbourne - the second largest city on the Australian continent, and encompasses the Port Phillip Bay. The exact zone of the study area is limited by the coordinates from 143°01'33.38" E to 143°08'03.62"E longitude and from 38°32'14.93"S to 36°24'10.94"S latitude, which is located in the southern part of the state of Victoria, Figure \ref{fig01}. The state of Victoria comprises 79 municipalities with a total population exceeding 6.7 million in 2023, which makes it the second-most-populated state (after New South Wales) in Australia \cite{ABS}. Such population density increases anthropogenic pressure on the natural environmental of coastal areas. On the other hand, there is a strong link between the coastal environment and quality of life for population living in this area which illustrates dense human-nature interactions \cite{LIAO2023111158,HUANG2020134680}. 
+ 
+ \begin{figure}[H]
+    \begin{center}
+	\hspace{-35pt}\includegraphics[width=14.0cm]{Fig_01.jpg}
+    \end{center}
+    \caption{General topographic map of Australia with outlined location of the study area. Mapping software: Generic Mapping Tools (GMT) version 6.4.0. Data source: GEBCO. Map source: author.}
+    \label{fig01}
+\end{figure}
+
+One of the most prominent features in the environment of southern Victoria is the coastal plains of Port Phillip Bay -- a largest coastal lagoon system in Victoria, Australia, Figure \ref{fig02}. Port Phillipe Bay is a shallow embayment formed between the end of the last Ice Age around 8000 BCE as a result of faulting and marine transgression. Nowadays, it is located in a shallow tectonic depression with the depths mostly less than 8 m \cite{Holdgate}. With the total area of $1930 km^2$, it presents a closed complex ecosystem with irregular coastline and varying topographic setting and geomorphology \cite{longmore1996nutrient}. 
+
+Landscape formation in this area is driven by diverse factors such as wind force, and strong effects of oceanic waves, tides, and currents. The variability of such processes affects nearby landscapes, controls the distribution of the land cover types and regulates ecosystem functioning. As a result, the landscapes surrounding Port Phillip Bay are presented by a complex mixture of landscapes. Besides the distribution of wetlands, the estuaries of the Port Phillip Bay create a dynamic environment which supports rich marine and coastal biodiversity and important fisheries \cite{Jenkins,Weston,harris1996port}.
+
+\begin{figure}[H]
+    \begin{center}
+	\hspace{-35pt}\includegraphics[width=15.0cm]{Fig_02.jpg}
+    \end{center}
+    \caption{Enlarged fragment of the topographic map of southern Australia showing the location of the study area. Mapping software: Generic Mapping Tools (GMT) version 6.4.0. Hydrographic and topographic data source: GEBCO. Map source: author.}
+    \label{fig02}
+\end{figure}
+
+The region of southern Victoria around the Port Phillip Bay is notable for distribution of wetlands and salt marshes. Recent environmental survey reported 19212 ha of coastal salt marshes 5177 ha of mangroves, and 3227 ha of estuarine wetland in Victoria \cite{Boon}. Among these, the most notable system of wetlands is Cheetham, which occupies up to 420 ha of lagoons, including both artificial (salt marshes) and natural types (mangroves), Figure \ref{fig02}. Specific feature of the Port Phillip Bay consists in high urbanisation and population density. Southern coasts of Victoria are the areas with high population density with population density within 100 km of coastlines being much higher than the average density of the central Australia, which is constantly increasing. Population pressure, exaggerated by the anthropogenic activities along the coasts, have resulted in the degradation of coastal areas and deterioration of the landscapes around wetland areas \cite{land11020311}, declines water quality, including exceeded runoff of agricultural fertilizers, pesticides and chemical into the Port Philippe Bay. Such situation resulted in affected water quality, e.g., high suspended sediments with nutrient inflows that lead to the local cases of eutrophication. 
+
+The dominating land cover types around Port Phillipe Bay and southern Victoria include bushland, native shrubland, pastures and grasslands that intersperse with native forests, Figure \ref{fig03}. Arid zones located further from the coastal area are notable for drylands with sparse crops and rare treed vegetation coverage with scattered trees. Lacustrine and moderate dune systems are also found in the surroundings of Port Phillip. The land affected by the anthropogenic activities includes agricultural farmlands, horticulture and irrigated areas, lands used for recreation, as well as built up areas. Those are occupied by cities and settlements, including small towns and urban constructions (roads, industrial facilities, etc.), Figure \ref{fig03}.
+
+\begin{figure}[H]
+    \begin{center}
+	\hspace{-35pt}\includegraphics[width=14.0cm]{Fig_03.jpg}
+    \end{center}
+    \caption{Land cover types in Australia. Mapping software: QGIS version 3.34.7 'Prizren'. Data source: Dynamic Land Cover Dataset (DLCD). Map source: author.}
+    \label{fig03}
+\end{figure}
+
+Cheetham Wetlands are distributed on old salt works land on the western part of Port Phillip Bay and include the seasonal and perennial wetlands protected for conservation purposes. Located ca. 20 kilometres southwest of Melbourne \cite{Westonetal2006}, perennial Cheetham wetlands dry occasionally, only during periods with low precipitation \cite{jmse9080898}. However, much of the flora and fauna are not adapted to drying and remain permanently in the areas filled with water. Such settings create unique environmental ecosystem of Cheetham Wetlands with specific species adapted to such conditions of variable water levels. Hydrological and climate setting of the Cheetham Wetlands favour its high environmental value by providing habitat over 200 species of rare birds including migratory species that migrate to the Southern Hemisphere between July and November \cite{Jackson}. 
+
+The current environment of Port Phillip Bay has developed by a complex interactions of climate, lithological variability, tectonic-geologic deformation and sea level changes. Nowadays, the land cover types are continue further changing both along the coastline and in the hinterland, which is mainly caused by human activities such as economic development, residential construction and urban sprawl as well as recreational pressures \cite{FultonSmith}. Current environmental issues in this area include anthropogenic threats such as commercial dredging, water pollution and contamination caused by the trace metals, toxic substances, organochlorines and hydrocarbons \cite{PHILLIPS1992200}. Moreover, recent studies also detected changes to the structure and composition of benthic communities and weed invasions in Port Phillip Bay caused by the environmental interactions \cite{CURRIE199936}. Finally, shallow bathymetry of the Port Phillip Bay contributes to the eutrophication \cite{FultonSmith} and marine algae bloom \cite{md18030142,976565} in the selected parts of the embayment. As a result, the overall condition of Port Phillip Bay appears to have deteriorated on a large scale over the recent decades \cite{JUNG201193}.
+
+%----------- section ----------->
+\section{Materials and Methods}
+
+An approach that integrates RS data and AI algorithms is proposed herein to identify land cover changes through pixel-level mapping for monitoring area of southern area of Victoria state, Melbourne district. 
+
+%----------- subsection ----------->
+\subsection{Data}
+
+The data used in this study for spatial analysis and image processing are obtained from the open sources. The geospatial data of GEBCO (\href{https://www.gebco.net/}{https://www.gebco.net/}, accessed on 24 June 2024) with a 15 arc second spatial resolution was incorporated for topographic mapping. The general topographic map with the outlined location of the study area within Australia was plotted based on the General Bathymetric Chart of the Oceans (GEBCO) dataset with 15 arc minute resolution, as shown in Figures \ref{fig01} and \ref{fig02}. The names of the major features, cities and geographic objects were obtained from the Gazetteer of Australia (Aggregator: Geoscience Australia, distributed under the Creative Commons Attribution 3.0 license). 
+
+The land cover data were obtained from the open repository of the Geoscience Australia of the Australian Government -- Land Cover based on the updated classified imagery of Geoscience Australia Landsat Land Cover with resolution of 25m that replaces the previous version based on classified images from Terra Moderate Resolution Imaging Spectroradiometer (MODIS). These data were used to obtain the general characteristics of the landscape types in the Port Phillip Bay and the surroundings degrees. The vectors layers of these data were processed and visualised using QGIS software.The data source for the land cover types reference were derived from the nationally consistent and thematically comprehensive land cover reference for Australia -- the Dynamic Land Cover Dataset (DLCD) with resolution 25 m, version 1.0.0 (\href{https://knowledge.dea.ga.gov.au/data/product/dea-land-cover-landsat/?tab=overview}{https://knowledge.dea.ga.gov.au/data/product/dea-land-cover-landsat/?tab=overview}, accessed on 24 June 2024), Figure \ref{fig03}. 
+
+The RS data were obtained from the sources of Landsat 8-9 Landsat Operational Land Imager and Thermal Infrared Sensor (OLI-TIRS) United States Geological Survey (USGS). The main metadata of the satellite images are summarised in Table \ref{tab01}. 
+
+\begin{sidewaystable}
+\centering
+\small{
+ \begin{tabular}{|l|l|l|l|l|}
+    \hline
+        \textbf{Data Set Attribute} & \textbf{Attribute Value: 2024} & \textbf{Attribute Value: 2017} & \textbf{Attribute Value: 2015} & \textbf{Attribute Value: 2013} \\ \hline
+        \toprule
+        Landsat Product Identifier L2 & \makecell{LC09\_L2SP\_093086\_ \\ 20240329\_20240403\_02\_T1} & \makecell{LC08\_L2SP\_093086\_ \\ 20170318\_20200904\_02\_T1} & \makecell{LC08\_L2SP\_093086\_ \\ 20150329\_20200909\_02\_T1} & \makecell{LC08\_L2SP\_093086\_ \\ 20130326\_20200913\_02\_T1} \\ \hline
+        Landsat Product Identifier L1 & \makecell{LC09\_L1TP\_093086\_ \\ 20240329\_20240329\_02\_T1} & \makecell{LC08\_L1TP\_093086\_ \\ 20170318\_20200904\_02\_T1} & \makecell{LC08\_L1TP\_093086\_ \\ 20150329\_20200909\_02\_T1} & \makecell{LC08\_L1TP\_093086\_ \\ 20130326\_20200913\_02\_T1} \\ \hline
+        Landsat Scene Identifier & LC90930862024089LGN00 & LC80930862017077LGN00 & LC80930862015088LGN01 & LC80930862013085LGN02 \\ \hline
+        Date Acquired & 2024/03/29 & 2017/03/18 & 2015/03/29 & 2013/03/26 \\ \hline
+        Roll Angle & 0.001 & 0.000 & 0.000 & 0.000 \\ \hline
+        Date Product Generated L2 & 2024/04/03 & 2020/09/04 & 2020/09/09 & 2020/09/13 \\ \hline
+        Date Product Generated L1 & 2024/03/29 & 2020/09/04 & 2020/09/09 & 2020/09/13 \\ \hline
+        Start Time & 2024-03-29 00:09:22 & 2017-03-18 00:09:03.868153 & 2015-03-29 00:08:50.482423 & 2013-03-26 00:10:37.681759 \\ \hline
+        Stop Time & 2024-03-29 00:09:54 & 2017-03-18 00:09:35.63815 & 2015-03-29 00:09:22.252419 & 2013-03-26 00:11:07.47778 \\ \hline
+        Land Cloud Cover & 0.34 & 0.26 & 0.48 & 0.13 \\ \hline
+        Scene Cloud Cover L1 & 0.33 & 0.24 & 0.45 & 0.12 \\ \hline
+        Ground Control Points Model & 1160 & 1194 & 1171 & 1081 \\ \hline
+        Geometric RMSE Model & 5.002 & 4.048 & 4.001 & 4.701 \\ \hline
+        Geometric RMSE Model X & 3.304 & 2.534 & 2.419 & 3.135 \\ \hline
+        Geometric RMSE Model Y & 3.756 & 3.156 & 3.188 & 3.503 \\ \hline
+        Processing Software Version & LPGS\_16.4.0 & LPGS\_15.3.1c & LPGS\_15.3.1c & LPGS\_15.3.1c \\ \hline
+        Sun Elevation L0RA & 38.05564986 & 41.13467347 & 38.22640744 & 39.13419122 \\ \hline
+        Sun Azimuth L0RA & 45.77175870 & 50.09114471 & 46.16829406 & 46.70481697 \\ \hline
+        TIRS SSM Model & N/A & FINAL & ACTUAL & ACTUAL \\ \hline
+        Scene Center Latitude & -37.47464 & -37.47435 & -37.47440 & -37.47462 \\ \hline
+        Scene Center Longitude & 144.35289 & 144.40120 & 144.39626 & 144.31862 \\ \hline
+        Corner Upper Left Latitude & -36.40217 & -36.40099 & -36.40088 & -36.45905 \\ \hline
+        Corner Upper Left Longitude & 143.10763 & 143.15450 & 143.15116 & 143.11148 \\ \hline
+        Corner Upper Right Latitude & -36.45824 & -36.45609 & -36.45602 & -36.51418 \\ \hline
+        Corner Upper Right Longitude & 145.66861 & 145.71886 & 145.71217 & 145.59395 \\ \hline
+        Corner Lower Left Latitude & -38.47670 & -38.48103 & -38.48092 & -38.42299 \\ \hline
+        Corner Lower Left Longitude & 142.99849 & 143.04638 & 143.04295 & 143.00833 \\ \hline
+        Corner Lower Right Latitude & -38.53712 & -38.54041 & -38.54033 & -38.48215 \\ \hline
+        Corner Lower Right Longitude & 145.63117 & 145.68274 & 145.67586 & 145.55655 \\ \hline
+    \end{tabular}
+    }
+\caption{Metadata for the four scenes of the Landsat 8-9 OLI/TIRS images used for RS data processing and classification}
+\label{tab01}
+\end{sidewaystable}
+
+Technically, the multispectral Landsat 8-9 OLI-TIRS images were retrieved from the Earth Explorer repository (\href{https://earthexplorer.usgs.gov/}{https://earthexplorer.usgs.gov/}, accessed on 24 June 2024). The metadata were acquired and checked to cloudiness coverage and image quality and image extent to cover the entire study area of the Port Phillip Bay. Four satellite images were obtained for the following dates in March: 26/03/2013, 29/03/2015, 18/03/2017 and 29/03/2024. The pictures of these images as a raw dataset in natural colours are presented in Figure \ref{fig04}.
+
+\begin{figure}[H]
+  \centering
+  \begin{tabular}[b]{c}
+    \includegraphics[width=2.9cm]{Fig_04a.jpg} \\
+    \small (a): March 2013
+  \end{tabular}
+  \begin{tabular}[b]{c}
+    \includegraphics[width=2.9cm]{Fig_04b.jpg} \\
+    \small (b): March 2015
+  \end{tabular}
+    \begin{tabular}[b]{c}
+    \includegraphics[width=2.9cm]{Fig_04c.jpg} \\
+    \small (c): March 2017
+  \end{tabular}
+  \begin{tabular}[b]{c}
+    \includegraphics[width=2.9cm]{Fig_04d.jpg} \\
+    \small (d): March 2024
+  \end{tabular}
+  \caption{Original data: Landsat 8-9 OLI/TIRS images on southern Australia, Philippe Bay collected during March on years 2013, 2015, 2017 and 2024. Source: USGS. Compilation source: author.}
+  \label{fig04}
+\end{figure}
+
+Major technical characteristics common for all the Landsat scenes are the following. The satellite images have a level Data Type L2, meaning they incorporate geometric correction and topographic correction based on parameters of OLI TIRS L2SP sensor identifier, collection category T1, collection number 2 and Ground Control Points (GCP) Version 5. Special resolution is 30 m for multispectral channels and cirrus (Bands 1 to 7 and Band 9), 15 m for Panchromatic (Band 8) and 90 m for Thermal Infrared Sensor (TIRS) (Bands 10 and 11). The cartographic parameters are the following. The data are projected in Universal Transverse Mercator (UTM), Zone 55 South, Datum and Ellipsoid WGS84. The Satellite ID is 9 for the scene on 2024 and 8 for the rest of the images, and the Station Identifier is LGN for all the data. All images were taken in nadir in day time. The Worldwide Reference System (WRS) Path is 93, Row 86. 
+
+%----------- subsection ----------->
+\subsection{Workflow}
+
+The workflow steps to process and classify the satellite images in order to detect land cover types along the coastal landscape sof southern Australia are detailed in Figure \ref{fig05}. First, the images were selected based on their quality, coverage and suitability, and donwloaded from the USGS EarthExplorer site. Then, the images were imported into GRASS GIS using module "r.import" and necessary preprocessing and atmospheric corrections were applied to normalise the moderate-resolution images and eliminate the effects of the atmosphere using "i.landsat.toar:" module. The atmospheric correction of the images was carried out in GRASS GIS using 'i.landsat.toar' which computed the top-of-atmosphere reflectance and temperature for Landsat images. This adjustment transforms the calibrated Digital Number (DN) of the Landsat scenes to top-of-atmosphere reflectance thus improving the quality of the image. Here the atmospheric correction model was applied based on the dark object subtraction (DOS) correction approach.
+
+At the next step, 10 groups of land cover categories were defined using information received on previous step in order to recognise these classes on actual study area. To this end, the thematic map on land cover types was created using QGIS software to evaluate the distribution of major categories across the study area. Additionally, a digital elevation model (DEM) was obtained from GEBCO and generated as a topographic map of study area to strengthen the environmental setting through geospatial information. Following that, the images were processed using four different ML and AI algorithms of GRASS GIS by the combination of modules "r.random" (which generates training pixels from the land cover classification), "r.learn.train" (which trains models using various ML algorithms) and "r.learn.predict", which performs prediction of the pixels' assignment into target categories based on their spectral signatures, Figure \ref{fig05}. 
+
+\begin{figure}[H]
+    \begin{center}
+	\hspace{-35pt}\includegraphics[width=14.0cm]{Fig_05.jpg}
+    \end{center}
+    \caption{Workflow methodology. Software: RStudio version 2024.04.2+764, R version 3.6.0, 'DiagrammeR' package version 1.0.11.9000. Diagram source: author.}
+    \label{fig05}
+\end{figure}
+
+The adjusted automatic classification model was performed using the "i.maxlik" module of GRASS GIS that employs the maximum-likelihood discriminant analysis classifier. Here, the initial values of the pixels were computed for each multispectral band of the Landsat scenes for each year (the results are reported in the Appendix \ref{AppA}). Then, the iterative process of the re-assignment of these pixels was performed (the results of the iteration cycles are reported in the Appendix \ref{AppB} for each year), and the pixels were harmonised and readjusted to the target classes through the repetitive sequence of computational process. 
+
+The cluster parameters for MaxLike classification approach were accepted as following. The number of initial classes is 10; the minimum class size is 17; the Minimum class separation is zero and the percent convergence is 98.0 for all the scenes. The maximum number of iterations is 30 as defined by the GRASS GIS algorithm. The statistical summary of the accepted computational parameters of image processing through clustering is given in Table \ref{tab02}.
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{p{0.9cm}p{0.9cm}p{0.9cm}p{1.0cm}p{2.0cm}p{2.2cm}p{2.5cm}}
+  \toprule
+  \multirow{2}{*}{Year} & \multicolumn{6}{c}{Parameters of clustering} \\
+     & Rows & Cols & Cells & Sample size & Row sampling interval & Column sampling interval \\
+    \midrule
+    \textbf{2013} & 7281 & 7421 & 54032301 & 7044 & 72 & 74 \\
+    \textbf{2015} & 7711 & 7661 & 59073971 & 7005 & 77 & 76 \\
+    \textbf{2017} & 7711 & 7652 & 59004572 & 7011 & 77 & 76 \\
+    \textbf{2024} & 7692 & 7522 & 57859224 & 7217 & 76 & 75 \\
+\bottomrule
+\end{tabularx}
+  \caption{Statistical parameters for clustering using 'i.maxlik' module of GRASS GIS}
+  \label{tab02}
+\end{table}
+
+Finally, the maps obtained based on the classified images were visualised using the sequence of modules "d.rast", "d.grid" and "d.legend", Figure \ref{fig06}.  Such workflow made it possible to automate the necessary procedures to carry out image analysis. The additional information from the spectral bands (one to seven)  was obtained and statistically processed to evaluate changes during the period from 2013 to 2024. 
+
+\begin{figure}[H]
+  \centering
+  \begin{tabular}[b]{c}
+    \includegraphics[width=6.4cm]{Fig_06a.jpg} \\
+    \small (a)
+  \end{tabular}
+  \begin{tabular}[b]{c}
+    \includegraphics[width=6.4cm]{Fig_06b.jpg} \\
+    \small (b) 
+  \end{tabular}
+    \begin{tabular}[b]{c}
+    \includegraphics[width=6.4cm]{Fig_06c.jpg} \\
+    \small (c)
+  \end{tabular}
+  \begin{tabular}[b]{c}
+    \includegraphics[width=6.3cm]{Fig_06d.jpg} \\
+    \small (d) 
+  \end{tabular}
+  \caption{Results of image processing on 2013 using four methods: 1) Random Forest; 2) SVM; 3) DecisionTreeClassifier; 4) ANN-based MLPClassifier. Image processing: author.}
+  \label{fig06}
+\end{figure}
+
+Since all the four ML and IA models that were applied belong to the type of supervised classifiers, a training dataset was necessary for the algorithm. Training dataset teaches the model to learn the patterns of the different classes which should be discriminated. To this end, a sample of the unsupervised classification with pixel points was collected from the clustering to train the ML and AI algorithms, Figure \ref{fig07}.
+
+\begin{figure}[H]
+  \centering
+  \begin{tabular}[b]{c}
+    \includegraphics[width=6.4cm]{Fig_07a.jpg} \\
+    \small (a)
+  \end{tabular}
+  \begin{tabular}[b]{c}
+    \includegraphics[width=6.4cm]{Fig_07b.jpg} \\
+    \small (b) 
+  \end{tabular}
+    \begin{tabular}[b]{c}
+    \includegraphics[width=6.4cm]{Fig_07c.jpg} \\
+    \small (c)
+  \end{tabular}
+  \begin{tabular}[b]{c}
+    \includegraphics[width=6.4cm]{Fig_07d.jpg} \\
+    \small (d) 
+  \end{tabular}
+   \caption{Image processing on 2015 using four methods: 1) Random Forest; 2) SVM; 3) ANN-based MLPC; 4) DTC. Image source: author.}
+  \label{fig07}
+\end{figure}
+
+This initial raster dataset was augmented through the visual recognition of the satellite images, using the data on land cover types collected as reference from the DLCD open repository of the Australian Government. Four different ML and AI algorithms were tested and their performance was evaluated. For SVM and RF, the optimal parameters of the models were adjusted to improve the classification performance and accuracy of assignment. At the same time, for all the years (2013-2024), the assignment of pixels to various land cover classes was evaluated for each band was calculated to understand the contribution of land cover types within the whole landscape in the classification models.  
+
+%----------- section ----------->
+\section{Results}
+
+\subsection{Classification output}
+
+An essential point when classifying satellite image consists in the accurate selection of the land cover categories which should be identified, recognised on the images and discriminated on the resulting maps. In this research, the selection of these land categories has been employed using adopted, modified and generalised reports from previous existing studies in southern Australia and Port Phillip Bay. The adaptation of these data  aimed at the correct detection of coastal landscapes within the ecosystems of southern Victoria with the special aim to detect wetlands, and discriminate them automatically from urban areas and native forests. For this purpose, land cover type were proposed for the study area with ten following categories adopted from the existing classification scheme on retrospective time series 1987-2019 over Victoria State (\href{https://www.environment.vic.gov.au/biodiversity/Victorias-Land-Cover-Time-Series}{https://www.environment.vic.gov.au/biodiversity}, accessed on 25 July 2024): \emph{1) water bodies (Port Phillip Bay, lakes, rivers); 2) bushland ; 3) farmland and cropland used for agriculture; 4) native forests (closed trees); 5) sparse vegetation and scattered trees; 6) recreational land; 7) wetlands; 8) built-up areas; 9) pastures and grasslands; 10) bare areas}. The identification of these land cover types was then performed automatically using computer vision and ML algorithms embedded in the GRASS GIS.
+
+The results of the classification of the satellite images using ML and AI methods are presented in Figures \ref{fig06}, \ref{fig07}, \ref{fig08} and \ref{fig09} for comparison of different approaches for years 2013, 2015, 2017 and 2024. Contrariwise, the time series of one algorithms but evaluating the environmental dynamics is illustrated in Figure \ref{fig10}. The computed statistics on land cover class distribution by multispectral bands for each Landsat image and by years for each evaluated period (2013, 2015, 2017 and 2024) was obtained and summarised in the tables presented in the following section as well as in the Appendix of this study, e.g., Table \ref{tab03} for 2013 and likewise for the next periods. For 2013, pixels were assigned to the corresponding categories of the recognised 10 classes with 98.27\% points stable accuracy and convergence of 98.3\%, Table \ref{tab03}.
+
+
+\begin{table}[H]
+  \centering
+  \tiny
+  \begin{tabularx}{\linewidth}{p{1.3cm}p{1.0cm}p{1.0cm}p{1.0cm}p{1.0cm}p{1.0cm}p{1.0cm}p{1.0cm}p{1.0cm}}
+  \toprule
+  \multirow{2}{*}{Class} & \multicolumn{7}{c}{Multispectral bands of the Landsat 8 OLI/TIRS scene for \textbf{2013}} \\
+    & Stat & B1 & B2 & B3 & B4 & B5 & B6 & B7 \\
+    \midrule
+    \multirow{2}{*}{1 (507)} & means & 7687.78 & 7908.5 & 8088.38 & 7475.44 & 7336.59 & 7412.26 & 7391.69 \\
+    & stdev & 344.653 & 421.512 & 668.419 & 537.547 & 460.436 & 295.948 & 180.949 \\
+    \midrule
+    \multirow{2}{*}{2 (638)} & means & 7680.67 & 7842.55 & 8326.59 & 8342.63 & 14223.1 & 10929.8 & 9067.1 \\
+    & stdev & 222.242 & 267.302 & 375.086 & 444.833 & 1553.37 & 856.04 & 567.558 \\
+    \midrule
+    \multirow{2}{*}{3 (887)} & means & 8097.13 & 8335.14 & 8934.32 & 9236.08 & 14634.2 & 13461.6 & 10833.1 \\
+    & stdev & 256.84 & 273.675 & 349.578 & 379.762 & 1150.47 & 761.219 & 550.821 \\
+    \midrule
+    \multirow{2}{*}{4 (617)} & means & 8656.62 & 9001.7 & 9802.38 & 10300 & 14321.4 & 14803.1 & 12391.7 \\
+    & stdev & 610.8 & 666.747 & 803.156 & 815.317 & 969.65 & 962.333 & 703.455 \\
+    \midrule
+    \multirow{2}{*}{5 (378)} & means & 8457.53 & 8775.73 & 9744.8 & 10004.9 & 17329.6 & 16009.9 & 12429.8 \\
+    & stdev & 635.538 & 594.932 & 704.354 & 866.12 & 1584.96 & 1076.47 & 793.116 \\
+    \midrule
+    \multirow{2}{*}{6 (748)} & means & 8753.46 & 9158.45 & 10033.5 & 10785.5 & 14633.9 & 17307.8 & 13990.3 \\
+    & \textbf{stdev} & 306.286 & 344.408 & 426.607 & 563.988 & 788.463 & 802.195 & 664.108 \\
+    \midrule
+    \multirow{2}{*}{7 (584)} & means & 8868.88 & 9316.54 & 10365.6 & 11059.3 & 16695 & 18546 & 14492.1 \\
+    & stdev & 240.485 & 270.356 & 368.04 & 570.249 & 1012.67 & 773.668 & 561.7 \\
+    \midrule
+    \multirow{2}{*}{8 (1004)} & means & 9161.49 & 9674.29 & 10660.8 & 11716.9 & 15122.4 & 19256.5 & 15629.3 \\
+    & stdev & 354.297 & 391.741 & 494.712 & 625.917 & 665.09 & 805.656 & 665.977 \\
+    \midrule
+    \multirow{2}{*}{9 (1175)} & means & 9392.39 & 9999.52 & 11149.5 & 12418.8 & 16298.3 & 20847.9 & 16690.6 \\
+    & stdev & 251.846 & 295.699 & 411.786 & 635.913 & 797.684 & 750.01 & 752.185 \\
+    \midrule
+  \multirow{2}{*}{10 (506)} & means & 9967.75 & 10719.8 & 12141.4 & 13725.9 & 17504.8 & 22182.4 & 18140.5 \\
+   & stdev & 919.948 & 1000.56 & 1198.41 & 1274.36 & 1105.95 & 1361.48 & 1327.76 \\
+\bottomrule
+\end{tabularx}
+  \caption{Pixelwise computational statistics on land cover class distribution by spectral bands on 2013.}
+  \label{tab03}
+\end{table}
+
+Four widely used ML algorithms were applied to classify the images:  1) Random Forest (RF), 2) Support 7 Vector Machine (SVM), 3) ANN-based approach using Multi-layer Perceptron (MLP) Classifier; and 4) Decision Tree Classifier (DTC). The SVM is a non-parametric statistical learning classifier which is initially proposed by Vapnik \cite{788640} with the aim to find the optimal surface that divides each set of points into distinct classes according to their properties. The optimal surface here means a decision boundary that minimises the number of erroneously classified points. Such logical approach increases the accuracy of the classification and which resulted in the high applicability of this method in image classification and explains its high accuracy.
+
+\subsection{Statistical metrics}
+Table \ref{tab04} shows the evaluated statistical metrics derived from the computations obtained for each multispectral class for 2015. Likewise, the performance of the image classification for years 2017 and 2024 were summarised in Table \ref{tab05} and Table \ref{tab06}. It shows the variations in pixels's means and standard deviation for pixels by Landsat channel. 
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\linewidth}{p{1.3cm}p{1.0cm}p{1.0cm}p{1.0cm}p{1.0cm}p{1.0cm}p{1.0cm}p{1.0cm}p{1.0cm}}
+  \toprule
+  \multirow{2}{*}{Class} & \multicolumn{7}{c}{Multispectral bands of the Landsat 8 OLI/TIRS scene for \textbf{2015}} \\
+    & Stat & B1 & B2 & B3 & B4 & B5 & B6 & B7 \\
+    \midrule
+    \multirow{2}{*}{1 (568)} & means & 7940.28 & 8075.57 & 8123.99 & 7524.04 & 7425.85 & 7399.9 &7372.91 \\
+    & stdev & 344.325 & 379.953 & 593.974 & 522.724 & 652.721 & 335.877 & 246.953 \\
+    \midrule
+    \multirow{2}{*}{2 (615)} & means & 7686.57 & 7824.36 & 8272.39 & 8270.83 & 13898.8 & 10527 & 8863.34 \\
+    & stdev & 305.668 & 359.903 & 482.018 & 521.82 & 1537.46 & 845.958 & 552.008 \\
+    \midrule
+    \multirow{2}{*}{3 (781)} & means & 8072.26 & 8269.64 & 8837.17 & 9086.89 & 14572.4 & 13012 & 10576.3 \\
+    & stdev & 259.275 & 259.011 & 320.839 & 364.833 & 1119.29 & 746.203 & 547.4 \\
+    \midrule
+    \multirow{2}{*}{4 (703)} & means & 8650.11 &8941.9 & 9661.26 & 10136 & 14137.3 & 14558.4 & 12268.6 \\
+    & stdev & 617.366 & 675.844 & 814.999 & 863.171 & 1032.01 & 978.397 & 738.674 \\
+    \midrule
+    \multirow{2}{*}{5 (391)} & means & 8462.31 & 8728.8 & 9605.56 & 9842.91 & 17552 & 15561.5 & 12141.8 \\
+    & stdev & 293.506 & 297.3 & 383.437 & 489.254 & 1738.29 & 1098.23 & 795.876 \\
+    \midrule
+    \multirow{2}{*}{6 (796)} & means & 8861.33 & 9180.17 & 9941.97 & 10635.8 & 14647.6 & 17004.9 & 13981.4 \\
+    & stdev & 356.821 & 369.241 & 445.523 & 545.923 & 900.559 & 805.354 & 717.999 \\
+    \midrule
+    \multirow{2}{*}{7 (582)} & means & 8969.33 & 9327.61 & 10291.4 & 10917.5 & 17000.9 & 18508.4 & 14546.8 \\
+    & stdev & 476.562 & 385.029 & 458.457 & 582.109 & 1075.41 & 907.064 & 678.588\\
+    \midrule
+    \multirow{2}{*}{8 (1026)} & means & 9211.47 & 9575.03 & 10376.8 & 11287.4 & 14865.5 & 19153.9 & 15775.7 \\
+    & stdev & 278.492 & 282.228 & 361.572 & 493.88 & 732.319 & 843.458 & 637.941 \\
+    \midrule
+    \multirow{2}{*}{9 (1245)} & means & 9452.33 & 9909.68 & 10884.4 & 11989 & 15914.4 & 21031.7 & 17155.4 \\
+    & stdev & 237.238 & 250.904 & 380.325 & 578.133 & 859.887 & 805.656 & 762.815 \\
+    \midrule
+    \multirow{2}{*}{10 (298)} & means & 10110.3 & 10774.9 & 12172.6 & 13679.5 & 17597.3 & 22695 & 19191.3 \\
+    & stdev & 1645.09 & 1738.58 &1908.73 & 1940.05 & 2142.28 & 1510.8 & 1592.87 \\
+    \midrule 
+\bottomrule
+\end{tabularx}
+  \caption{Pixelwise computational statistics on land cover class distribution by spectral bands of the Landsat-8 OLI/TIRS image on 2015}
+  \label{tab04}
+\end{table}
+
+\begin{figure}[H]
+  \centering
+  \begin{tabular}[b]{c}
+    \includegraphics[width=6.4cm]{Fig_08a.jpg} \\
+    \small (a)
+  \end{tabular}
+  \begin{tabular}[b]{c}
+    \includegraphics[width=6.4cm]{Fig_08b.jpg} \\
+    \small (b) 
+  \end{tabular}
+    \begin{tabular}[b]{c}
+    \includegraphics[width=6.4cm]{Fig_08c.jpg} \\
+    \small (c)
+  \end{tabular}
+  \begin{tabular}[b]{c}
+    \includegraphics[width=6.4cm]{Fig_08d.jpg} \\
+    \small (d) 
+  \end{tabular}
+  \caption{Results of image processing on 2017 using four different methods: 1) Random Forest; 2) Support Vector Machine (SVM); 3) ANN-based approach using MLPClassifier; 4) DecisionTreeClassifier. Image processing source: author.}
+  \label{fig08}
+\end{figure}
+
+The overall trend in land cover type distribution by classes and the dynamics of changes is presented in Table \ref{tab07}. Here, the statistical results of the class distribution of the assigned pixels are based on the of the evaluated signature file by four years and seven multispectral bands as summarised in Table \ref{tab07} showing target land cover types for 2013--2024. Land cover class 1 (water -- Port Phillip Bay, lakes, rivers) demonstrated fluctuations with a slight increase in 2015 and 2024 which points at climate effects and higher precipitation. 
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\linewidth}{p{1.3cm}p{1.0cm}p{1.0cm}p{1.0cm}p{1.0cm}p{1.0cm}p{1.0cm}p{1.0cm}p{1.0cm}}
+  \toprule
+  \multirow{2}{*}{Class} & \multicolumn{7}{c}{Multispectral bands of the Landsat 8 OLI/TIRS scene for \textbf{2017}} \\
+    & Stat & B1 & B2 & B3 & B4 & B5 & B6 & B7 \\
+    \midrule
+    \multirow{2}{*}{1 (581)} & means & 7929.46 & 8108.94 & 8337.41 & 7709.38 & 7490.57 & 7424.3 & 7396.55 \\
+    & stdev & 337.158 & 410.139 & 735.841 & 802.125 & 750.097 & 360.916 & 220.256 \\
+    \midrule
+    \multirow{2}{*}{2 (673)} & means & 7679.48 & 7836.62 & 8328.88 & 8317.19 & 14848.9 & 10861.6 & 8990.81 \\
+    & stdev & 223.056 & 254.243 & 345.482 & 464.513 & 1369.21 & 883.749 & 560.842 \\
+    \midrule
+    \multirow{2}{*}{3 (494)} & means & 8537.22 & 8839.63 & 9573.69 & 9971.95 & 13978 & 13613.1 & 11552 \\
+    & stdev & 633.576 & 671.098 & 776.416 & 867.675 & 1093.82 & 1071.02 & 823.154 \\
+    \midrule
+    \multirow{2}{*}{4 (674)} & means & 7962.61 & 8209.86 & 8883.57 & 9075.13 & 16186 & 13121.2 & 10398.7 \\
+    & stdev & 199.388 & 190.559 & 260.072 & 330.17 & 1246.94 & 716.604 & 522.388 \\
+    \midrule
+    \multirow{2}{*}{5 (534)} & means & 8467.7 & 8822.3 & 9723.03 & 10205.7 &16661.4 & 15621.8 & 12327 \\
+    & stdev & 459.728 & 463.622 & 524.131 & 604.138 & 1231.37 & 854.132 & 622.67 \\
+    \midrule
+    \multirow{2}{*}{6 (836)} & means & 8762.76 & 9155.02 & 10011 & 10828.8 & 14450.9 & 16939 & 13601.9 \\
+    & stdev & 394.902 & 369.181 & 436.331 & 516.127 & 772.106 & 926.651 & 639.347 \\
+    \midrule
+    \multirow{2}{*}{7 (629)} & means & 8936.39 & 9422.97 & 10520.8 & 11467.8 & 16778.1 & 18160 & 14163.3 \\
+    & stdev & 427.325 & 472.756 & 601.364 & 721.644 & 1091.77 & 848.855 & 622.946 \\
+    \midrule
+    \multirow{2}{*}{8 (1048)} & means & 9073.67 & 9536.34 & 10454.4 & 11506.1 & 14986.6 & 19085.9 & 15192 \\
+    & stdev & 296.637 & 272.932 & 327.833 & 442.594 & 650.591 & 671.502 & 648.356 \\
+    \midrule
+    \multirow{2}{*}{9 (1140)} & means & 9304.19 & 9868.66 & 10979 & 12268.8 & 16090.7 & 20574 & 16274.2 \\
+    & stdev & 265.901 & 270.652 & 382.621 & 538.007 & 823.946 & 719.359 & 763.055 \\
+    \midrule
+    \multirow{2}{*}{10 (402)} & means & 9791.8 & 10539.3 & 11993.9 & 13700.7 & 17737.7 & 22096.9 & 17582.3 \\
+    & stdev & 893.661 & 985.953 & 1150.61 & 1206.94 & 1113.19 & 1082.1 &1240.95 \\
+    \midrule 
+\bottomrule
+\end{tabularx}
+  \caption{Pixelwise computational statistics on land cover class distribution by spectral bands of the Landsat-8 OLI/TIRS image on 2017}
+  \label{tab05}
+\end{table}
+
+\subsection{Interpretation of trends}
+A stable increase in land cover class 2 (bushland) is notable from 425 pixels in 2013 to 514 pixels in 2024 which signifies the decrease of forests in favour of minor plant types. The increase in land cover class 3 (farmland and cropland used for agriculture) by 2024 implies the intensification of irrigated lands used for commercial purposes. The distribution of forests (land cover class 4) demonstrated a slight decrease during the past decade from 493 pixels in 2013 to 434 pixels by 2024 which indicates a slight deforestation in the coastal areas of Victoria, Port Phillip Bay. The variations in land cover class 5 (sparse vegetation and scattered trees) indicated the initiation of the processes of restoration which follows-up the remediation of the previously abandoned lands. 
+
+The ongoing climate-environmental processes and anthropogenic activities resulted in a slight decrease of land cover classes 5 to 7 which experienced changes in occupied surface due to the cumulative effects from aridification and human pressure along the coasts of southern Australia. Land cover class 8 (built-up areas) shown the increase over the recent decade with indicates the expansion of the areas with impervious structures (e.g., such as roads, industrial construction and similar occupied lands). In contrast, the increase of pasture and grasslands (class 10) and bare areas (class 11) is notable for the recent decade which might lead to soil degradation and initiate the deforestation of the lands located in semi-arid environment, Table \ref{tab07}. 
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\linewidth}{p{1.3cm}p{1.0cm}p{1.0cm}p{1.0cm}p{1.0cm}p{1.0cm}p{1.0cm}p{1.0cm}p{1.0cm}}
+  \toprule
+  \multirow{2}{*}{Class} & \multicolumn{7}{c}{Multispectral bands of the Landsat 8 OLI/TIRS scene for \textbf{2024}} \\
+    & Stat & B1 & B2 & B3 & B4 & B5 & B6 & B7 \\
+    \midrule
+    \multirow{2}{*}{1 (609)} & means & 7766.02 & 8030.69 & 8320.34 & 7662.62 & 7371.63 & 7425.37 & 7425.87 \\
+    & stdev & 305.671 & 419.913 & 771.52 & 762.096 & 630.351 & 448.005 & 429.988 \\
+    \midrule
+    \multirow{2}{*}{2 (670)} & means & 7624.08 & 7809.15 & 8313.88 & 8331.51 & 14445.3 & 10705.7 & 8901.21 \\
+    & stdev & 205.902 & 224.873 & 282.263 & 358.421 & 1258.89 & 839.254 & 538.858 \\
+    \midrule
+    \multirow{2}{*}{3 (902)} & means & 7957.84 & 8235.82 & 8901.62 & 9185.04 & 15515.2 & 12986 & 10380.8 \\
+    & stdev & 246.116 & 232.907 & 266.852 & 339.025 & 1083.85 & 732.316 & 535.359 \\
+    \midrule
+    \multirow{2}{*}{4 (411)} & means & 8727.71 & 9082 & 9805.31 & 10220.4 & 13215.6 & 13490.9 & 12152.5 \\
+    & stdev & 668.955 & 673.146 & 789.834 & 850.916 & 1438.95 & 1133.67 & 998.25 \\
+    \midrule
+    \multirow{2}{*}{5 (456)} & means & 8414.58 & 8770.55 & 9670.05 & 10165.1 & 17197.8 & 15038 & 11860.2 \\
+    & stdev & 558.686 & 585.325 & 697.741 & 839.222 &1532.3 & 935.39 & 711.043 \\
+    \midrule
+    \multirow{2}{*}{6 (712)} & means & 8683.41 & 9095.66 & 10010 & 10836.8 & 15706 & 16695.9 & 13367.1 \\
+    & stdev & 367.576 & 376.232 & 457.499 & 563.708 & 983.967 & 895.602 & 565.674 \\
+    \midrule
+    \multirow{2}{*}{7 (770)} & means & 9133.68 & 9581.99 & 10492.9 & 11575.9 & 15226.5 & 18332.2 & 15088 \\
+    & stdev & 475.702 & 537.058 & 632.442 & 661.257 & 750.045 & 1015.51 & 778.522 \\
+    \midrule
+    \multirow{2}{*}{8 (860)} & means & 9015.93 & 9521.11 & 10624.3 & 11889.1 & 17408.1 & 19159.2 & 14827.3 \\
+    & stdev & 303.977 & 345.786 & 442.905 & 672.086 & 995.622 & 796.296 & 650.634 \\
+    \midrule
+    \multirow{2}{*}{9 (1204)} & means & 9377.85 & 9895.28 & 10950.8 & 12359.9 & 16667.9 & 20878.6 & 16604.8 \\
+    & stdev & 295.187 & 317.27 & 410.42 & 550.489 & 833.241 & 809.952 & 709.571 \\
+    \midrule
+    \multirow{2}{*}{10 (623)} & means & 9883.75 & 10559.2 & 11938.5 & 13760.8 & 18445.9 & 22327.5 & 17691.4 \\
+    & stdev & 907.155 & 976.955 & 1174.7 & 1143.97 & 1143.34 & 1289.88 & 1481.44 \\
+    \midrule 
+\bottomrule
+\end{tabularx}
+  \caption{Pixelwise computational statistics on land cover class distribution by spectral bands of the Landsat-8 OLI/TIRS image on 2024}
+  \label{tab06}
+\end{table}
+
+\begin{figure}[H]
+  \centering
+  \begin{tabular}[b]{c}
+    \includegraphics[width=6.3cm]{Fig_09a.jpg} \\
+    \small (a)
+  \end{tabular}
+  \begin{tabular}[b]{c}
+    \includegraphics[width=6.3cm]{Fig_09b.jpg} \\
+    \small (b) 
+  \end{tabular}
+    \begin{tabular}[b]{c}
+    \includegraphics[width=6.3cm]{Fig_09c.jpg} \\
+    \small (c)
+  \end{tabular}
+  \begin{tabular}[b]{c}
+    \includegraphics[width=6.3cm]{Fig_09d.jpg} \\
+    \small (d) 
+  \end{tabular}
+  \caption{Image classification on 2024 using four methods: 1) Random Forest; 2) SVM; 3) ANN-based MLPC; 4) DTClassifier. Image processing: author.}
+  \label{fig09}
+\end{figure}
+
+\subsection{Comparison of approaches}
+In general, the SVM and RF models’ performance demonstrated similar results which is caused due to the technical parameters of these algorithms. The most distinct and accurate (over 98\% of accuracy) performance was noted by the AI algorithm of MLPC. 
+
+The use of these methods incorporated additional information on distribution of land cover types over souther Australia, i.e., landscape dynamics, and trends over the recent decade. The overall accuracy of the SVM classifier demonstrated 97.6\%, following by 96.4\% by RF. The DTC shown lesser results yet is comparable to the tested methods with overall achieved accuracy of 96.1\%. Once the optical ML AI classifiers were determined for image processing, the time series analysis was plotted (Figure \ref{fig10}) to visualise the dynamics of the land cover types in southern Australia between 2013 to 2024 along the coastal areas of Victoria. The decrease of areas occupied by Cheetham Wetlands around Port Phillip Bay was assessed over the recent decade using RS data processing and statistical analysis.
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}}
+  \toprule
+  \multirow{2}{*}{Year} & \multicolumn{10}{c}{Classes of land cover types} \\
+     & 1 & 2 &  3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+    \midrule
+    \textbf{2013} & 1183 & 425 & 482 & 493 & 446 & 588 & 744 & 773 & 752 & 1158 \\
+    \textbf{2015} & 1215 & 367 & 471 & 491 & 485 & 589 & 731 & 782 & 774 & 1100 \\
+    \textbf{2017} & 1146 & 415 & 496 & 414 & 464 & 634 & 738 & 887 & 812 & 1005 \\
+    \textbf{2024} & 1249 & 514 & 541 & 434 & 440 & 522 & 671 & 784 & 806 & 1256 \\
+\bottomrule
+\end{tabularx}
+  \caption{Class distribution of the assigned pixels target land cover types for 2013--2024 during iterative classification process}
+  \label{tab07}
+\end{table} 
+
+\begin{figure}[H]
+  \centering
+ \begin{tabular}[b]{c}
+    \includegraphics[width=6.3cm]{Fig_10a.jpg} \\
+    \small (a)
+  \end{tabular}
+  \begin{tabular}[b]{c}
+    \includegraphics[width=6.3cm]{Fig_10b.jpg} \\
+    \small (b) 
+  \end{tabular}
+    \begin{tabular}[b]{c}
+    \includegraphics[width=6.3cm]{Fig_10c.jpg} \\
+    \small (c)
+  \end{tabular}
+  \begin{tabular}[b]{c}
+    \includegraphics[width=6.3cm]{Fig_10d.jpg} \\
+    \small (d) 
+  \end{tabular}
+  \caption{Time series of the classified images (2013-2024) processed using k-means clustering.}
+  \label{fig10}
+\end{figure}
+
+%----------- subsection ----------->
+\subsection{Accuracy assessment}
+
+The accuracy assessment computed using chi-square algorithms which evaluates the probability of the pixel's assignment to the correct class is shown in Figure \ref{fig11}. Accuracy assessment was performed using the computed reject raster map which presents the threshold. 
+
+\vspace{-10pt}
+\begin{figure}[H]
+  \centering
+  \begin{tabular}[b]{c}
+    \includegraphics[width=6.4cm]{Fig_11a.jpg} \\
+    \small (a)
+  \end{tabular}
+  \begin{tabular}[b]{c}
+    \includegraphics[width=6.4cm]{Fig_11b.jpg} \\
+    \small (b) 
+  \end{tabular}
+    \begin{tabular}[b]{c}
+    \includegraphics[width=6.4cm]{Fig_11c.jpg} \\
+    \small (c)
+  \end{tabular}
+  \begin{tabular}[b]{c}
+    \includegraphics[width=6.3cm]{Fig_11d.jpg} \\
+    \small (d) 
+  \end{tabular}
+  \caption{Accuracy analysis of image classification (2013-2024) using chi square algorithm method.}
+  \label{fig11}
+\end{figure}
+
+\begin{figure}[H]
+\begin{equation}
+%\setlength\arraycolsep{3pt}
+\scriptsize
+\begin{vmatrix}
+    & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+1 & 0 &  &  &  &  &  &  &  &  &  \\
+2 & 2.2 & 0 &  &  &  &  &  &  &  &  \\
+3 & 3.8 & 1.2 & 0 &  &  &  &  &  &  &  \\
+4 & 4.1 & 1.8 & 0.9 & 0 &  &  &  &  &  &  \\
+5 & 4.1 & 1.8 & 1.0 & 0.6 & 0 &  &  &  &  &  \\                 
+6 & 6.0 & 2.9 & 1.9 & 0.8 & 0.8 & 0 &  &  &  &  \\             
+7 & 7.0 & 3.5 & 2.5 & 1.3 & 1.0 & 0.6 & 0 &  &  &  \\                      
+8 & 7.3 & 3.8 & 2.8 & 1.6 & 1.4 & 0.9 & 0.7 & 0 &  &  \\
+9 & 8.3 & 4.7 & 3.7 & 2.2 & 2.0 & 1.7 & 1.3 & 0.7 & 0 &  \\           
+10 & 6.0 & 3.7 & 3.0 & 2.1 & 1.9 & 1.8 & 1.5 & 1.2 & 0.7 & 0 \\                          
+\end{vmatrix}
+ %
+\hspace{3pt}
+\begin{vmatrix}
+    & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+1 & 0 &  &  &  &  &  &  &  &  &  \\
+2 & 1.8 & 0 &  &  &  &  &  &  &  &  \\
+3 & 3.4 & 1.1 & 0 &  &  &  &  &  &  &  \\
+4 & 3.6 & 1.7 & 0.9 & 0 &  &  &  &  &  &  \\
+5 & 3.9 & 2.0 & 1.1 & 0.6 & 0 &  &  &  &  &  \\  
+6 & 5.3 & 2.8 & 1.9 & 0.8 & 0.9 & 0 &  &  &  &  \\   
+7 & 5.8 & 3.2 & 2.4 & 1.3 & 1.2 & 0.7 & 0 &  &  &  \\ 
+8 & 6.8 & 3.9 & 3.1 & 1.6 & 1.8 & 0.9 & 0.7 & 0 &  &  \\
+9 & 7.7 & 4.6 & 3.9 & 2.3 & 2.4 & 1.7 & 1.2 & 0.8 & 0 &  \\
+10 & 4.8 & 3.3 & 2.9 & 2.0 & 2.1 & 1.7 & 1.3 & 1.2 & 0.7 & 0 \\   
+\end{vmatrix} 
+\end{equation}
+\caption{Class separability matrices for land cover classes: \textbf{2013} and \textbf{2015}}
+\label{fig12}
+\end{figure}
+
+The threshold evaluates the limits according to which the pixels are assigned to the target classes correctly. It is possible using a chi square test calculated on each discriminant result at tested threshold levels of confidence. This test determines at what confidence level each pixels are classified to the correct categories of the land cover classes. Hence, the reject threshold layer contains the index to the  confidence level computed for each classified cell in the classified Landsat scene. Additionally, the confusion separability matrices were computed to evaluate the correctness of the pixel's classification for all the years: 2013 and 2015 (Figure \ref{fig12}) and 2017 and 2024 (Figure \ref{fig13}).
+
+\begin{figure}[H]
+\begin{equation}
+%\setlength\arraycolsep{3pt}
+\scriptsize
+\begin{vmatrix}
+    & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+1 & 0 &  &  &  &  &  &  &  &  &  \\
+2 & 2.1 & 0 &  &  &  &  &  &  &  &  \\
+3 & 3.0 & 1.4 & 0 &  &  &  &  &  &  &  \\
+4 & 3.4 & 1.1 & 0.9 & 0 &  &  &  &  &  &  \\
+5 & 4.3 & 2.1 & 0.7 & 1.3 & 0 &  &  &  &  &  \\    
+6 & 5.2 & 2.8 & 1.0 & 2.1 & 0.8 & 0 &  &  &  &  \\  
+7 & 5.7 & 3.2 & 1.4 & 2.5 & 1.0 & 0.7 & 0 &  &  &  \\ 
+8 & 7.2 & 4.0 & 1.8 & 3.4 & 1.6 & 0.9 & 0.6 & 0 &  &  \\
+9 & 7.6 & 4.6 & 2.3 & 4.0 & 2.2 & 1.6 & 1.0 & 0.8 & 0 &  \\
+10 & 6.1 & 3.9 & 2.4 & 3.4 & 2.2 & 1.9 & 1.4 & 1.4 & 0.8 & 0 \\      
+\end{vmatrix}
+ %
+\hspace{3pt}
+\begin{vmatrix}
+    & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+1 & 0 &  &  &  &  &  &  &  &  &  \\
+2 & 2.0 & 0 &  &  &  &  &  &  &  &  \\
+3 & 3.2 & 1.2 & 0 &  &  &  &  &  &  &  \\
+4 & 2.6 & 1.6 & 1.0 & 0 &  &  &  &  &  &  \\
+5 & 3.5 & 1.9 & 1.0 & 0.7 & 0 &  &  &  &  &  \\ 
+6 & 4.6 & 2.9 & 1.9 & 0.9 & 0.7 & 0 &  &  &  &  \\
+7 & 5.1 & 3.4 & 2.5 & 1.3 & 1.4 & 0.8 & 0 &  &  &  \\ 
+8 & 5.8 & 4.0 & 3.0 & 1.6 & 1.5 & 1.0 & 0.6 & 0 &  &  \\
+9 & 6.7 & 4.9 & 3.9 & 2.2 & 2.2 & 1.8 & 0.9 & 0.8 & 0 &  \\  
+10 & 5.3 & 3.9 & 3.2 & 2.2 & 2.1 & 1.8 & 1.3 & 1.1 & 0.7 & 0 \\   
+\end{vmatrix} 
+\end{equation}
+\caption{Class separability matrices for land cover classes: \textbf{2017} and \textbf{2024}}
+\label{fig13}
+\end{figure}
+
+A multi-disciplinary approach that integrated ML and RS data with GIS, as demonstrated in this study, ensures more insightful analysis of the interrelated processed along the coasts of southern Australia. As discussed earlier, vulnerable costal area along the Port Philipp Bay is affected both by climate-environmental factors and by anthropogenic activities. This results in highly dynamic and changing environment which was detected over the time series of the satellite images. 
+
+%----------- section ----------->
+\section{Discussion}
+
+This study examined four AI applications of GRASS GIS for obtaining information on land cover changes in the coastal waters of Port Phillip Bay using data on spectral reflectance from the multi-temporal Landsat satellite data (2013-2024). The spatial extent of these changes was visualised over the study area in the surroundings of southern Victoria  State, Australia. The presented maps are applicable to identify hotspots for water eutrophication in the Port, to detect the decline of native forest ecosystems and their replacement by urban spaces and to detect landscape dynamics in a regional scale relating to environmental-climate effects and anthropogenic activities. 
+
+Satellite imagery, geo-information resources and maps are a primary requirement in visualising data in environmental monitoring of coastal areas. As demonstrated in this study, the use of the open spatial data, such as multispectral Landsat imagery, is crucial for environmental mapping since they provide reliable information with sufficient spatial coverage. The information obtained from such data can be reused for updated coastal mapping and operative monitoring to analyse land cover changes. The decisions made based on these datasets include the cost-benefit computations, social-economic analysis, or hazard risk assessment in coastal areas. In turn, processing multi-temporal time series of satellite images ensures environmental management and assist to mitigate implications for affected coastal ecosystems.
+
+The results of image classification using four different algorithms of AI and ML were compared to identify their effectiveness in GRASS GIS software. This approach enabled to detect the areas experiencing the most intensive land cover changes in southern Victoria, Port Phillip Bay. Pixel-level mapping enhanced the identification of regions requiring flexible methodology and investigation efficiency by focusing on specific areas such as Cheetham Wetlands which are distributed over the southern segment of the study area. 
+
+%----------- section ----------->
+\section{Conclusions}
+
+\subsection{Closing remarks}
+Maps play a crucial role in environmental monitoring through the visual analyses which supports environmental policy and management. Maps created using RS data within the framework of coastal environmental monitoring support decision making through the analysis of geospatial information. To support decision making process, the essential advantage of cartographic data visualization consists in spatio-temporal aspect of RS data and operative monitoring using time series. Using this information, we can always answer questions as "what changed in the landscapes ?" and "where do these changes take place ?" and "what is the level of changes (small to ) ?" Hence, processing satellite images primarily support such decision making and geospatial analysis through the visualised extent of the affected areas and mapping the exact location of land cover changes. Target coastal areas affected either by the environmental-climate processes or by human activities can be highlighted to find the ways of mitigation of the environmental crisis. 
+
+Earth observation datasets support such tasks in the environmental monitoring. This becomes possible due to the significant development of satellite missions and techniques which resulted in the increased number and variety of the available RS data. Visual forms of representation such as classified satellite images, maps, graphs and tables with obtained statistical information effectively summarise information and present it in an interpretable form which enables to highlight important zones of the endangered coastal regions on the maps.The use of such data in coastal monitoring supports high level of complexity and operability of mapping due to technical advancements in GIS and progress in programming, including the algorithms of AI and ML. Using scripting techniques of GRASS GIS enhanced through ML and AI algorithms enabled to automate and improve manual mapping, to increase the precision and quality of images and to contribute to the monitoring of coastal land use types in southern Australia. 
+
+Nowadays, the important role of programming and AI applications in satellite image analysis is more and more recognised due to the powerful techniques which enable to process images rapidly yet accurately. As a result, modern geoinformatics and RS domain benefit from methods derived from the programming domains, data science, and statistical packages. The use of these tools significantly enriches the cartographic capacities of RS data processing through the advanced methods of modelling and visualization. AI and ML algorithms lead the environmental coastal mapping to a principally novel stage that complements and enhances commonly used traditional GIS methods for RS data processing. With this regards, this paper demonstrated the case of such applications where AI and ML algorithms were applied and compared to address the issue of the effective RS data processing. 
+
+\subsection{Future directions}
+The insights presented in this paper have shed light on the potential future directions in RS data processing using AI and ML tools integrated with geoinformatics software GRASS GIS. Further advances in cartographic RS data processing in marine areas can be extended to the natural hazards common in coastal environmental mapping: floods, droughts, tsunamis and coastal erosion. Such process affects both natural and social systems, cause damage in infrastructure and disrupt landscapes. Satellite images processed using advanced tools of AI and ML can significantly support geospatial analysis and help to mitigate or prevent risks of natural hazards. Using demonstrated approach, the Research and Development (R\&D) groups integrated into the coastal management can perform the RS-based data analysis using programming and scripting methods.
+
+Novel framework of coastal and marine monitoring has an multi- and interdisciplinary profile that combines diverse scientific branches: advanced RS datasets, computer graphics, data science, computing algorithms integrated with GIS methodology or visualization and spatial analysis. Such integrative approaches pave the ways to further development of marine research and open new perspectives of the environmental coastal mapping. In this paper, we demonstrated such integrated study with a case of Australian coasts and discussed practices of RS data processing in geoinformatics for environmental coastal mapping. The study was supported by an overview of modern AI and ML methods of RS data processing in modern geoinformation. hence, the perspectives of the GIS-based integrated use of programming, ML, DL techniques and satellite image analysis were discussed and highlighted. We also provided the most essential descriptions of the novel characteristics of the AI and ML track specifically for RS data analysis. 
+
+The challenge of future studies is to integrate and revitalise diverse sources of information for a comprehensive analysis of coastal zones. Hence, in further works that perform similar analysis in coastal areas, the integrated methods can bring research to a principally novel level. Namely, the ML-supported RS data processing by GIS can help explore coastal landscape dynamics. When applied to environmental monitoring of the coasts affected by climate hazards or erosion, such data integration promises effective tools for decision making. Hence, future studies will consider smooth integration of data and methods which is notable for the multi-disciplinary coastal monitoring supported by Earth Observation data and spatial analysis. 
+
+To conclude, coastal monitoring is a systematic research with the goal to take decision based on the diversity of multi-format data and advanced tools of their processing. Thus, the input data can be included in various forms such as RS satellite images, cartographic data, computational tables based on ecological surveys, experimental evaluations or user opinion surveys for coastal environmental monitoring. The advantages, benefits, and usage conditions for such methods and tools for novel research directions in coastal mapping should be considered and applied in similar works. Hence, as demonstrated in this study, using modern technologies of satellite image processing, statistical GIS analysis and programming plays a crucial role in driving the environmental modelling towards the advanced level of research performed by the modern GIS. 
+
+%----------- section ----------->
+%\authorcontributions{Supervision, conceptualization, methodology, software, resources, funding acquisition, and project administration, writing---original draft preparation, methodology, software, data curation, visualization, formal analysis, validation, writing---review and editing, and investigation, P.L.}
+
+%\funding{The publication was funded by the Editorial Office of JMSE, Multidisciplinary Digital Publishing Institute (MDPI), by providing 100\% discount for the APC of this manuscript.}
+
+\institutionalreview{Not applicable.}
+
+\informedconsent{Not applicable.}
+
+\dataavailability{Not applicable.} 
+
+\acknowledgments{The authors thank the reviewers for reading and review of this manuscript.}
+
+\conflictsofinterest{The authors declare no conflict of interest.} 
+
+\abbreviations{Abbreviations}{
+The following abbreviations are used in this manuscript:\\
+
+\noindent 
+\begin{tabular}{@{}ll}
+AI & Artificial Intelligence \\
+ANN & Artificial Neural Network \\
+DN & Digital Number \\
+DOS & Dark Object Subtraction \\
+EO & Earth Observation \\
+GCP & Ground Control Points \\
+GEBCO & General Bathymetric Chart of the Oceans \\
+GMT & Generic Mapping Tools \\
+GRASS & Geographic Resources Analysis Support System \\
+GIS & Geographic Information System \\
+Landsat OLI/TIRS & Landsat Operational Land Imager and Thermal Infrared Sensor \\
+ML & Machine Learning \\
+MLP & Multilayer Perceptron \\
+MODIA & Moderate Resolution Imaging Spectroradiometer \\
+NIR & Near Infrared \\
+RF & Random Forest \\
+R\&D & Research and Development \\
+RS & Remote Sensing \\
+SPOT & Satellite Pour l'Observation de la Terre \\
+SVM & Support Vector Machine \\
+SWIR & Shortwave Infrared \\
+USGS & United States Geological Survey \\
+UTM & Universal Transverse Mercator \\
+WGS84 & World Geodetic System 84 \\
+WRS & Worldwide Reference System
+\end{tabular}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Optional
+\appendixtitles{no} 
+\appendixstart
+\appendix
+
+\section[\appendixname~\thesection]{Initial means for each band}\label{AppA}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{p{0.7cm}p{2.5cm}p{1.0cm}p{1.3cm}p{1.0cm}p{1.0cm}p{1.5cm}p{1.5cm}}
+  \toprule
+  \multirow{2}{*}{class} & \multicolumn{7}{c}{Initial mean values for multispectral bands of Landsat} \\
+     & 1 - Coastal aerosol & 2 - Blue & 3 - Green & 4 - Red & 5 - NIR & 6 - SWIR-1 & 7 - SWIR-2 \\
+    \midrule
+    \textbf{1} & 7944.36 & 8195.91 & 8742.78 & 8861.72 & 12337.5 & 12337.4 & 10304.5 \\
+    \textbf{2} & 8119.86 & 8408.03 & 9026.45 & 9267.03 & 12909.9 & 13277 & 11008.4 \\
+    \textbf{3} & 8295.36 & 8620.15 & 9310.11 & 9672.33 & 13482.2 & 14216.6 & 11712.2 \\
+    \textbf{4} & 8470.86 & 8832.27 & 9593.77 & 10077.6 & 14054.6 & 15156.2 & 12416.1 \\
+    \textbf{5} & 8646.36 & 9044.38 & 9877.44 & 10482.9 & 14627 & 16095.8 & 13120 \\
+    \textbf{6} & 8821.86 & 9256.5 & 10161.1 & 10888.3 & 15199.4 &17035.4 & 13823.8  \\
+    \textbf{7} & 8997.36 & 9468.62 & 10444.8 & 11293.6 & 15771.7 & 17975 & 14527.7 \\
+    \textbf{8} & 9172.86 & 9680.74 & 10728.4 & 11698.9 & 16344.1 & 18914.6 & 15231.5 \\
+    \textbf{9} & 9348.36 & 9892.86 & 11012.1 & 12104.2 & 16916.5 & 19854.2 & 15935.4 \\
+    \textbf{10} & 9523.86 & 10105 & 11295.8 & 12509.5 & 17488.8 & 20793.8 & 16639.3 \\
+\bottomrule
+\end{tabularx}
+  \caption{Initial mean values for pixels in each band assigned to target land cover types for 2013 before the iterative classification process}
+  \label{tabA1} 
+\end{table} 
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{p{0.7cm}p{2.5cm}p{1.0cm}p{1.3cm}p{1.0cm}p{1.0cm}p{1.5cm}p{1.5cm}}
+  \toprule
+  \multirow{2}{*}{class} & \multicolumn{7}{c}{Initial mean values for multispectral bands of Landsat} \\
+     & 1 - Coastal aerosol & 2 - Blue & 3 - Green & 4 - Red & 5 - NIR & 6 - SWIR-1 & 7 - SWIR-2 \\
+    \midrule
+    \textbf{1} & 7964.53 & 8167.16 & 8635.84 & 8723.91 & 12003.5 & 11922.3 & 10077.8 \\
+    \textbf{2} & 8143.64 & 8371.91 & 8901.87 & 9095.84 & 12597.6 & 12891.5 & 10824.4  \\
+    \textbf{3} & 8322.74 & 8576.66 & 9167.9 & 9467.76 & 13191.7 & 13860.6 & 11571 \\
+    \textbf{4} & 8501.84 & 8781.41 & 9433.92 & 9839.69 & 13785.8 & 14829.8 & 12317.6 \\
+    \textbf{5} & 8680.94 & 8986.16 & 9699.95 & 10211.6 & 14379.8 & 15798.9 & 13064.2 \\
+    \textbf{6} & 8860.04 & 9190.91 & 9965.98 & 10583.5 & 14973.9 & 16768.1 & 13810.8 \\
+    \textbf{7} & 9039.15 & 9395.66 & 10232 & 10955.5 & 15568 & 17737.2 & 14557.5 \\
+    \textbf{8} & 9218.25 & 9600.41 & 10498 & 11327.4 & 16162.1 & 18706.4 & 15304.1 \\
+    \textbf{9} & 9397.35 & 9805.16 & 10764.1 & 11699.3 & 16756.2 & 19675.5 & 16050.7 \\
+    \textbf{10} & 9576.45 & 10009.9 & 11030.1 & 12071.2 &17350.2 & 20644.7 & 16797.3 \\
+\bottomrule
+\end{tabularx}
+  \caption{Initial mean values for pixels in each band assigned to target land cover types for 2015 before the iterative classification process}
+  \label{tabA2} 
+\end{table} 
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{p{0.7cm}p{2.5cm}p{1.0cm}p{1.3cm}p{1.0cm}p{1.0cm}p{1.5cm}p{1.5cm}}
+  \toprule
+  \multirow{2}{*}{class} & \multicolumn{7}{c}{Initial mean values for multispectral bands of Landsat} \\
+     & 1 - Coastal aerosol & 2 - Blue & 3 - Green & 4 - Red & 5 - NIR & 6 - SWIR-1 & 7 - SWIR-2 \\
+    \midrule
+        \textbf{1} & 7956.33 & 8207.65 & 8763.65 & 8860.93 & 12306 & 11946.7 & 10001.2 \\
+    \textbf{2} & 8117.93 & 8401.46 & 9023.47 & 9249.65 & 12895.4 & 12888 & 10677.9 \\
+    \textbf{3} & 8279.53 & 8595.27 & 9283.28 & 9638.37 & 13484.7 & 13829.4 & 11354.6 \\
+    \textbf{4} & 8441.13 & 8789.08 & 9543.09 & 10027.1 & 14074.1 & 14770.7 & 12031.3 \\
+    \textbf{5} & 8602.73 & 8982.89 & 9802.91 & 10415.8 & 14663.4 & 15712 & 12708 \\
+    \textbf{6} & 8764.32 & 9176.7 & 10062.7 & 10804.5 & 15252.8 & 16653.4 & 13384.7 \\
+    \textbf{7} & 8925.92 & 9370.51 & 10322.5 & 11193.3 & 15842.1 & 17594.7 & 14061.4 \\
+    \textbf{8} & 9087.52 & 9564.32 & 10582.3 & 11582 & 16431.5 & 18536.1 & 14738.1 \\
+    \textbf{9} & 9249.12 & 9758.14 & 10842.2 & 11970.7 & 17020.8 & 19477.4 & 15414.8 \\
+    \textbf{10} & 9410.72 & 9951.95 & 11102 & 12359.4 & 17610.2 & 20418.7 & 16091.6 \\
+\bottomrule
+\end{tabularx}
+  \caption{Initial mean values for pixels in each band assigned to target land cover types for 2017 before the iterative classification process}
+  \label{tabA3} 
+\end{table} 
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{p{0.7cm}p{2.5cm}p{1.0cm}p{1.3cm}p{1.0cm}p{1.0cm}p{1.5cm}p{1.5cm}}
+  \toprule
+  \multirow{2}{*}{class} & \multicolumn{7}{c}{Initial mean values for multispectral bands of Landsat} \\
+     & 1 - Coastal aerosol & 2 - Blue & 3 - Green & 4 - Red & 5 - NIR & 6 - SWIR-1 & 7 - SWIR-2 \\
+    \midrule
+        \textbf{1} & 7883.17 & 8161.79 & 8731.22 & 8868.39 & 12420.6 & 11749.3 & 9919.64 \\
+    \textbf{2} & 8066.83 & 8374.7 & 9010.16 & 9289.44 & 13074.4 & 12751.4 & 10645.2 \\
+    \textbf{3} & 8250.49 & 8587.61 & 9289.1 & 9710.5 & 13728.3 & 13753.5 & 11370.7 \\
+    \textbf{4} & 8434.15 & 8800.53 & 9568.04 & 10131.5 & 14382.2 & 14755.5 & 12096.3 \\
+    \textbf{5} & 8617.81 & 9013.44 & 9846.97 & 10552.6 & 15036 & 15757.6 & 12821.8 \\
+    \textbf{6} & 8801.47 & 9226.35 & 10125.9 & 10973.7 & 15689.9 & 16759.6 & 13547.4 \\
+    \textbf{7} & 8985.13 & 9439.26 & 10404.9 & 11394.7 & 16343.7 & 17761.7 & 14272.9 \\
+    \textbf{8} & 9168.79 & 9652.17 & 10683.8 & 11815.8 & 16997.6 & 18763.8 & 14998.4 \\
+    \textbf{9} & 9352.45 & 9865.08 & 10962.7 & 12236.8 & 17651.4 & 19765.8 & 15724 \\
+    \textbf{10} & 9536.11 & 10078 & 11241.7 & 12657.9 & 18305.3 & 20767.9 & 16449.5 \\
+\bottomrule
+\end{tabularx}
+  \caption{Initial mean values for pixels in each band assigned to target land cover types for 2024 before the iterative classification process}
+  \label{tabA4} 
+\end{table} 
+
+\section[\appendixname~\thesection]{Iterative cycles of image classification}\label{AppB}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{p{1.6cm}p{1.8cm}p{0.6cm}p{0.6cm}p{0.6cm}p{0.6cm}p{0.6cm}p{0.6cm}p{0.6cm}p{0.6cm}p{0.6cm}p{0.6cm}}
+  \toprule
+  \multirow{2}{*}{2013} & \multicolumn{10}{c}{Pixels' distribution by categories of land cover classes} \\
+     & points stable  & 1 & 2 &  3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+    \midrule
+    Iteration 1 & 79.91\% & 747 & 855 & 508 & 460 & 478 & 595 & 688 & 802 & 1014 & 897 \\
+    Iteration 2 & 88.69\% & 558 & 897 & 671 & 456 & 477& 594 &683 & 861& 1075 &772 \\
+    Iteration 3 & 90.81\% & 513 & 801 & 806 & 491 & 449 & 603 & 693 & 893 & 1108 & 687 \\
+    Iteration 4 & 93.02\% & 510  & 733 & 867 & 506 & 448 & 618 & 701 & 910 & 1129 & 622 \\
+    Iteration 5 & 95.30\% & 508 & 690 & 912 & 515 & 417 & 641  & 727& 910 &1145 &579\\
+    Iteration 6 & 96.39\% & 507 & 671 & 924 &531 &398 & 668 & 698 & 948 &1149  &550 \\
+    Iteration 7 & 97.30\% &  507 & 655 & 924 & 556 & 387& 701& 658 & 966 &1163 & 527\\
+    Iteration 8 & 97.90\% &  507 & 646 & 905 &585 &381 & 734 & 613 &987 & 1175 &511 \\
+    Iteration 9 & 98.27\% & 507 & 638  & 887 &617 & 378 &748 & 584 &1004 &1175  &506\\
+\bottomrule
+\end{tabularx}
+  \caption{Iterative process of pixels' assignment to target classes during image classification: 2013}
+  \label{tabB1}
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{p{1.6cm}p{1.8cm}p{0.6cm}p{0.6cm}p{0.6cm}p{0.6cm}p{0.6cm}p{0.6cm}p{0.6cm}p{0.6cm}p{0.6cm}p{0.6cm}}
+  \toprule
+  \multirow{2}{*}{2015} & \multicolumn{10}{c}{Pixels' distribution by categories of land cover classes} \\
+      & points stable & 1 & 2 &  3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+    \midrule
+    Iteration 1 & 77.04\% & 766  & 831  &451& 500  &490 &594  &722 &763 &1028 & 860 \\
+    Iteration 2 & 88.08\% & 627 & 815 &610 & 509 &470& 609 &708 &848 &1094&715 \\
+    Iteration 3 & 89.31\% & 584 & 751& 685 & 567 & 474& 591 &711 &912&1122 &608 \\
+    Iteration 4 & 91.53\% & 575  & 693&760&585 & 440& 629 & 717 & 939& 1144 &523 \\
+    Iteration 5 & 93.52\% & 573 & 663 & 791 & 612  &396 & 667 & 707 & 979&1169 &448 \\
+    Iteration 6 & 96.20\% & 573 & 646 & 787 & 636 &383 &719 &664 &994 & 1203 & 400 \\
+    Iteration 7 & 97.36\% & 571 & 636 &776 & 666 &385& 750 & 633  &1006 &1223 &359 \\
+    Iteration 8 & 97.79\% & 569 & 622 &779 & 688 &386 &776 &603&1021&1236&325\\
+    Iteration 9 & 98.34\% & 568& 615 &781&703  &391&796&582& 1026&1245&298 \\
+\bottomrule
+\end{tabularx}
+  \caption{Iterative process of pixels' assignment to target classes during image classification: 2015}
+  \label{tabB2}
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{p{1.6cm}p{1.8cm}p{0.7cm}p{0.6cm}p{0.6cm}p{0.6cm}p{0.6cm}p{0.6cm}p{0.6cm}p{0.6cm}p{0.6cm}p{0.6cm}}
+  \toprule
+  \multirow{2}{*}{2017} & \multicolumn{10}{c}{Pixels' distribution by categories of land cover classes} \\
+    & points stable & 1 & 2 &  3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+    \midrule
+    Iteration 1 & 74.38\% & 695 & 882& 485 &429 &448& 618 & 766 & 849& 1079& 760 \\
+    Iteration 2 & 91.54\% & 602 & 844 & 621 & 429 & 456 & 599 & 775 & 930 & 1100 &  655 \\
+    Iteration 3 & 91.93\% & 585 & 772 & 687 & 445 &479 & 598 & 780 & 978 & 1094 & 593 \\
+    Iteration 4 & 93.21\% & 583 & 737 & 704 & 447 & 500 & 588 & 809 & 1006 & 1093 &  544\\
+    Iteration 5 & 95.31\% & 583 & 723 & 707 & 435 & 528 & 588 & 818 & 1049 & 1071 & 509 \\
+    Iteration 6 & 96.38\% & 583 &724 & 699 & 429 & 534 & 601 & 813 &1086 &1061 & 481 \\
+    Iteration 7 & 96.41\% & 583 & 722 & 688 & 433 & 531 & 622 & 806 & 1106 & 1066 & 454 \\
+    Iteration 8 & 96.36\% & 583 &722 & 669 & 446 & 533 & 656& 785 & 1105 & 1083 &429 \\
+    Iteration 9 & 96.65\% & 583 & 723 &643 & 468 & 531 & 691 & 771 &1089 & 1094 & 418 \\
+    Iteration 10 & 96.82\% & 582 & 726 & 621 &486 &538 &723 &739 &1074  & 1113 & 409 \\
+    Iteration 11 & 97.10\% & 582 & 724 & 586 &524  & 537 &757 & 708 &1060 &1129 &404 \\
+     Iteration 12 & 97.39\% & 582 & 704 & 552 & 582 & 536 & 786 &682 &1047 &1139 &401 \\
+     Iteration 13 & 97.62\% &  581 &683  &523 &633 &536 &816 & 652 & 1044 & 1142 &401 \\
+     Iteration 14 & 98.12\% & 581 & 673 & 494 &674 &534 & 836 & 629 &1048 & 1140 &402 \\
+\bottomrule
+\end{tabularx}
+  \caption{Iterative process of pixels' assignment to target classes during image classification: 2017}
+  \label{tabB3}
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{p{1.4cm}p{1.8cm}p{0.7cm}p{0.6cm}p{0.6cm}p{0.6cm}p{0.6cm}p{0.6cm}p{0.6cm}p{0.6cm}p{0.6cm}p{0.6cm}}
+  \toprule
+  \multirow{2}{*}{2024} & \multicolumn{10}{c}{Pixels' distribution by categories of land cover classes} \\
+    & points stable  & 1 & 2 &  3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+    \midrule
+    Iteration 1 & 78.77\% & 763 &1016&519 &447 & 436 & 517 & 673 &772 & 1086 & 988 \\
+    Iteration 2 & 89.39\% & 637 & 969 & 688 & 458 &430 &523 & 665 &845 &1148 & 854 \\
+    Iteration 3 & 90.56\% & 616 & 845 & 794 & 491 &  458 & 493 & 685  & 913 & 1160 & 762 \\
+    Iteration 4 & 93.17\% & 612 & 772 & 854 &465 &477 &523 & 686 &967 & 1160 &701 \\
+    Iteration 5 & 95.08\% & 611 &  734 & 885 &  436 &  477 & 561 & 688 &  1000& 1161 &  664 \\
+    Iteration 6 & 96.16\% & 609 &706 & 897 &429 &469 &598 &702 & 989 &1173 &645 \\
+    Iteration 7 & 97.06\% & 609 & 685 & 907 &421& 460 & 646 &714 & 952 &1193 &630 \\
+    Iteration 8 & 97.73\% & 609  &675  &907 &415 & 452  &687 &739  & 910  &1197  & 626 \\
+    Iteration 9 & 98.41\% & 609& 670 & 902&411 &456 &712 & 770 & 860 &1204 &623 \\
+\bottomrule
+\end{tabularx}
+  \caption{Iterative process of pixels' assignment to target classes during image classification: 2024}
+  \label{tabB4}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{adjustwidth}{-\extralength}{0cm}
+%\printendnotes[custom] % Un-comment to print a list of endnotes
+
+\reftitle{References}
+\nocite{*}
+
+%=====================================
+% References, variant A: external bibliography
+%=====================================
+\bibliography{Australia.bib}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{adjustwidth}
+\end{document}
