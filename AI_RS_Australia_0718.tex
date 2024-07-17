@@ -315,9 +315,15 @@ At the next step, 10 groups of land cover categories were defined using informat
     \label{fig05}
 \end{figure}
 
+\hl{Employing ML and AI techniques of GRASS GIS involves a process schematically represented in Figure} \ref{fig05}. \hl{The first stage involves the data import through the modules 'r.import' or 'r.in.gdal'. The formulation of the initial data check includes metadata control using 'r.info' and 'r.category' modules which provide information on raster map layer and evaluates the values and labels of categories, respectively. Among others, it enables to check the background information about the geographic extent of the study area and variables in an analysis of raster layer. The g.copy module copies the existing raster maps in the mapset which is controlled by the module 'g.list rast' for evaluating its current content.}
+
+\hl{During the second stage (image processing), GRASS GIS begins to explore the images by generating corrected scenes. To this end, the atmospheric correction, geometric rectification and calibration are applied using the modules 'i.landsat.toar', 'i.rectify'  and others. At this stage, the quality of the multispectral bands of Landsat is improved to facilitate the next steps of image classification by the AI and ML algorithms. Cartographic handling enables to tune up the region extent, visualise the data, add explanatory legend, create colore composites from the multispectral triplets, and select representative colours for each map using several modules: 'd.rast', 'd.legend', and 'r.colors'. }
+
+\hl{In the next stage, GRASS GIS narrows the focus of image processing to the ML algorithms (RF, SVM, MLP, etc.) and evaluates the values cells using computer vision approach. The pixels are automatically distributed and grouped into classes according to their DNs. This process involves the use of modules 'r.random', 'r.learn.train' and other algorithms, as presented in the diagram scheme (Figure} \ref{fig05}\hl{). The ML part is performed using algorithms of Scikit-Learn package of Python that is integrated with GRASS GIS, version 8.3. In the final stage, the classification of the images is finalised with map outputs and accuracy assessment. The latter includes the computed rejection probability accuracy using chi-square algorithm, generating statistical report, and computing class separability matrices for each year of the evaluated Landsat scenes. At this point, the quality of processed data is assed using particular algorithms embedded into GRASS GIS.}.
+
 The adjusted automatic classification model was performed using the "i.maxlik" module of GRASS GIS that employs the maximum-likelihood discriminant analysis classifier. Here, the initial values of the pixels were computed for each multispectral band of the Landsat scenes for each year (the results are reported in the Appendix \ref{AppA}). Then, the iterative process of the re-assignment of these pixels was performed (the results of the iteration cycles are reported in the Appendix \ref{AppB} for each year), and the pixels were harmonised and readjusted to the target classes through the repetitive sequence of computational process. 
 
-The cluster parameters for MaxLike classification approach were accepted as following. The number of initial classes is 10; the minimum class size is 17; the Minimum class separation is zero and the percent convergence is 98.0 for all the scenes. The maximum number of iterations is 30 as defined by the GRASS GIS algorithm. The statistical summary of the accepted computational parameters of image processing through clustering is given in Table \ref{tab02}.
+The cluster parameters for MaxLike classification approach were accepted \hl{with the }following \hl{values}. The number of initial classes is 10; the minimum class size is 17; the Minimum class separation is zero and the percent convergence is 98.0 for all the scenes. The maximum number of iterations is 30 as defined by the GRASS GIS algorithm. The statistical summary of the accepted computational parameters of image processing through clustering is given in Table \ref{tab02}.
 
 \begin{table}[H]
   \centering
@@ -336,7 +342,7 @@ The cluster parameters for MaxLike classification approach were accepted as foll
   \label{tab02}
 \end{table}
 
-Finally, the maps obtained based on the classified images were visualised using the sequence of modules "d.rast", "d.grid" and "d.legend", Figure \ref{fig06}.  Such workflow made it possible to automate the necessary procedures to carry out image analysis. The additional information from the spectral bands (one to seven)  was obtained and statistically processed to evaluate changes during the period from 2013 to 2024. 
+Finally, the maps obtained based on the classified images were visualised using the sequence of modules "d.rast", "d.grid" and "d.legend" \hl{(}Figure \ref{fig06}\hl{)}.  Such workflow made it possible to automate the necessary procedures to carry out image analysis. The additional information from the spectral bands (one to seven)  was obtained and statistically processed to evaluate changes during the period from 2013 to 2024. 
 
 \begin{figure}[H]
   \centering
@@ -360,7 +366,7 @@ Finally, the maps obtained based on the classified images were visualised using 
   \label{fig06}
 \end{figure}
 
-Since all the four ML and IA models that were applied belong to the type of supervised classifiers, a training dataset was necessary for the algorithm. Training dataset teaches the model to learn the patterns of the different classes which should be discriminated. To this end, a sample of the unsupervised classification with pixel points was collected from the clustering to train the ML and AI algorithms, Figure \ref{fig07}.
+Since all the four ML and \hl{AI} models that were applied belong to the type of supervised classifiers, a training dataset was necessary for the algorithm. Training dataset teaches the model to learn the patterns of the different classes which should be discriminated. To this end, a sample of the unsupervised classification with pixel points was collected from the clustering to train the ML and AI algorithms, Figure \ref{fig07}.
 
 \begin{figure}[H]
   \centering
@@ -384,7 +390,7 @@ Since all the four ML and IA models that were applied belong to the type of supe
   \label{fig07}
 \end{figure}
 
-This initial raster dataset was augmented through the visual recognition of the satellite images, using the data on land cover types collected as reference from the DLCD open repository of the Australian Government. Four different ML and AI algorithms were tested and their performance was evaluated. For SVM and RF, the optimal parameters of the models were adjusted to improve the classification performance and accuracy of assignment. At the same time, for all the years (2013-2024), the assignment of pixels to various land cover classes was evaluated for each band was calculated to understand the contribution of land cover types within the whole landscape in the classification models.  
+This initial raster dataset was augmented through the visual recognition of the satellite images, using the data on land cover types \hl{which were }collected as reference from the \hl{Dynamic Land Cover Dataset (}DLCD) open repository of the Australian Government. Four different ML and AI algorithms were tested and their performances \hl{were} evaluated. For SVM and RF, the optimal parameters of the models were adjusted to improve the classification performance and accuracy of assignment. At the same time, for all the years (2013-2024), the assignment of pixels to various land cover classes was evaluated for each band was calculated to understand the contribution of land cover types within the whole landscape in the classification models.  
 
 %----------- section ----------->
 \section{Results}
