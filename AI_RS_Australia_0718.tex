@@ -215,7 +215,9 @@ The data used in this study for spatial analysis and image processing \hl{were} 
 
 The\hl{ }data\hl{ for the land cover types reference }were obtained from the open repository of the Geoscience Australia of the Australian Government\hl{. In this dataset, these categories are identified }based on the updated classified imagery of Geoscience Australia Landsat Land Cover with resolution of 25\hl{ }m that replaces the previous version based on classified images from Terra Moderate Resolution Imaging Spectroradiometer (MODIS). \hl{Nowadays, it presents }the nationally consistent and thematically comprehensive land cover reference for Australia -- the Dynamic Land Cover Dataset (DLCD)\hl{, }version 1.0.0 (\href{https://knowledge.dea.ga.gov.au/data/product/dea-land-cover-landsat/?tab=overview}{https://knowledge.dea.ga.gov.au/data/product/dea-land-cover-landsat/?tab=overview}, accessed on 24 June 2024), Figure \ref{fig03}. These data were used to obtain the general characteristics of the landscape types in the Port Phillip Bay and the surroundings\hl{. }The vectors layers of these data were processed and visualised using QGIS software.\hl{ }
 
-The RS data were obtained from the sources of Landsat 8-9 Landsat Operational Land Imager and Thermal Infrared Sensor (OLI-TIRS) United States Geological Survey (USGS). The main metadata of the satellite images are summarised in Table \ref{tab01}. 
+\hl{Coping with the diversity of information in the RS data with different spatio-temporal or categorical attributes poses a prevalent difficulty in satellite images processing. With this regards, selecting data with suitable spatio-temporal parameters play a crucial role in mitigating this challenge by furnishing tailored suggestions. Thus, environmental analysis takes advantage of diverse aspects of RS such as physical fundamentals of spectral reflectance, orbit characteristics that differ various satellite missions. To compare some of them, a single scene of Satellite Pour l'Observation de la Terre (SPOT) image covers a footprint of} $3,600 km^2$ \hl{at resolutions of 20 m to 2.5 m, with a location accuracy up to 10 m, Landsat 8-9 OLI/TIRS imagery have resolution of 30 m in multispectral bands, Sentinel-2 imagery has different resolution in four bands at 10 m, six bands at 20 m and three bands at 60 m spatial resolution. }
+
+\hl{Spatial data variability and difference of their technical characteristics illustrate by the examples above require adjusted approaches, such as ML and AI, to handle these data in order to obtain geo-information effectively. Therefore, }the RS data \hl{used in this study }were obtained from the sources of Landsat Operational Land Imager and Thermal Infrared Sensor (OLI-TIRS) United States Geological Survey (USGS)\hl{. The data were selected due to their high quality, acceptable resolution, robust technical characteristics and cloudless coverage of the study area}. The main metadata of the satellite images are summarised in Table \ref{tab01}. 
 
 \begin{sidewaystable}
 \centering
@@ -288,19 +290,19 @@ Major technical characteristics common for all the Landsat scenes are the follow
 %----------- subsection ----------->
 \subsection{Workflow}
 
-The workflow steps to process and classify the satellite images in order to detect land cover types along the coastal \hl{landscapes of} southern Australia are \hl{schematically presented} in Figure \ref{fig05}. \hl{Employing ML and AI techniques of GRASS GIS involves a multi-step process. The first stage involves the data import through the modules 'r.import' or 'r.in.gdal'. The formulation of the initial data check includes metadata control using 'r.info' and 'r.category' modules which provide information on raster map layer and evaluates the values and labels of categories, respectively. Among others, it enables to check the background information about the geographic extent of the study area and variables in an analysis of raster layer. The g.copy module copies the existing raster maps in the mapset which is controlled by the module 'g.list rast' for evaluating its current content.}
-
-\hl{During the second stage (image processing), GRASS GIS begins to explore the images by generating corrected scenes. To this end, the atmospheric correction, geometric rectification and calibration are applied using the modules 'i.landsat.toar', 'i.rectify'  and others.}
+The workflow steps to process and classify the satellite images in order to detect land cover types along the coastal \hl{landscapes of} southern Australia are \hl{schematically presented} in Figure \ref{fig05}. 
 
 \begin{figure}[H]
     \begin{center}
-	\hspace{-35pt}\includegraphics[width=14.0cm]{Fig_05.jpg}
+	\hspace{-35pt}\includegraphics[width=13.0cm]{Fig_05.jpg}
     \end{center}
     \caption{Workflow methodology. Software: RStudio version 2024.04.2+764, R version 3.6.0, 'DiagrammeR' package version 1.0.11.9000. Diagram source: author.}
     \label{fig05}
 \end{figure}
 
-\hl{At this stage, the quality of the multispectral bands of Landsat is improved to facilitate the next steps of image classification by the AI and ML algorithms. Cartographic handling enables to tune up the region extent, visualise the data, add explanatory legend, create colore composites from the multispectral triplets, and select representative colours for each map using several modules: 'd.rast', 'd.legend', and 'r.colors'. In the next stage, GRASS GIS narrows the focus of image processing to the ML algorithms (RF, SVM, MLP, etc.) and evaluates the values cells using computer vision approach. The pixels are automatically distributed and grouped into classes according to their DNs.} 
+\hl{Employing ML and AI techniques of GRASS GIS involves a multi-step process. The first stage involves the data import through the modules 'r.import' or 'r.in.gdal'. The formulation of the initial data check includes metadata control using 'r.info' and 'r.category' modules which provide information on raster map layer and evaluates the values and labels of categories, respectively. Among others, it enables to check the background information about the geographic extent of the study area and variables in an analysis of raster layer. The g.copy module copies the existing raster maps in the mapset which is controlled by the module 'g.list rast' for evaluating its current content.}
+
+\hl{During the second stage (image processing), GRASS GIS begins to explore the images by generating corrected scenes. To this end, the atmospheric correction, geometric rectification and calibration are applied using the modules 'i.landsat.toar', 'i.rectify'  and others.}\hl{At this stage, the quality of the multispectral bands of Landsat is improved to facilitate the next steps of image classification by the AI and ML algorithms. Cartographic handling enables to tune up the region extent, visualise the data, add explanatory legend, create colore composites from the multispectral triplets, and select representative colours for each map using several modules: 'd.rast', 'd.legend', and 'r.colors'. In the next stage, GRASS GIS narrows the focus of image processing to the ML algorithms (RF, SVM, MLP, etc.) and evaluates the values cells using computer vision approach. The pixels are automatically distributed and grouped into classes according to their DNs.} 
 
 \hl{This process involves the use of modules 'r.random', 'r.learn.train' and other algorithms, as presented in the diagram scheme (Figure} \ref{fig05}\hl{). The ML part is performed using algorithms of Scikit-Learn package of Python that is integrated with GRASS GIS, version 8.3. In the final stage, the classification of the images is finalised with map outputs and accuracy assessment. The latter includes the computed rejection probability accuracy using chi-square algorithm, generating statistical report, and computing class separability matrices for each year of the evaluated Landsat scenes. At this point, the quality of processed data is assed using particular algorithms embedded into GRASS GIS.}.
 
@@ -338,7 +340,9 @@ Since all the four ML and \hl{AI} models that were applied belong to the type of
 
 \subsection{Classification output}
 
-\hl{The results} of the classification of the satellite images using ML and AI methods are presented in Figures \ref{fig06}, \ref{fig07}, \ref{fig08} and \ref{fig09} for comparison of different approaches for years 2013, 2015, 2017 and 2024. 
+\hl{The results} of the classification of the satellite images using ML and AI methods are presented in Figures \ref{fig06}, \ref{fig07}, \ref{fig08} and \ref{fig09} for comparison of different approaches for years 2013, 2015, 2017 and 2024. Contrariwise, the time series of one algorithms but evaluating the environmental dynamics is illustrated in Figure \ref{fig10}. The computed statistics on land cover class distribution by multispectral bands for each Landsat image and by years for each evaluated period (2013, 2015, 2017 and 2024) \hl{were} obtained and summarised in the tables presented in the following section as well as in the Appendix of this study, e.g., Table \ref{tab03} for 2013 and likewise for the next periods. For 2013, pixels were assigned to the corresponding categories of the recognised 10 classes with 98.27\% points stable accuracy and convergence of 98.3\%, Table \ref{tab03}.
+
+\hl{Figure} \ref{fig07} \hl{and Figure} \ref{fig08} \hl{displays the results of the image classification approach using four different AI and ML methods by GRASS GIS resulting in ten land cover classes as described in using seven multispectral bands from the 2015 and 2017 Landsat images. Visually, these maps reflect broad LandUse Land Cover (LULC) characteristics of the Cheetham Wetlands, section of the marsh and uplands surrounding Port Phillip Bay.} \hl{The Cheetham Wetlands and marsh area (Class 7) are bounded to the west by upland vegetation including mixed tree cover and sparse vegetation and scattered trees (Class 5), as well as scrubs, bushland and shrubland (Class 2). The marsh areas and wetlands are partially mingled with other cover classes and inclusions of sigle trees and bushes adopted to the wet conditions. }
 
 \begin{figure}[H]
   \centering
@@ -362,7 +366,11 @@ Since all the four ML and \hl{AI} models that were applied belong to the type of
   \label{fig06}
 \end{figure}
 
-Contrariwise, the time series of one algorithms but evaluating the environmental dynamics is illustrated in Figure \ref{fig10}. The computed statistics on land cover class distribution by multispectral bands for each Landsat image and by years for each evaluated period (2013, 2015, 2017 and 2024) \hl{were} obtained and summarised in the tables presented in the following section as well as in the Appendix of this study, e.g., Table \ref{tab03} for 2013 and likewise for the next periods. For 2013, pixels were assigned to the corresponding categories of the recognised 10 classes with 98.27\% points stable accuracy and convergence of 98.3\%, Table \ref{tab03}.
+\hl{The} selection of the\hl{ }land categories has been employed using adopted \hl{data from} southern Australia and Port Phillip Bay. The adaptation of these data aimed at the correct detection of coastal landscapes within the ecosystems of southern Victoria with the special aim to detect wetlands, and discriminate them automatically from urban areas and native forests. \hl{The }retrospective time series 1987-2019 over Victoria State \hl{was employed }(\href{https://www.environment.vic.gov.au/biodiversity/Victorias-Land-Cover-Time-Series}{https://www.environment.vic.gov.au/biodiversity}, accessed on 25 July 2024): \emph{1) water bodies (Port Phillip Bay, lakes, rivers); 2) bushland ; 3) farmland and cropland used for agriculture; 4) native forests (closed trees); 5) sparse vegetation and scattered trees; 6) recreational land; 7) wetlands; 8) built-up areas; 9) pastures and grasslands; 10) bare areas}\hl{.} 
+
+\hl{To the east along the Indian Ocean, developed land appears as a segment immediately adjacent to the open coastal spaces. This includes a section of marshes beachfront development notable by real estate of compact beach front constructions close to the water border. The classes of natural vegetation are also observed in other segments of the classified scene and includes features such as native forests (closed trees) and sparse vegetation and scattered trees in drylands. The regions marked by anthropogenic activities (Class 8) include built-up areas which comprise the constructed commercial and residential buildings, roads and adjacent parking places and related objects of infrastructure. The distribution of the farmland and cropland (Class 3) is notable in the eastern areas with more intense agriculture activities.}
+
+\hl{The shallow water in the Port Phillip Bay are distinct in colour from the waters of the Indian and Pacific Oceans, and are typified by very low lying areas near river and creek edges, and also marked by existing pools, wet soils along the coasts, and low marsh vegetation along creek edges that belong to the hydrological system of Cheetham Wetlands. Likewise, the class of coastal marshes and wetlands also contain a few smaller pools and marginally wet areas where specific types of vegetation develop.} 
 
 \begin{figure}[H]
   \centering
@@ -385,10 +393,6 @@ Contrariwise, the time series of one algorithms but evaluating the environmental
    \caption{Image processing on 2015 using four methods: 1) Random Forest; 2) SVM; 3) ANN-based MLPC; 4) DTC. Image source: author.}
   \label{fig07}
 \end{figure}
-
-\hl{The} selection of the\hl{ }land categories has been employed using adopted \hl{data from} southern Australia and Port Phillip Bay. The adaptation of these data aimed at the correct detection of coastal landscapes within the ecosystems of southern Victoria with the special aim to detect wetlands, and discriminate them automatically from urban areas and native forests. \hl{The }retrospective time series 1987-2019 over Victoria State \hl{was employed }(\href{https://www.environment.vic.gov.au/biodiversity/Victorias-Land-Cover-Time-Series}{https://www.environment.vic.gov.au/biodiversity}, accessed on 25 July 2024): \emph{1) water bodies (Port Phillip Bay, lakes, rivers); 2) bushland ; 3) farmland and cropland used for agriculture; 4) native forests (closed trees); 5) sparse vegetation and scattered trees; 6) recreational land; 7) wetlands; 8) built-up areas; 9) pastures and grasslands; 10) bare areas}\hl{.} 
-
-\hl{Figure} \ref{fig08} \hl{displays the results of the image classification approach using four different AI and ML methods by GRASS GIS resulting in ten land cover classes as described in using seven multispectral bands from the 2017 Landsat image. Visually, these maps reflect broad LandUse Land Cover (LULC) characteristics of the Cheetham Wetlands, section of the marsh and uplands surrounding Port Phillip Bay.} \hl{The Cheetham Wetlands and marsh area (Class 7) are bounded to the west by upland vegetation including mixed tree cover and sparse vegetation and scattered trees (Class 5), as well as scrubs, bushland and shrubland (Class 2). The marsh areas and wetlands are partially mingled with other cover classes and inclusions of sigle trees and bushes adopted to the wet conditions. }
 
 \begin{table}[H]
   \centering
@@ -434,7 +438,7 @@ Contrariwise, the time series of one algorithms but evaluating the environmental
 \end{table}
 
 \subsection{Statistical metrics}
-Table \ref{tab04} shows the evaluated statistical metrics derived from the computations obtained for each multispectral class for 2015. Likewise, the performance of the image classification for years 2017 and 2024 were summarised in Table \ref{tab05} and Table \ref{tab06}. It shows the variations in pixels's means and standard deviation for pixels by Landsat channel. 
+Table \ref{tab04} shows the evaluated statistical metrics derived from the computations obtained for each multispectral class for 2015.
 
 \begin{table}[H]
   \centering
@@ -501,11 +505,7 @@ Table \ref{tab04} shows the evaluated statistical metrics derived from the compu
   \label{fig08}
 \end{figure}
 
-The overall trend in land cover type distribution by classes and the dynamics of changes is presented in Table \ref{tab07}. Here, the statistical results of the class distribution of the assigned pixels are based on the of the evaluated signature file by four years and seven multispectral bands as summarised in Table \ref{tab07} showing target land cover types for 2013--2024. Land cover class 1 (water -- Port Phillip Bay, lakes, rivers) demonstrated fluctuations with a slight increase in 2015 and 2024 which points at climate effects and higher precipitation. 
-
-\hl{To the east along the Indian Ocean, developed land appears as a segment immediately adjacent to the open coastal spaces. This includes a section of marshes beachfront development notable by real estate of compact beach front constructions close to the water border. The classes of natural vegetation are also observed in other segments of the classified scene and includes features such as native forests (closed trees) and sparse vegetation and scattered trees in drylands. The regions marked by anthropogenic activities (Class 8) include built-up areas which comprise the constructed commercial and residential buildings, roads and adjacent parking places and related objects of infrastructure. The distribution of the farmland and cropland (Class 3) is notable in the eastern areas with more intense agriculture activities.}
-
-\hl{The shallow water in the Port Phillip Bay are distinct in colour from the waters of the Indian and Pacific Oceans, and are typified by very low lying areas near river and creek edges, and also marked by existing pools, wet soils along the coasts, and low marsh vegetation along creek edges that belong to the hydrological system of Cheetham Wetlands. Likewise, the class of coastal marshes and wetlands also contain a few smaller pools and marginally wet areas where specific types of vegetation develop.} 
+Likewise, the performance of the image classification for years 2017 and 2024 were summarised in Table \ref{tab05} and Table \ref{tab06}. It shows the variations in pixels's means and standard deviation for pixels by Landsat channel. 
 
 \begin{table}[H]
   \centering
@@ -550,13 +550,6 @@ The overall trend in land cover type distribution by classes and the dynamics of
   \label{tab05}
 \end{table}
 
-\hl{The borders of marshes and wetlands include an edge or the transitional intertidal zone between the main area of Cheetham Wetlands and the transitional zone that includes scrubs, shrubland and bushland, as well as mixed single tree cover zone. In contrast to the wetlands, the areas of farmland and cropland used for agriculture are mostly distributed at higher elevations surrounded by the wetlands and marshes in the coastal areas which are less prone to inundation due to the topographically elevated areas and drainage channels. Forest community and woody vegetation are predominantly distributed in higher elevated areas further from the beachfront area. The bushland, scrubs and shrubland class include patches of the mixed woody vegetation within wetlands and along its edges.}
-
-\subsection{Interpretation of trends}
-A stable increase in land cover class 2 (bushland) is notable from 425 pixels in 2013 to 514 pixels in 2024 which signifies the decrease of forests in favour of minor plant types. The increase in land cover class 3 (farmland and cropland used for agriculture) by 2024 implies the intensification of irrigated lands used for commercial purposes. The distribution of forests (land cover class 4) demonstrated a slight decrease during the past decade from 493 pixels in 2013 to 434 pixels by 2024 which indicates a slight deforestation in the coastal areas of Victoria, Port Phillip Bay. The variations in land cover class 5 (sparse vegetation and scattered trees) indicated the initiation of the processes of restoration which follows-up the remediation of the previously abandoned lands. 
-
-The ongoing climate-environmental processes and anthropogenic activities resulted in a slight decrease of land cover classes 5 to 7 which experienced changes in occupied surface due to the cumulative effects from aridification and human pressure along the coasts of southern Australia. Land cover class 8 (built-up areas) shown the increase over the recent decade with indicates the expansion of the areas with impervious structures (e.g., such as roads, industrial construction and similar occupied lands). In contrast, the increase of pasture and grasslands (class 10) and bare areas (class 11) is notable for the recent decade which might lead to soil degradation and initiate the deforestation of the lands located in semi-arid environment, Table \ref{tab07}. 
-
 \begin{table}[H]
   \centering
   \begin{tabularx}{\linewidth}{p{1.3cm}p{1.0cm}p{1.0cm}p{1.0cm}p{1.0cm}p{1.0cm}p{1.0cm}p{1.0cm}p{1.0cm}}
@@ -600,6 +593,32 @@ The ongoing climate-environmental processes and anthropogenic activities resulte
   \label{tab06}
 \end{table}
 
+The overall trend in land cover type distribution by classes and the dynamics of changes is presented in Table \ref{tab07}. Here, the statistical results of the class distribution of the assigned pixels are based on the of the evaluated signature file by four years and seven multispectral bands as summarised in Table \ref{tab07} showing target land cover types for 2013--2024. Land cover class 1 (water -- Port Phillip Bay, lakes, rivers) demonstrated fluctuations with a slight increase in 2015 and 2024 which points at climate effects and higher precipitation. 
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}}
+  \toprule
+  \multirow{2}{*}{Year} & \multicolumn{10}{c}{Classes of land cover types} \\
+     & 1 & 2 &  3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+    \midrule
+    \textbf{2013} & 1183 & 425 & 482 & 493 & 446 & 588 & 744 & 773 & 752 & 1158 \\
+    \textbf{2015} & 1215 & 367 & 471 & 491 & 485 & 589 & 731 & 782 & 774 & 1100 \\
+    \textbf{2017} & 1146 & 415 & 496 & 414 & 464 & 634 & 738 & 887 & 812 & 1005 \\
+    \textbf{2024} & 1249 & 514 & 541 & 434 & 440 & 522 & 671 & 784 & 806 & 1256 \\
+\bottomrule
+\end{tabularx}
+  \caption{Class distribution of the assigned pixels target land cover types for 2013--2024 during iterative classification process}
+  \label{tab07}
+\end{table} 
+
+\hl{The borders of marshes and wetlands include an edge or the transitional intertidal zone between the main area of Cheetham Wetlands and the transitional zone that includes scrubs, shrubland and bushland, as well as mixed single tree cover zone. In contrast to the wetlands, the areas of farmland and cropland used for agriculture are mostly distributed at higher elevations surrounded by the wetlands and marshes in the coastal areas which are less prone to inundation due to the topographically elevated areas and drainage channels. Forest community and woody vegetation are predominantly distributed in higher elevated areas further from the beachfront area. The bushland, scrubs and shrubland class include patches of the mixed woody vegetation within wetlands and along its edges.}
+
+The ongoing climate-environmental processes and anthropogenic activities resulted in a slight decrease of land cover classes 5 to 7 which experienced changes in occupied surface due to the cumulative effects from aridification and human pressure along the coasts of southern Australia. Land cover class 8 (built-up areas) shown the increase over the recent decade with indicates the expansion of the areas with impervious structures (e.g., such as roads, industrial construction and similar occupied lands). In contrast, the increase of pasture and grasslands (class 10) and bare areas (class 11) is notable for the recent decade which might lead to soil degradation and initiate the deforestation of the lands located in semi-arid environment, Table \ref{tab07}. 
+
+\subsection{Interpretation of trends}
+\hl{The effectiveness of different algorithms in supervised classification is based on the comparison of the information-filtering and information-extracting tools intended to anticipate  and provide relevant content regarding LULC data obtained from the processed satellite imagery. Hence, }a stable increase in land cover class 2 (bushland) is notable from 425 pixels in 2013 to 514 pixels in 2024 which signifies the decrease of forests in favour of minor plant types. The increase in land cover class 3 (farmland and cropland used for agriculture) by 2024 implies the intensification of irrigated lands used for commercial purposes. The distribution of forests (land cover class 4) demonstrated a slight decrease during the past decade from 493 pixels in 2013 to 434 pixels by 2024 which indicates a slight deforestation in the coastal areas of Victoria, Port Phillip Bay. The variations in land cover class 5 (sparse vegetation and scattered trees) indicated the initiation of the processes of restoration which follows-up the remediation of the previously abandoned lands. 
+
 \begin{figure}[H]
   \centering
   \begin{tabular}[b]{c}
@@ -623,26 +642,10 @@ The ongoing climate-environmental processes and anthropogenic activities resulte
 \end{figure}
 
 \subsection{Comparison of approaches}
-In general, the SVM and RF models’ performance demonstrated similar results which is caused due to the technical parameters of these algorithms. The most distinct and accurate (over 98\% of accuracy) performance was noted by the AI algorithm of MLPC. 
+
+\hl{The ML algorithms that enabled to extract such information using GRASS GIS scripting methods leverage methodologies to examine satellite images based on spectral reflectance, threshold between categories for assignment of pixels, and raster cell attributes to produce maps. Here, the SVM, RF, MLPC and DTC algorithms demonstrated effectiveness in RS data processing. Using these tools, the RS data were categorised into content-based regional patterns of land cover types of southern Australia. Among these, SVM and RF scenarios are predominantly effective due to functionality of algorithms that increased accuracy results. Thus}, the SVM and RF models’ performance demonstrated similar results which is caused due to the technical parameters of these algorithms. The most distinct and accurate (over 98\% of accuracy) performance was noted by the AI algorithm of MLPC. 
 
 The use of these methods incorporated additional information on distribution of land cover types over souther Australia, i.e., landscape dynamics, and trends over the recent decade. The overall accuracy of the SVM classifier demonstrated 97.6\%, following by 96.4\% by RF. The DTC shown lesser results yet is comparable to the tested methods with overall achieved accuracy of 96.1\%. Once the optical ML AI classifiers were determined for image processing, the time series analysis was plotted (Figure \ref{fig10}) to visualise the dynamics of the land cover types in southern Australia between 2013 to 2024 along the coastal areas of Victoria. The decrease of areas occupied by Cheetham Wetlands around Port Phillip Bay was assessed over the recent decade using RS data processing and statistical analysis.
-
-\begin{table}[H]
-  \centering
-  \begin{tabularx}{\textwidth}{p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}}
-  \toprule
-  \multirow{2}{*}{Year} & \multicolumn{10}{c}{Classes of land cover types} \\
-     & 1 & 2 &  3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
-    \midrule
-    \textbf{2013} & 1183 & 425 & 482 & 493 & 446 & 588 & 744 & 773 & 752 & 1158 \\
-    \textbf{2015} & 1215 & 367 & 471 & 491 & 485 & 589 & 731 & 782 & 774 & 1100 \\
-    \textbf{2017} & 1146 & 415 & 496 & 414 & 464 & 634 & 738 & 887 & 812 & 1005 \\
-    \textbf{2024} & 1249 & 514 & 541 & 434 & 440 & 522 & 671 & 784 & 806 & 1256 \\
-\bottomrule
-\end{tabularx}
-  \caption{Class distribution of the assigned pixels target land cover types for 2013--2024 during iterative classification process}
-  \label{tab07}
-\end{table} 
 
 \begin{figure}[H]
   \centering
