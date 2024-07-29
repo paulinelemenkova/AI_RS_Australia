@@ -106,7 +106,7 @@
 \newcommand{\orcidauthorA}{0000-0002-5759-1089} % Polina Add \orcidA{} behind the author's name
 
 % Authors, for the paper (add full first names)
-\Author{\hl{Polina Lemenkova} %MDPI: Please carefully check the accuracy of names and affiliations.
+\Author{Polina Lemenkova %MDPI: Please carefully check the accuracy of names and affiliations. %Author: yes, correct. I have checked and revised all.
  $^{1,2}$\orcidA{}}
 
 %\longauthorlist{yes}
@@ -120,12 +120,12 @@
 
 % Affiliations / Addresses (Add [1] after \address if there is only one affiliation.)
 \address{%
-$^{1}$ \quad Department of Geoinformatics, Faculty of Digital and Analytical Sciences, Paris Lodron Universität Salzburg, Schillerstraße 30, A-5020 Salzburg, Austria; \hl{polina.lemenkova@plus.ac.at or polina.lemenkova2@unibo.it;} %MDPI: Please check if the two email both should be kept.
+$^{1}$ \quad Department of Geoinformatics, Faculty of Digital and Analytical Sciences, Paris Lodron Universität Salzburg, Schillerstraße 30, A-5020 Salzburg, Austria; polina.lemenkova@plus.ac.at %MDPI: Please check if the two email both should be kept. %Author: yes, correct. I have two emails. They should be kept. The second email belongs to the second affiliation. I moved it there.
  \linebreak Tel.: +43-677-6173-2772 or +39-344-69-28-732
 
-$^{2}$ \quad Department of Biological, Geological and Environmental Sciences, Alma Mater Studiorum---Università di Bologna, Via Irnerio 42, \hl{IT-40126 Bologna,} %MDPI: Please check if the postcode format is correct, if it should be 40126.
- \hl{Emilia-Romagna,} %MDPI: Please confirm if region information can be removed.
- Italy
+$^{2}$ \quad Department of Biological, Geological and Environmental Sciences, Alma Mater Studiorum---Università di Bologna, Via Irnerio 42, 40126 Bologna, %MDPI: Please check if the postcode format is correct, if it should be 40126. %Author: yes, corrected to 40126.
+ %MDPI: Please confirm if region information can be removed. %Author: yes, can be removed (I removed it).
+ Italy; polina.lemenkova2@unibo.it
 }
 
 % Contact information of the corresponding author
@@ -180,7 +180,7 @@ The research is focused on the {area} around Melbourne---the second largest city
    
 	\includegraphics[width=13.5cm]{Fig_01.jpg}
   
-    \caption{\hl{General} %MDPI: Please carefully check to make sure there are no Duplicate pictures throughout the text, thank you.
+    \caption{General %MDPI: Please carefully check to make sure there are no Duplicate pictures throughout the text, thank you. %Author: yes, I have checked: there are no duplicate pictures. Everything is correct.
  topographic map of Australia with location of study area outlined. Mapping software: Generic Mapping Tools (GMT) version 6.4.0. Data source: GEBCO. Map source: author.}
     \label{fig01}
 \end{figure}
@@ -233,7 +233,7 @@ The data used in this study for spatial analysis and image processing {were} obt
 
 The{ }land cover type reference data %Please ensure meaning has been retained. 
 were obtained from the open repository of Geoscience Australia of the Australian Government{. In~this dataset, categories are identified }based on updated classified imagery of Geoscience Australia Landsat land cover with resolution of 25{ }m that replaces the previous version based on classified images from the Terra Moderate-Resolution Imaging Spectroradiometer (MODIS). {Nowadays, this dataset %Please ensure meaning has been retained. 
-presents }a nationally consistent and thematically comprehensive land cover reference for Australia---the Dynamic Land Cover Dataset (DLCD){, }version 1.0.0 (\url{https://knowledge.dea.ga.gov.au/data/product/dea-land-cover-landsat/?tab=overview}, accessed on 24 June 2024) (Figure~\ref{fig03}). These data were used to obtain the general characteristics of the landscape types in Port Phillip Bay and its surroundings{. }The vector layers of these data were processed and visualised using \hl{QGIS software.} %MDPI: Please state the version number of the software.
+presents }a nationally consistent and thematically comprehensive land cover reference for Australia---the Dynamic Land Cover Dataset (DLCD){, }version 1.0.0 (\url{https://knowledge.dea.ga.gov.au/data/product/dea-land-cover-landsat/?tab=overview}, accessed on 24 June 2024) (Figure~\ref{fig03}). These data were used to obtain the general characteristics of the landscape types in Port Phillip Bay and its surroundings{. }The vector layers of these data were processed and visualised using QGIS software version 3.38.1. %MDPI: Please state the version number of the software. %Author: added information: version 3.38.1.
 
 
 {Coping with the diversity of information in RS data with different spatio--temporal or categorical attributes poses a prevalent difficulty in satellite image processing. With~this in mind, selecting data with suitable spatio--temporal parameters plays a crucial role in mitigating this challenge by furnishing tailored suggestions. Thus, environmental analyses take advantage of diverse aspects of RS, such as the physical fundamentals of spectral reflectance and orbit characteristics that accommodate %Please ensure meaning has been retained. 
@@ -279,7 +279,7 @@ The~satellite ID is 9 for the scene in 2024 and 8 for the rest of the images, an
 \startlandscape
 {\begin{table}[H]
 \tablesize{\fontsize{7}{7}\selectfont}
-\caption{\hl{Metadata} %MDPI: We revised the table format, please confirm.
+\caption{Metadata %MDPI: We revised the table format, please confirm. %Author: yes, I confirm.
  for the four scenes of the Landsat 8--9 OLI/TIRS images used for RS data processing and~classification. \label{tab01}}
 \newcolumntype{C}{>{\centering\arraybackslash}X}
 
@@ -290,11 +290,11 @@ The~satellite ID is 9 for the scene in 2024 and 8 for the rest of the images, an
         Landsat Product Identifier L2 & \makecell{LC09\_L2SP\_093086\_ \\ 20240329\_20240403\_02\_T1} & \makecell{LC08\_L2SP\_093086\_ \\ 20170318\_20200904\_02\_T1} & \makecell{LC08\_L2SP\_093086\_ \\ 20150329\_20200909\_02\_T1} & \makecell{LC08\_L2SP\_093086\_ \\ 20130326\_20200913\_02\_T1} \\ \midrule
         Landsat Product Identifier L1 & \makecell{LC09\_L1TP\_093086\_ \\ 20240329\_20240329\_02\_T1} & \makecell{LC08\_L1TP\_093086\_ \\ 20170318\_20200904\_02\_T1} & \makecell{LC08\_L1TP\_093086\_ \\ 20150329\_20200909\_02\_T1} & \makecell{LC08\_L1TP\_093086\_ \\ 20130326\_20200913\_02\_T1} \\ \midrule
         Landsat Scene Identifier & LC90930862024089LGN00 & LC80930862017077LGN00 & LC80930862015088LGN01 & LC80930862013085LGN02 \\ \midrule
-        Date Acquired & \hl{2024/03/29} %MDPI: Please check if the date format can be revised to the standard format, e.g., 29 March 2024, Please revised all in table.
- & 2017/03/18 & 2015/03/29 & 2013/03/26 \\ \midrule
+        Date Acquired & 29 March 2024 %MDPI: Please check if the date format can be revised to the standard format, e.g., 29 March 2024, Please revised all in table. %Author: yes, I changed it to the standard format, as suggested. I revised all in table.
+ & 18 March 2017 & 29 March 2015 & 26 March 2013 \\ \midrule
         Roll Angle & 0.001 & 0.000 & 0.000 & 0.000 \\ \midrule
-        Date Product Generated L2 & 2024/04/03 & 2020/09/04 & 2020/09/09 & 2020/09/13 \\ \midrule
-        Date Product Generated L1 & 2024/03/29 & 2020/09/04 & 2020/09/09 & 2020/09/13 \\ \midrule
+        Date Product Generated L2 & 3 April 2024 & 4 September 2020 & 9 September 2020 & 13 September 2020 \\ \midrule
+        Date Product Generated L1 & 29 March 2024 & 4 September 2020 & 9 September 2020 & 13 September 2020 \\ \midrule
         Start Time & 2024-03-29 00:09:22 & 2017-03-18 00:09:03.868153 & 2015-03-29 00:08:50.482423 & 2013-03-26 00:10:37.681759 \\ \midrule
         Stop Time & 2024-03-29 00:09:54 & 2017-03-18 00:09:35.63815 & 2015-03-29 00:09:22.252419 & 2013-03-26 00:11:07.47778 \\ \midrule
         Land Cloud Cover & 0.34 & 0.26 & 0.48 & 0.13 \\ \midrule
