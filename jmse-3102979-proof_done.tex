@@ -167,7 +167,7 @@ proposed methodology{, new technical approaches are} constantly being developed 
 Novel methods and approaches {arise} in the rapidly developing {era} of {high-performance} computing{. These enable} researchers %Please ensure meaning has been retained. %Author: yes, retained.
 to overcome the {existing} issues related to RS data processing{ and satellite image classification. For~instance,} these include{ }the use of general-purpose programming languages {in cartographic applications, }such as Python or R, application of deep learning (DL) \cite{Park,Roselin}, scripting techniques~\cite{Lemenkova202212,Lemenkova202213} and artificial intelligence (AI) algorithms \cite{rs11060617,Lemenkova202211}. The~integration of RS data and these new technologies provides effective approaches to RS data handling for accurate and rapid image processing~\cite{Turnbull,Lemenkova202323}. {Such} powerful combination of Earth observation data and ML tools{ }present a principally new cartographic approach for mapping marine and coastal environments{ that can be effectively used }for {operative }monitoring of marine and coastal areas~\cite{Cao2022}.
 
-Discriminating complex and highly fragmented patches of coastal landscapes requires the use of advanced methods for RS data processing. As~a response to these needs, we utilise AI algorithms that enable us to accurately recognise and classify even tiny differences in landscape patches and to detect the dynamics of vegetation types. Moreover, workflow repeatability is facilitated by using scripting techniques of {Geographic Resources Analysis Support System (}GRASS) GIS and {Generic Mapping Tools (}GMT{)}. Such a combined use of different software ensures the flexibility of the cartographic techniques through the use of GMT for gridded raster data handling using available techniques~\cite{Lemenkova202217}, QGIS for vector data visualization and scripts of GRASS GIS for AI and ML methods of image~processing. 
+Discriminating complex and highly fragmented patches of coastal landscapes requires the use of advanced methods for RS data processing. As~a response to these needs, we utilise AI algorithms that enable us to accurately recognise and classify even tiny differences in landscape patches and to detect the dynamics of vegetation types. Moreover, workflow repeatability is facilitated by using scripting techniques of {Geographic Resources Analysis Support System (}GRASS) GIS and {Generic Mapping Tools (}GMT{)}. The GMT was developed by Paul Wessel and Walter Smith in Lamont-Doherty Earth Observatory, Palisades, New York, USA, and now supported by Wessel S. volunteers worldwide under the GNU Lesser General Public License. Such a combined use of different software ensures the flexibility of the cartographic techniques through the use of GMT for gridded raster data handling using available techniques~\cite{Lemenkova202217}, QGIS for vector data visualization and scripts of GRASS GIS for AI and ML methods of image~processing. 
 
 {This} study is{ }organised into two {logical }parts. {The} first {part} gives insights into the environmental setting of the coast{ }around Phillip Port Bay, southern Australia, while the second one {focuses on describing and presenting} the technical tools{. Here, we describe the details of the} methods of the AI algorithms {that were }used for satellite image processing {and point to the differences} that exist between {them}. The~results obtained from image classification are{ }commented on in{ relevant} sections with the sequential discussion, closing remarks and recommendations for future~works. 
 
@@ -223,7 +223,7 @@ The current environment of Port Phillip Bay has developed due to a complex inter
 %----------- section ----------->
 \section{Materials and~Methods}
 
-\hl{An} %MDPI: For this paper please double check that the following details are provided for all cases: company names and addresses (city, country) of the instruments, agents and softwares used. For USA or Canadian companies, please provide the state name as well (i.e., city name, abbreviated state name, USA/Canada).
+\hl{An} %MDPI: For this paper please double check that the following details are provided for all cases: company names and addresses (city, country) of the instruments, agents and softwares used. For USA or Canadian companies, please provide the state name as well (i.e., city name, abbreviated state name, USA/Canada). %Author: yes, correct. I have checked and revised all.
  approach that integrates RS data and AI algorithms is proposed herein to identify land cover changes through pixel-level mapping for {environmental }monitoring{ of the }southern area of Victoria (state), Melbourne~district. 
 
 %----------- subsection ----------->
@@ -233,7 +233,7 @@ The data used in this study for spatial analysis and image processing {were} obt
 
 The{ }land cover type reference data %Please ensure meaning has been retained. %Author: yes, retained.
 were obtained from the open repository of Geoscience Australia of the Australian Government{. In~this dataset, categories are identified }based on updated classified imagery of Geoscience Australia Landsat land cover with resolution of 25{ }m that replaces the previous version based on classified images from the Terra Moderate-Resolution Imaging Spectroradiometer (MODIS). {Nowadays, this dataset %Please ensure meaning has been retained. %Author: yes, retained.
-presents }a nationally consistent and thematically comprehensive land cover reference for Australia---the Dynamic Land Cover Dataset (DLCD){, }version 1.0.0 (\url{https://knowledge.dea.ga.gov.au/data/product/dea-land-cover-landsat/?tab=overview}, accessed on 24 June 2024) (Figure~\ref{fig03}). These data were used to obtain the general characteristics of the landscape types in Port Phillip Bay and its surroundings{. }The vector layers of these data were processed and visualised using QGIS software version 3.38.1. %MDPI: Please state the version number of the software. %Author: added information: version 3.38.1.
+presents }a nationally consistent and thematically comprehensive land cover reference for Australia---the Dynamic Land Cover Dataset (DLCD){, }version 1.0.0 (\url{https://knowledge.dea.ga.gov.au/data/product/dea-land-cover-landsat/?tab=overview}, accessed on 24 June 2024) (Figure~\ref{fig03}). These data were used to obtain the general characteristics of the landscape types in Port Phillip Bay and its surroundings{. }The vector layers of these data were processed and visualised using QGIS software version 3.38.1, name of the software developer company: QGIS Development Team; developed under License GNU GPLv2. %MDPI: Please state the version number of the software. %Author: added information: version 3.38.1.
 
 
 {Coping with the diversity of information in RS data with different spatio--temporal or categorical attributes poses a prevalent difficulty in satellite image processing. With~this in mind, selecting data with suitable spatio--temporal parameters plays a crucial role in mitigating this challenge by furnishing tailored suggestions. Thus, environmental analyses take advantage of diverse aspects of RS, such as the physical fundamentals of spectral reflectance and orbit characteristics that accommodate %Please ensure meaning has been retained. %Author: yes, retained.
@@ -505,7 +505,7 @@ stable accuracy and convergence of 98.3\% (Table~\ref{tab03}).
   \label{fig09}
 \end{figure}
 \vspace{-9pt}
-%Author: Figure 9 is revised as in previous cases. I have checked and revised its content. The left bracket is added in all the subplots, as requested. Content is also corrected: added missing coordinate notation 38:30 S in the lower left corner of the images.
+%Author: Figure 9 is revised as in previous cases. I have checked and revised its content. The left bracket is added in all the subplots, as requested. Content is also corrected: added missing coordinate notations 38:30 S and 36:30 S in the lower and upper left corners of the images.
 
 \begin{table}[H]
   \caption{Pixelwise computational statistics on land cover class distribution by spectral bands from~imagery from 2013.   \label{tab03}}%Please ensure meaning has been retained. %Author: yes, retained.
@@ -569,11 +569,13 @@ stable accuracy and convergence of 98.3\% (Table~\ref{tab03}).
     \includegraphics[width=6.3cm]{Fig_10d.jpg} \\
     \small (\textbf{d}) 
   \end{tabular}
-  \caption{\hl{Time} \hl{series} %MDPI: Please add explanation of subfigure abcd.
- of the classified images (2013--2024) processed using k-means~clustering.}
+  \caption{Time series %MDPI: Please add explanation of subfigure abcd. %Author: added year explanations of subfigures a, b, c, and d.
+ of the classified images (2013--2024) processed using k-means~clustering. (\textbf{a}) image on 2013; (\textbf{b}) image on 2015; (\textbf{c}) image on 2017; (\textbf{d}) image on 2024. Image processing: author.}
   \label{fig10}
 \end{figure}
-{The shallow water in Port Phillip Bay is distinct in colour from the waters of the Indian and Pacific Oceans; it is typified by very low lying areas near river and creek edges, and~it is also marked by existing pools, wet soils along the coasts and~low marsh vegetation along creek edges that belong to the hydrological system of Cheetham Wetlands. Likewise, the~class of coastal marshes and wetlands also contains a few smaller pools and marginally wet areas where specific types of vegetation develop.} 
+%Author: Figure 10 is revised as in previous cases. I have checked and revised its content. The left bracket is added in all the subplots, as requested. Content is also corrected: added missing coordinate notations 38:30 S and 36:30 S in the lower and upper left corners of the images  where required.
+
+The shallow water in Port Phillip Bay is distinct in colour from the waters of the Indian and Pacific Oceans; it is typified by very low lying areas near river and creek edges, and~it is also marked by existing pools, wet soils along the coasts and~low marsh vegetation along creek edges that belong to the hydrological system of Cheetham Wetlands. Likewise, the~class of coastal marshes and wetlands also contains a few smaller pools and marginally wet areas where specific types of vegetation develop.
 
 
 
@@ -805,8 +807,8 @@ shown in Figure~\ref{fig11}. The accuracy assessment was performed using the com
     \includegraphics[width=6.3cm]{Fig_11d.jpg} \\
     \small (\textbf{d}) 
   \end{tabular}
-  \caption{\hl{Accuracy} \hl{analysis} %MDPI: Please add explanation of subfigure abcd.
- of image classification (2013--2024) using chi-square algorithm~method.}
+  \caption{Accuracy analysis %MDPI: Please add explanation of subfigure abcd. %Author: added year explanations of subfigures a, b, c, and d. %Author: Figure 11 is revised as in previous cases. I have checked and revised its content. The left bracket is added in all the subplots, as requested. Content is also corrected: added missing coordinate notations 38:30 S and 36:30 S in the lower and upper left corners of the images where required.
+ of image classification (2013--2024) using chi-square algorithm~method. (\textbf{a}) image on 2013; (\textbf{b}) image on 2015; (\textbf{c}) image on 2017; (\textbf{d}) image on 2024. Image processing: author.}
   \label{fig11}
 \end{figure}
 
